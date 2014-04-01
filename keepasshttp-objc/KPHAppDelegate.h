@@ -8,8 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface KPHAppDelegate : NSObject <NSApplicationDelegate>
+@class HTTPServer;
 
+@interface KPHAppDelegate : NSObject <NSApplicationDelegate>
+{
+    HTTPServer *httpServer;
+}
 @property (assign) IBOutlet NSWindow *window;
 
 @end
