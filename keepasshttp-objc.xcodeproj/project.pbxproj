@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B63F528718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
+		B63F529118EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F528F18EB63A80024CE2D /* InfoPlist.strings */; };
+		B63F529318EB63A80024CE2D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F529218EB63A80024CE2D /* main.m */; };
+		B63F529718EB63A80024CE2D /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B63F529518EB63A80024CE2D /* Credits.rtf */; };
+		B63F529A18EB63A80024CE2D /* KPHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F529918EB63A80024CE2D /* KPHAppDelegate.m */; };
+		B63F529D18EB63A80024CE2D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B63F529B18EB63A80024CE2D /* MainMenu.xib */; };
+		B63F529F18EB63A80024CE2D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B63F529E18EB63A80024CE2D /* Images.xcassets */; };
+		B63F52A618EB63A80024CE2D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F52A518EB63A80024CE2D /* XCTest.framework */; };
+		B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
+		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
+		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B63F52A818EB63A80024CE2D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B63F527B18EB63A80024CE2D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B63F528218EB63A80024CE2D;
+			remoteInfo = "keepasshttp-objc";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B63F528318EB63A80024CE2D /* keepasshttp-objc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "keepasshttp-objc.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B63F528618EB63A80024CE2D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B63F528918EB63A80024CE2D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B63F528A18EB63A80024CE2D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B63F528B18EB63A80024CE2D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B63F528E18EB63A80024CE2D /* keepasshttp-objc-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objc-Info.plist"; sourceTree = "<group>"; };
+		B63F529018EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B63F529218EB63A80024CE2D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B63F529418EB63A80024CE2D /* keepasshttp-objc-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "keepasshttp-objc-Prefix.pch"; sourceTree = "<group>"; };
+		B63F529618EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		B63F529818EB63A80024CE2D /* KPHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KPHAppDelegate.h; sourceTree = "<group>"; };
+		B63F529918EB63A80024CE2D /* KPHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KPHAppDelegate.m; sourceTree = "<group>"; };
+		B63F529C18EB63A80024CE2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B63F529E18EB63A80024CE2D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B63F52A418EB63A80024CE2D /* keepasshttp-objcTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "keepasshttp-objcTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B63F52A518EB63A80024CE2D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objcTests-Info.plist"; sourceTree = "<group>"; };
+		B63F52AE18EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B63F528018EB63A80024CE2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63F528718EB63A80024CE2D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B63F52A118EB63A80024CE2D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */,
+				B63F52A618EB63A80024CE2D /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B63F527A18EB63A80024CE2D = {
+			isa = PBXGroup;
+			children = (
+				B63F528C18EB63A80024CE2D /* keepasshttp-objc */,
+				B63F52AA18EB63A80024CE2D /* keepasshttp-objcTests */,
+				B63F528518EB63A80024CE2D /* Frameworks */,
+				B63F528418EB63A80024CE2D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B63F528418EB63A80024CE2D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B63F528318EB63A80024CE2D /* keepasshttp-objc.app */,
+				B63F52A418EB63A80024CE2D /* keepasshttp-objcTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B63F528518EB63A80024CE2D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B63F528618EB63A80024CE2D /* Cocoa.framework */,
+				B63F52A518EB63A80024CE2D /* XCTest.framework */,
+				B63F528818EB63A80024CE2D /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B63F528818EB63A80024CE2D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B63F528918EB63A80024CE2D /* AppKit.framework */,
+				B63F528A18EB63A80024CE2D /* CoreData.framework */,
+				B63F528B18EB63A80024CE2D /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B63F528C18EB63A80024CE2D /* keepasshttp-objc */ = {
+			isa = PBXGroup;
+			children = (
+				B63F529818EB63A80024CE2D /* KPHAppDelegate.h */,
+				B63F529918EB63A80024CE2D /* KPHAppDelegate.m */,
+				B63F529B18EB63A80024CE2D /* MainMenu.xib */,
+				B63F529E18EB63A80024CE2D /* Images.xcassets */,
+				B63F528D18EB63A80024CE2D /* Supporting Files */,
+			);
+			path = "keepasshttp-objc";
+			sourceTree = "<group>";
+		};
+		B63F528D18EB63A80024CE2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B63F528E18EB63A80024CE2D /* keepasshttp-objc-Info.plist */,
+				B63F528F18EB63A80024CE2D /* InfoPlist.strings */,
+				B63F529218EB63A80024CE2D /* main.m */,
+				B63F529418EB63A80024CE2D /* keepasshttp-objc-Prefix.pch */,
+				B63F529518EB63A80024CE2D /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B63F52AA18EB63A80024CE2D /* keepasshttp-objcTests */ = {
+			isa = PBXGroup;
+			children = (
+				B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */,
+				B63F52AB18EB63A80024CE2D /* Supporting Files */,
+			);
+			path = "keepasshttp-objcTests";
+			sourceTree = "<group>";
+		};
+		B63F52AB18EB63A80024CE2D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */,
+				B63F52AD18EB63A80024CE2D /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B63F528218EB63A80024CE2D /* keepasshttp-objc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B63F52B418EB63A80024CE2D /* Build configuration list for PBXNativeTarget "keepasshttp-objc" */;
+			buildPhases = (
+				B63F527F18EB63A80024CE2D /* Sources */,
+				B63F528018EB63A80024CE2D /* Frameworks */,
+				B63F528118EB63A80024CE2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "keepasshttp-objc";
+			productName = "keepasshttp-objc";
+			productReference = B63F528318EB63A80024CE2D /* keepasshttp-objc.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B63F52A318EB63A80024CE2D /* keepasshttp-objcTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B63F52B718EB63A80024CE2D /* Build configuration list for PBXNativeTarget "keepasshttp-objcTests" */;
+			buildPhases = (
+				B63F52A018EB63A80024CE2D /* Sources */,
+				B63F52A118EB63A80024CE2D /* Frameworks */,
+				B63F52A218EB63A80024CE2D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B63F52A918EB63A80024CE2D /* PBXTargetDependency */,
+			);
+			name = "keepasshttp-objcTests";
+			productName = "keepasshttp-objcTests";
+			productReference = B63F52A418EB63A80024CE2D /* keepasshttp-objcTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B63F527B18EB63A80024CE2D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = KPH;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = xbigtk13x;
+				TargetAttributes = {
+					B63F52A318EB63A80024CE2D = {
+						TestTargetID = B63F528218EB63A80024CE2D;
+					};
+				};
+			};
+			buildConfigurationList = B63F527E18EB63A80024CE2D /* Build configuration list for PBXProject "keepasshttp-objc" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B63F527A18EB63A80024CE2D;
+			productRefGroup = B63F528418EB63A80024CE2D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B63F528218EB63A80024CE2D /* keepasshttp-objc */,
+				B63F52A318EB63A80024CE2D /* keepasshttp-objcTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B63F528118EB63A80024CE2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63F529118EB63A80024CE2D /* InfoPlist.strings in Resources */,
+				B63F529F18EB63A80024CE2D /* Images.xcassets in Resources */,
+				B63F529718EB63A80024CE2D /* Credits.rtf in Resources */,
+				B63F529D18EB63A80024CE2D /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B63F52A218EB63A80024CE2D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B63F527F18EB63A80024CE2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63F529A18EB63A80024CE2D /* KPHAppDelegate.m in Sources */,
+				B63F529318EB63A80024CE2D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B63F52A018EB63A80024CE2D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B63F52A918EB63A80024CE2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B63F528218EB63A80024CE2D /* keepasshttp-objc */;
+			targetProxy = B63F52A818EB63A80024CE2D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B63F528F18EB63A80024CE2D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B63F529018EB63A80024CE2D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B63F529518EB63A80024CE2D /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B63F529618EB63A80024CE2D /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		B63F529B18EB63A80024CE2D /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B63F529C18EB63A80024CE2D /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		B63F52AD18EB63A80024CE2D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B63F52AE18EB63A80024CE2D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B63F52B218EB63A80024CE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B63F52B318EB63A80024CE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B63F52B518EB63A80024CE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "keepasshttp-objc/keepasshttp-objc-Prefix.pch";
+				INFOPLIST_FILE = "keepasshttp-objc/keepasshttp-objc-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B63F52B618EB63A80024CE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "keepasshttp-objc/keepasshttp-objc-Prefix.pch";
+				INFOPLIST_FILE = "keepasshttp-objc/keepasshttp-objc-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		B63F52B818EB63A80024CE2D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/keepasshttp-objc.app/Contents/MacOS/keepasshttp-objc";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "keepasshttp-objc/keepasshttp-objc-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "keepasshttp-objcTests/keepasshttp-objcTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		B63F52B918EB63A80024CE2D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/keepasshttp-objc.app/Contents/MacOS/keepasshttp-objc";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "keepasshttp-objc/keepasshttp-objc-Prefix.pch";
+				INFOPLIST_FILE = "keepasshttp-objcTests/keepasshttp-objcTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B63F527E18EB63A80024CE2D /* Build configuration list for PBXProject "keepasshttp-objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B63F52B218EB63A80024CE2D /* Debug */,
+				B63F52B318EB63A80024CE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B63F52B418EB63A80024CE2D /* Build configuration list for PBXNativeTarget "keepasshttp-objc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B63F52B518EB63A80024CE2D /* Debug */,
+				B63F52B618EB63A80024CE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B63F52B718EB63A80024CE2D /* Build configuration list for PBXNativeTarget "keepasshttp-objcTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B63F52B818EB63A80024CE2D /* Debug */,
+				B63F52B918EB63A80024CE2D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B63F527B18EB63A80024CE2D /* Project object */;
+}
