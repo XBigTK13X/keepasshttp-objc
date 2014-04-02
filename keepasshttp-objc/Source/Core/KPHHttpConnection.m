@@ -24,9 +24,11 @@
 {
     NSLog(@"Received request:  %@ -> %@",method,path);
     
-    NSData* response = nil;
-    response = [@"Successful client attachment" dataUsingEncoding:NSUTF8StringEncoding];
+    NSData* response = [@"Message received" dataUsingEncoding:NSUTF8StringEncoding];
     return [[HTTPDataResponse alloc] initWithData:response];
 }
-
+- (void)processBodyData:(NSData *)postDataChunk
+{
+    NSLog(@"Parsing request body: %@",postDataChunk);
+}
 @end

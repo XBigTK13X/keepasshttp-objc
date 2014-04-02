@@ -10,12 +10,12 @@
 
 @implementation KPHProtocol
 
-+ (NSString *)encode64:(NSArray *) b
++ (NSString *)encode64:(NSData *) b
 {
     return [SystemConvert ToBase64String:b];
 }
 
-+ (NSArray *)decode64:(NSString *) s
++ (NSData *)decode64:(NSString *) s
 {
     return [SystemConvert FromBase64String:s];
 }
