@@ -18,7 +18,7 @@
     int Count;
     NSString* Version;
     NSString* Hash;
-    //NSArray<ResponseEntry>* Entries;
+    NSArray* Entries;
     NSString* Nonce;
     NSString* Verifier;
 }

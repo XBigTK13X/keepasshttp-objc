@@ -61,6 +61,7 @@
 		B63F537E18EB66E40024CE2D /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F537218EB66E40024CE2D /* ContextFilterLogFormatter.m */; };
 		B63F537F18EB66E40024CE2D /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F537418EB66E40024CE2D /* DispatchQueueLogFormatter.m */; };
 		B63F538018EB66E40024CE2D /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B63F537518EB66E40024CE2D /* README.txt */; };
+		B6FD308118EC772A00214787 /* AssemblyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD308018EC772A00214787 /* AssemblyInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +179,8 @@
 		B63F537318EB66E40024CE2D /* DispatchQueueLogFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchQueueLogFormatter.h; sourceTree = "<group>"; };
 		B63F537418EB66E40024CE2D /* DispatchQueueLogFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueLogFormatter.m; sourceTree = "<group>"; };
 		B63F537518EB66E40024CE2D /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		B6FD307F18EC772A00214787 /* AssemblyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssemblyInfo.h; sourceTree = "<group>"; };
+		B6FD308018EC772A00214787 /* AssemblyInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssemblyInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +430,8 @@
 				B63F530118EB64B60024CE2D /* Aes.m */,
 				B63F530218EB64B60024CE2D /* SystemConvert.h */,
 				B63F530318EB64B60024CE2D /* SystemConvert.m */,
+				B6FD307F18EC772A00214787 /* AssemblyInfo.h */,
+				B6FD308018EC772A00214787 /* AssemblyInfo.m */,
 			);
 			path = DotNet;
 			sourceTree = "<group>";
@@ -626,6 +631,7 @@
 				B63F529A18EB63A80024CE2D /* KPHAppDelegate.m in Sources */,
 				B63F535D18EB666F0024CE2D /* ResponseEntry.m in Sources */,
 				B63F531818EB64B60024CE2D /* HTTPErrorResponse.m in Sources */,
+				B6FD308118EC772A00214787 /* AssemblyInfo.m in Sources */,
 				B63F537A18EB66E40024CE2D /* DDASLLogger.m in Sources */,
 				B63F531A18EB64B60024CE2D /* HTTPRedirectResponse.m in Sources */,
 				B63F535A18EB666F0024CE2D /* KeePassHttpEntryConfig.m in Sources */,
@@ -867,6 +873,7 @@
 				B63F52B618EB63A80024CE2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B63F52B718EB63A80024CE2D /* Build configuration list for PBXNativeTarget "keepasshttp-objcTests" */ = {
 			isa = XCConfigurationList;
@@ -875,6 +882,7 @@
 				B63F52B918EB63A80024CE2D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

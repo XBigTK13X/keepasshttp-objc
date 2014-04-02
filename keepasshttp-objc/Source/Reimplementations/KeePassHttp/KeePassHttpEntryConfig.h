@@ -10,8 +10,8 @@
 
 @interface KeePassHttpEntryConfig : NSObject
 {
-    //NSSet<NSString>* Allow;
-    //NSSet<NSString>* Deny;
-    //public string Realm;
+    NSSet* Allow;
+    NSSet* Deny;
+    NSString* Realm;
 }
 @end

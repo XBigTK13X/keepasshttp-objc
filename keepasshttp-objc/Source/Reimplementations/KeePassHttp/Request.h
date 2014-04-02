@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+NSString* Request_GET_LOGINS = @"get-logins";
+NSString* Request_GET_LOGINS_COUNT = @"get-logins-count";
+NSString* Request_GET_ALL_LOGINS = @"get-all-logins";
+NSString* Request_SET_LOGIN = @"set-login";
+NSString* Request_ASSOCIATE = @"associate";
+NSString* Request_TEST_ASSOCIATE = @"test-associate";
+NSString* Request_GENERATE_PASSWORD = @"generate-password";
+
 @interface Request : NSObject{
     NSString * RequestType;
     NSString * SortSelection;

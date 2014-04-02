@@ -9,7 +9,7 @@
 #import "SystemConvert.h"
 
 @implementation SystemConvert
-+ (NSString *) ToBase64String: (Byte *) inArray
++ (NSString *) ToBase64String: (NSArray *) inArray
 {
     return nil;
 }
