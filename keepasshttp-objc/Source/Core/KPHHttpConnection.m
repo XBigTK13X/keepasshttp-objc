@@ -7,9 +7,6 @@
 //
 
 #import "KPHHttpConnection.h"
-#import "HTTPDataResponse.h"
-
-#import "KPHAssociationHandler.h"
 
 @implementation KPHHttpConnection
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path

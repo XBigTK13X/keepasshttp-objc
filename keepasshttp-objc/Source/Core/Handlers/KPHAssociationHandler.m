@@ -7,19 +7,16 @@
 //
 
 #import "KPHAssociationHandler.h"
-#import "Aes.h"
-#import "Request.h"
-#import "Response.h"
 
 @implementation KPHAssociationHandler
 
 - (void) AssociateHandler:(Request *)r response:(Response *)resp aes:(Aes *)aes
 {
-    /*
-    if (![self TestRequestVerifier r:r aes:aes  key:r.Key))
+    if (![KPHProtocol TestRequestVerifier:r aes:aes  key:r->Key])
         return;
     
     // key is good, prompt user to save
+    /*
     using (var f = new ConfirmAssociationForm())
     {
         var win = host.MainWindow;
@@ -76,19 +73,19 @@
                            }
                        }
                    });
-    }
      
+    }
+     */
 }
 
-- (void) TestAssociateHandler(Request r, Response resp, Aes aes)
+- (void) TestAssociateHandler: (Request*) r resp:(Response*) resp aes:(Aes*) aes
 {
-    if (!VerifyRequest(r, aes))
+    if (![KPHProtocol VerifyRequest:r aes:aes])
         return;
     
-    resp.Success = true;
-    resp.Id = r.Id;
-    SetResponseVerifier(resp, aes);
-     */
+    resp->Success = true;
+    resp->Id = r->Id;
+    [KPHProtocol SetResponseVerifier:resp aes:aes];
 }
 
 @end

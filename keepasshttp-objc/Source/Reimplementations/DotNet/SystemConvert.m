@@ -13,7 +13,7 @@
 {
     return nil;
 }
-+ (Byte *) FromBase64String: (NSString *) inString
++ (NSArray *) FromBase64String: (NSString *) inString
 {
     return nil;
 }

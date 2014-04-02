@@ -7,6 +7,8 @@
 //
 
 #import "HTTPConnection.h"
+#import "HTTPDataResponse.h"
+#import "KPHAssociationHandler.h"
 
 @interface KPHHttpConnection : HTTPConnection
 

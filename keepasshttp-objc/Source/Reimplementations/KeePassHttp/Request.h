@@ -8,28 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-NSString* Request_GET_LOGINS = @"get-logins";
-NSString* Request_GET_LOGINS_COUNT = @"get-logins-count";
-NSString* Request_GET_ALL_LOGINS = @"get-all-logins";
-NSString* Request_SET_LOGIN = @"set-login";
-NSString* Request_ASSOCIATE = @"associate";
-NSString* Request_TEST_ASSOCIATE = @"test-associate";
-NSString* Request_GENERATE_PASSWORD = @"generate-password";
-
 @interface Request : NSObject{
-    NSString * RequestType;
-    NSString * SortSelection;
-    NSString * TriggerUnlock;
-    NSString * Login;
-    NSString * Password;
-    NSString * Uuid;
-    NSString * Url;
-    NSString * SubmitUrl;
-    NSString * Key;
-    NSString * Id;
-    NSString * Verifier;
-    NSString * Nonce;
-    NSString * Realm;
+    @public NSString * RequestType;
+    @public NSString * SortSelection;
+    @public NSString * TriggerUnlock;
+    @public NSString * Login;
+    @public NSString * Password;
+    @public NSString * Uuid;
+    @public NSString * Url;
+    @public NSString * SubmitUrl;
+    @public NSString * Key;
+    @public NSString * Id;
+    @public NSString * Verifier;
+    @public NSString * Nonce;
+    @public NSString * Realm;
 }
-
++ (NSString*) GET_LOGINS;
++ (NSString*) GET_LOGINS_COUNT;
++ (NSString*) GET_ALL_LOGINS;
++ (NSString*) SET_LOGIN;
++ (NSString*) ASSOCIATE;
++ (NSString*) TEST_ASSOCIATE;
++ (NSString*) GENERATE_PASSWORD;
 @end

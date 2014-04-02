@@ -15,6 +15,7 @@
     NSString* Password;
     NSString* Uuid;
     NSString* Name;
+    //Array of ResponseStringField
     NSArray* StringFields;
 }
 

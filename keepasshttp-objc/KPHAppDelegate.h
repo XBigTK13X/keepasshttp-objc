@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
-@class HTTPServer;
+#import "HttpServer.h"
+#import "KPHHttpConnection.h"
 
 @interface KPHAppDelegate : NSObject <NSApplicationDelegate>
 {

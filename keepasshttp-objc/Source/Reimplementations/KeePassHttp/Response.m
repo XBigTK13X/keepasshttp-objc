@@ -7,8 +7,6 @@
 //
 
 #import "Response.h"
-#import "Request.h"
-#import "AssemblyInfo.h"
 
 @implementation Response
 - (id)init: (NSString *) request  hash:(NSString*) hash
@@ -18,7 +16,7 @@
     Count = 0;
     RequestType = request;
 
-    if ([request isEqualToString:Request_GET_LOGINS] || [request isEqualToString:Request_GET_ALL_LOGINS] || [request isEqualToString:Request_GENERATE_PASSWORD])
+    if ([request isEqualToString:[Request GET_LOGINS]] || [request isEqualToString:[Request GET_ALL_LOGINS]] || [request isEqualToString:[Request GENERATE_PASSWORD]])
     {
         Entries = [NSMutableArray init];
     }
@@ -27,7 +25,7 @@
         Entries = nil;
     }
     
-    Version = AssemblyFileVersion;
+    Version = [AssemblyInfo AssemblyFileVersion];
     
     Hash = hash;
     return self;

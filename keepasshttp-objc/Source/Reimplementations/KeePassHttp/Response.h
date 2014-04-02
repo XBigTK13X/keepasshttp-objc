@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "Request.h"
-#import "ResponseEntry.h"
+#import "AssemblyInfo.h"
 
 @interface Response : NSObject<NSObject>{
-    NSString* RequestType;
-    NSString* Error;
-    BOOL Success;
-    NSString* Id;
-    int Count;
-    NSString* Version;
-    NSString* Hash;
-    NSArray* Entries;
-    NSString* Nonce;
-    NSString* Verifier;
+    @public NSString* RequestType;
+    @public NSString* Error;
+    @public BOOL Success;
+    @public NSString* Id;
+    @public int Count;
+    @public NSString* Version;
+    @public NSString* Hash;
+    @public NSArray* Entries;
+    @public NSString* Nonce;
+    @public NSString* Verifier;
 }
 
 @end

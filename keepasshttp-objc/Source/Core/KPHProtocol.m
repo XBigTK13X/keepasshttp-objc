@@ -7,40 +7,27 @@
 //
 
 #import "KPHProtocol.h"
-#import "SystemConvert.h"
-#import "KPHKeePassUtil.h"
 
 @implementation KPHProtocol
 
-+ (NSString *)encode64:(Byte *) b
++ (NSString *)encode64:(NSArray *) b
 {
     return [SystemConvert ToBase64String:b];
 }
 
-+ (Byte *)decode64:(NSString *) s
++ (NSArray *)decode64:(NSString *) s
 {
     return [SystemConvert FromBase64String:s];
-}
-+ (BOOL) VerifyRequest:(Request *) r aes:(Aes *) aes
-{
-    /*
-    PwEntry* entry = [KPHKeePassUtil GetConfigEntry:false];
-    if (entry == nil)
-        return false;
-    NSString* s = [entry getString:ASSOCIATE_KEY_PREFIX + r.Id];
-    if (s == nil)
-        return false;
-    
-    return TestRequestVerifier(r, aes, s.ReadString());
 }
 
 + (BOOL) TestRequestVerifier: (Request *) r aes:(Aes *) aes key:(NSString *) key
 {
-    var success = false;
-    var crypted = decode64(r.Verifier);
+    bool success = false;
+    NSArray* crypted = [self decode64:r->Verifier];
     
-    aes.Key = decode64(key);
-    aes.IV = decode64(r.Nonce);
+    /*
+    aes->Key = [self decode64:key];
+    aes->IV = [self decode64:r->Nonce];
     
     using (var dec = aes.CreateDecryptor())
     {
@@ -51,15 +38,33 @@
         } catch (CryptographicException) { } // implicit failure
     }
     return success;
+     */
+    return false;
+}
+
+
++ (BOOL) VerifyRequest:(Request *) r aes:(Aes *) aes
+{
+    
+    PwEntry* entry = [KPHUtil GetConfigEntry:false];
+    if (entry == nil){
+        return false;
+    }
+    NSString* entryLookup = [NSString stringWithFormat:@"%@/%@",[KPHUtil KPH_ASSOCIATE_KEY_PREFIX],r->Id];
+    NSString* s = [entry getString:entryLookup];
+    if (s == nil)
+        return false;
+    
+    return [self TestRequestVerifier:r aes:aes key:s];
 }
 
 + (void) SetResponseVerifier: (Response *) r aes:(Aes *) aes
 {
-    aes.GenerateIV();
-    r.Nonce = encode64(aes.IV);
-    r.Verifier = CryptoTransform(r.Nonce, false, true, aes, CMode.ENCRYPT);
-*/
-    return nil;
-     }
+    /*
+    aes->GenerateIV();
+    r->Nonce = encode64(aes.IV);
+    r->Verifier = CryptoTransform(r->Nonce, false, true, aes, CMode.ENCRYPT);
+     */
+}
 
 @end

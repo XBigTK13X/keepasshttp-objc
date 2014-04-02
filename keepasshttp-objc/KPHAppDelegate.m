@@ -7,8 +7,6 @@
 //
 
 #import "KPHAppDelegate.h"
-#import "HttpServer.h"
-#import "KPHHttpConnection.h"
 
 static const int KEE_PASS_HTTP_PORT = 19455;
 

@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-NSString* AssemblyVersion = @"2.21.0.0";
-NSString* AssemblyFileVersion = @"1.8.3.0";
 
 @interface AssemblyInfo : NSObject
-
++ (NSString*) AssemblyVersion;
++ (NSString*) AssemblyFileVersion;
 @end

@@ -11,5 +11,5 @@
 @interface SystemConvert : NSObject
 //Array of bytes
 + (NSString *) ToBase64String: (NSArray *) inArray;
-+ (Byte *) FromBase64String: (NSString *) inString;
++ (NSArray *) FromBase64String: (NSString *) inString;
 @end
