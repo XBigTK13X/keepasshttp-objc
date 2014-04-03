@@ -10,8 +10,9 @@
 
 @implementation KPHAssociationHandler
 
-+ (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
+- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
+    NSLog(@"Handling request - associate");
     if (![KPHProtocol TestRequestVerifier:request aes:aes  key:request->Key])
         return;
     

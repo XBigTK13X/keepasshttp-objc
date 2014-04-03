@@ -23,7 +23,7 @@
     @public NSString * Nonce;
     @public NSString * Realm;
 }
-+ (id) init: (NSDictionary*)requestDictionary;
+- (id) init: (NSDictionary*)requestDictionary;
 + (NSString*) GET_LOGINS;
 + (NSString*) GET_LOGINS_COUNT;
 + (NSString*) GET_ALL_LOGINS;

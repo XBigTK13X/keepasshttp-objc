@@ -41,11 +41,11 @@
     NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestBody error:&theError];
     NSLog(@"Request Type: %@",[requestDictionary valueForKey:@"RequestType"]);
     
-    Request* request = [Request init:requestDictionary];
+    Request* r = [[Request alloc] init :requestDictionary];
     
-    KPHRequestHandler* handler = [handlers objectForKey:[Request ASSOCIATE]];
-    if(handler != nil){
-        [handler handle:request];
+    if( [[Request ASSOCIATE] isEqualToString:[requestDictionary objectForKey:@"RequestType"]]){
+        NSObject<KPHRequestHandler>* handler = [[KPHAssociationHandler alloc] init];
+        [handler handle:r response:nil aes:nil];
     }
 }
 @end

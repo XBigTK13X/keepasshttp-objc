@@ -8,10 +8,11 @@
 
 #import "HTTPConnection.h"
 #import "HTTPDataResponse.h"
-#import "KPHAssociationHandler.h"
 #import "CJSONDeserializer.h"
 #import "NSDictionary_JSONExtensions.h"
+
 #import "KPHRequestHandler.h"
+#import "KPHAssociationHandler.h"
 
 @interface KPHHttpConnection : HTTPConnection
 {

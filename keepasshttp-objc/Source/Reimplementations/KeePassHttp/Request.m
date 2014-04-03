@@ -9,9 +9,17 @@
 #import "Request.h"
 
 @implementation Request
-+ (id)init: (NSDictionary*) requestDictionary
+- (id)init: (NSDictionary*) requestDictionary
 {
-    return nil;
+    self = [super init];
+    if (self)
+    {
+        self->Key = [requestDictionary valueForKey:@"Key"];
+        self->Id = [requestDictionary valueForKey:@"Id"];
+        self->RequestType = [requestDictionary valueForKey:@"RequestType"];
+        self->Verifier = [requestDictionary valueForKey:@"Verifier"];
+    }
+    return self;
 }
 + (NSString*) GET_LOGINS
 {

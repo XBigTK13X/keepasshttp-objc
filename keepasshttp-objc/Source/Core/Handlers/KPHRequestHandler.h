@@ -11,6 +11,6 @@
 #import "Response.h"
 #import "Aes.h"
 
-@protocol KPHRequestHandler<NSObject>
-+ (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
+@protocol KPHRequestHandler
+- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 @end

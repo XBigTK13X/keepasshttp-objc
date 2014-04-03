@@ -10,6 +10,6 @@
 #import "KPHProtocol.h"
 #import "KPHRequestHandler.h"
 
-@interface KPHAssociationHandler : NSObject <KPHRequestHandler>
+@interface KPHAssociationHandler : NSObject<KPHRequestHandler>
 
 @end
