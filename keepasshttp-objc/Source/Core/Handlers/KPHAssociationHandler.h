@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "KPHProtocol.h"
+#import "KPHRequestHandler.h"
 
-@interface KPHAssociationHandler : NSObject
+@interface KPHAssociationHandler : NSObject <KPHRequestHandler>
 
 @end

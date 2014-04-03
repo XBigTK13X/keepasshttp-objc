@@ -11,23 +11,27 @@
 @implementation Response
 - (id)init: (NSString *) request  hash:(NSString*) hash
 {
-    Error = nil;
-    Success = false;
-    Count = 0;
-    RequestType = request;
+    self = [super init];
+    if (self)
+    {
+        Error = nil;
+        Success = false;
+        Count = 0;
+        RequestType = request;
 
-    if ([request isEqualToString:[Request GET_LOGINS]] || [request isEqualToString:[Request GET_ALL_LOGINS]] || [request isEqualToString:[Request GENERATE_PASSWORD]])
-    {
-        Entries = [NSMutableArray init];
+        if ([request isEqualToString:[Request GET_LOGINS]] || [request isEqualToString:[Request GET_ALL_LOGINS]] || [request isEqualToString:[Request GENERATE_PASSWORD]])
+        {
+            Entries = [NSMutableArray init];
+        }
+        else
+        {
+            Entries = nil;
+        }
+        
+        Version = [AssemblyInfo AssemblyFileVersion];
+        
+        Hash = hash;
     }
-    else
-    {
-        Entries = nil;
-    }
-    
-    Version = [AssemblyInfo AssemblyFileVersion];
-    
-    Hash = hash;
     return self;
 }
 @end

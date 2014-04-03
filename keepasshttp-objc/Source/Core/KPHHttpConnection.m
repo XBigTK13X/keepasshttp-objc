@@ -9,15 +9,18 @@
 #import "KPHHttpConnection.h"
 
 @implementation KPHHttpConnection
+- (id) init{
+    self = [super init];
+    if (self)
+    {
+        handlers = [NSMutableDictionary init];
+        [handlers setObject:[KPHAssociationHandler init] forKey:[Request ASSOCIATE]];
+    }
+    return self;
+}
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
     return YES;
-}
-
-- (BOOL) expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path
-{
-    NSLog(@"Expects request body:  %@ -> %@",method,path);
-    return [super expectsRequestBodyFromMethod:method atPath:path];
 }
 
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
@@ -30,5 +33,19 @@
 - (void)processBodyData:(NSData *)postDataChunk
 {
     NSLog(@"Parsing request body: %@",postDataChunk);
+    
+    NSString* requestBody = [[NSString alloc] initWithData:postDataChunk encoding:NSUTF8StringEncoding];
+    NSLog(@"Decoded request: %@",requestBody);
+    
+    NSError *theError = NULL;
+    NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestBody error:&theError];
+    NSLog(@"Request Type: %@",[requestDictionary valueForKey:@"RequestType"]);
+    
+    Request* request = [Request init:requestDictionary];
+    
+    KPHRequestHandler* handler = [handlers objectForKey:[Request ASSOCIATE]];
+    if(handler != nil){
+        [handler handle:request];
+    }
 }
 @end

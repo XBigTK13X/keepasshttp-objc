@@ -10,9 +10,9 @@
 
 @implementation KPHAssociationHandler
 
-- (void) AssociateHandler:(Request *)r response:(Response *)resp aes:(Aes *)aes
++ (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
-    if (![KPHProtocol TestRequestVerifier:r aes:aes  key:r->Key])
+    if (![KPHProtocol TestRequestVerifier:request aes:aes  key:request->Key])
         return;
     
     // key is good, prompt user to save

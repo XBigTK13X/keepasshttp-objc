@@ -9,6 +9,10 @@
 #import "Request.h"
 
 @implementation Request
++ (id)init: (NSDictionary*) requestDictionary
+{
+    return nil;
+}
 + (NSString*) GET_LOGINS
 {
     return @"get-logins";

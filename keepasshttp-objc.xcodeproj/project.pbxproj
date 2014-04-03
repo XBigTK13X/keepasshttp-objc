@@ -16,6 +16,9 @@
 		B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
 		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
+		B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */; };
+		B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */; };
+		B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */; };
 		B6FD31C118ECA93800214787 /* DDData.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD314B18ECA93800214787 /* DDData.m */; };
 		B6FD31C218ECA93800214787 /* DDNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD314D18ECA93800214787 /* DDNumber.m */; };
 		B6FD31C318ECA93800214787 /* DDRange.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD314F18ECA93800214787 /* DDRange.m */; };
@@ -98,6 +101,14 @@
 		B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objcTests-Info.plist"; sourceTree = "<group>"; };
 		B63F52AE18EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
+		B6F12CD718EDDAE100BC50EB /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		B6F12CD918EDDAE100BC50EB /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		B6F12CDB18EDDAE100BC50EB /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		B6F12CDC18EDDAE100BC50EB /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		B6F12CE118EDDF7C00BC50EB /* KPHRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHRequestHandler.h; sourceTree = "<group>"; };
 		B6FD314A18ECA93800214787 /* DDData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDData.h; sourceTree = "<group>"; };
 		B6FD314B18ECA93800214787 /* DDData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDData.m; sourceTree = "<group>"; };
 		B6FD314C18ECA93800214787 /* DDNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNumber.h; sourceTree = "<group>"; };
@@ -307,9 +318,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B6F12CD618EDDAE100BC50EB /* TouchJSON */ = {
+			isa = PBXGroup;
+			children = (
+				B6F12CD718EDDAE100BC50EB /* CJSONDeserializer.h */,
+				B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */,
+				B6F12CD918EDDAE100BC50EB /* CJSONSerializer.h */,
+				B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */,
+				B6F12CDB18EDDAE100BC50EB /* JSONRepresentation.h */,
+				B6F12CDC18EDDAE100BC50EB /* NSDictionary_JSONExtensions.h */,
+				B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */,
+			);
+			path = TouchJSON;
+			sourceTree = "<group>";
+		};
 		B6FD314718ECA93800214787 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B6F12CD618EDDAE100BC50EB /* TouchJSON */,
 				B6FD314818ECA93800214787 /* CocoaHttpServer */,
 				B6FD318718ECA93800214787 /* RNCryptor */,
 			);
@@ -486,6 +512,7 @@
 			children = (
 				B6FD319B18ECA93800214787 /* KPHAssociationHandler.h */,
 				B6FD319C18ECA93800214787 /* KPHAssociationHandler.m */,
+				B6F12CE118EDDF7C00BC50EB /* KPHRequestHandler.h */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -659,6 +686,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */,
 				B6FD31F518ECA99200214787 /* main.m in Sources */,
 				B6FD31F418ECA98000214787 /* KPHAppDelegate.m in Sources */,
 				B6FD31D718ECA93800214787 /* DDLog.m in Sources */,
@@ -667,6 +695,7 @@
 				B6FD31DD18ECA93800214787 /* RNCryptor.m in Sources */,
 				B6FD31EC18ECA93800214787 /* PwDefs.m in Sources */,
 				B6FD31F118ECA93800214787 /* Response.m in Sources */,
+				B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */,
 				B6FD31DC18ECA93800214787 /* WebSocket.m in Sources */,
 				B6FD31DE18ECA93800214787 /* RNCryptorEngine.m in Sources */,
 				B6FD31E018ECA93800214787 /* RNEncryptor.m in Sources */,
@@ -681,6 +710,7 @@
 				B6FD31C818ECA93800214787 /* MultipartFormDataParser.m in Sources */,
 				B6FD31D018ECA93800214787 /* HTTPRedirectResponse.m in Sources */,
 				B6FD31DF18ECA93800214787 /* RNDecryptor.m in Sources */,
+				B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */,
 				B6FD31EB18ECA93800214787 /* SystemConvert.m in Sources */,
 				B6FD31CC18ECA93800214787 /* HTTPDataResponse.m in Sources */,
 				B6FD31D518ECA93800214787 /* DDASLLogger.m in Sources */,
