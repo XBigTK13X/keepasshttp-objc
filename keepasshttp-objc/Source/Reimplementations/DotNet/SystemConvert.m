@@ -21,4 +21,10 @@
 {
     return [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
 }
+
++ (NSString* ) ToJSONString:(NSString *) rawString
+{
+    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:rawString options:NSJSONWritingPrettyPrinted error:nil];
+    return [SystemConvert ToUTF8String:jsonData];
+}
 @end

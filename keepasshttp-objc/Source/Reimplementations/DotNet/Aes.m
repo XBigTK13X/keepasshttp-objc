@@ -9,8 +9,20 @@
 #import "Aes.h"
 
 // http://stackoverflow.com/questions/2039940/any-cocoa-source-code-for-aes-encryption-decryption
+// http://stackoverflow.com/questions/4917968/best-way-to-generate-nsdata-object-with-random-bytes-of-a-specific-length
 
 @implementation Aes
++ (NSData*) randomIV: (unsigned int)lengthInBytes
+{
+    NSMutableData* result = [NSMutableData dataWithCapacity:lengthInBytes];
+    for( unsigned int i = 0 ; i < lengthInBytes ; ++i )
+    {
+        u_int32_t randomBits = arc4random();
+        [result appendBytes:(void*)&randomBits length:1];
+    }
+    return result;
+}
+
 + (NSData*) decrypt:(NSString*)cipherText iv:(NSString*)iv key:(NSString*)key
 {
     NSData* keyData = [SystemConvert FromBase64String:key];
@@ -34,6 +46,11 @@
     }
     
     free(buffer);
+    return nil;
+}
+
++ (NSData*) encrypt:(NSString*)plainText iv:(NSString*)iv key:(NSString*)key
+{
     return nil;
 }
 @end

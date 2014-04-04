@@ -23,8 +23,7 @@
 
 
 + (BOOL) VerifyRequest:(Request *) r
-{
-    
+{    
     PwEntry* entry = [KPHUtil GetConfigEntry:false];
     if (entry == nil){
         return false;
@@ -39,11 +38,10 @@
 
 + (void) SetResponseVerifier: (Response *) r
 {
-    /*
-    aes->GenerateIV();
-    r->Nonce = encode64(aes.IV);
-    r->Verifier = CryptoTransform(r->Nonce, false, true, aes, CMode.ENCRYPT);
-     */
+    NSData* iv = [Aes randomIV:128];
+    r->Nonce = [SystemConvert ToBase64String:iv];
+    NSData* encrypted = [Aes encrypt: r->Nonce iv:r->Nonce key:@""];
+    r->Verifier = [SystemConvert ToBase64String:encrypted];
 }
 
 @end

@@ -9,7 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonCryptor.h>
 #import "SystemConvert.h"
+#import "stdlib.h"
 
 @interface Aes : NSObject
++ (NSData*) encrypt:(NSString*)plainText iv:(NSString*)iv key:(NSString*)key;
 + (NSData*) decrypt:(NSString*)cipherText iv:(NSString*)iv key:(NSString*)key;
++ (NSData*) randomIV: (unsigned int)lengthInBytes;
 @end

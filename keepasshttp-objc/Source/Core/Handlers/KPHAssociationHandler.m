@@ -10,12 +10,12 @@
 
 @implementation KPHAssociationHandler
 
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
+- (void) handle: (Request*)request response:(Response*)response;
 {
     NSLog(@"Handling request - associate");
-    if (![KPHProtocol TestRequestVerifier:request aes:aes  key:request->Key])
+    if (![KPHProtocol TestRequestVerifier:request key:request->Key])
         return;
-    
+    NSLog(@"Ready to associate");
     // key is good, prompt user to save
     /*
     using (var f = new ConfirmAssociationForm())
@@ -81,12 +81,12 @@
 
 - (void) TestAssociateHandler: (Request*) r resp:(Response*) resp aes:(Aes*) aes
 {
-    if (![KPHProtocol VerifyRequest:r aes:aes])
+    if (![KPHProtocol VerifyRequest:r])
         return;
     
     resp->Success = true;
     resp->Id = r->Id;
-    [KPHProtocol SetResponseVerifier:resp aes:aes];
+    [KPHProtocol SetResponseVerifier:resp];
 }
 
 @end

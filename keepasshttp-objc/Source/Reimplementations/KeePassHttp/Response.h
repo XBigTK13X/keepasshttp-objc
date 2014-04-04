@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Request.h"
 #import "AssemblyInfo.h"
+#import "CJSONSerializer.h"
+#import "SystemConvert.h"
 
 @interface Response : NSObject<NSObject>{
     @public NSString* RequestType;
@@ -22,5 +24,6 @@
     @public NSString* Nonce;
     @public NSString* Verifier;
 }
-
+- (id)init: (NSString *) requestType  hash:(NSString*) hash;
+- (NSString*) toJson;
 @end

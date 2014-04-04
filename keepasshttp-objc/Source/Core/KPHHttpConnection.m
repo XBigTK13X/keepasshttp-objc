@@ -22,30 +22,25 @@
 {
     return YES;
 }
-
-- (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
-{
-    NSLog(@"Received request:  %@ -> %@",method,path);
-    
-    NSData* response = [@"Message received" dataUsingEncoding:NSUTF8StringEncoding];
-    return [[HTTPDataResponse alloc] initWithData:response];
-}
 - (void)processBodyData:(NSData *)postDataChunk
 {
-    NSLog(@"Parsing request body: %@",postDataChunk);
-    
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
-    NSLog(@"Decoded request: %@",requestBody);
-    
     NSError *theError = NULL;
     NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestBody error:&theError];
+    
+    NSLog(@"Decoded request: %@",requestBody);
     NSLog(@"Request Type: %@",[requestDictionary valueForKey:@"RequestType"]);
     
-    Request* r = [[Request alloc] init :requestDictionary];
+    Request* pluginRequest = [[Request alloc] init :requestDictionary];
+    Response* handlerResponse = [Response new];
     
     if( [[Request ASSOCIATE] isEqualToString:[requestDictionary objectForKey:@"RequestType"]]){
         NSObject<KPHRequestHandler>* handler = [[KPHAssociationHandler alloc] init];
-        [handler handle:r response:nil aes:nil];
+        [handler handle:pluginRequest response:handlerResponse];
     }
+    
+    NSString* responseBody = [SystemConvert ToBase64String:[handlerResponse toJson]];
+    NSData* response = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
+    httpResponse =  [[HTTPDataResponse alloc] initWithData:response];
 }
 @end
