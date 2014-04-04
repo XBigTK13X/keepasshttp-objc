@@ -9,12 +9,16 @@
 #import "SystemConvert.h"
 
 @implementation SystemConvert
-+ (NSString *) ToBase64String: (NSArray *) inArray
++ (NSString *) ToBase64String: (NSData *) base64Data
 {
-    return nil;
+    return [base64Data base64EncodedStringWithOptions:0];
 }
-+ (NSArray *) FromBase64String: (NSString *) inString
++ (NSData *) FromBase64String: (NSString *) base64String
 {
-    return nil;
+    return [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+}
++ (NSString* ) ToUTF8String: (NSData *) utf8Data
+{
+    return [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
 }
 @end

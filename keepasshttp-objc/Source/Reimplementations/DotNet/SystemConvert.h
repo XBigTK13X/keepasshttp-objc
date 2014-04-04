@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface SystemConvert : NSObject
-//Array of bytes
-+ (NSString *) ToBase64String: (NSArray *) inArray;
-+ (NSArray *) FromBase64String: (NSString *) inString;
++ (NSString *) ToBase64String: (NSData *) base64Data;
++ (NSData *) FromBase64String: (NSString *) base64String;
++ (NSString* ) ToUTF8String: (NSData *) utf8Data;
 @end

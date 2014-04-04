@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CommonCrypto/CommonCryptor.h>
+#import "SystemConvert.h"
 
 @interface Aes : NSObject
-
++ (NSData*) decrypt:(NSString*)cipherText iv:(NSString*)iv key:(NSString*)key;
 @end

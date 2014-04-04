@@ -10,40 +10,19 @@
 
 @implementation KPHProtocol
 
-+ (NSString *)encode64:(NSData *) b
++ (BOOL) TestRequestVerifier: (Request *) r key:(NSString *) key
 {
-    return [SystemConvert ToBase64String:b];
-}
-
-+ (NSData *)decode64:(NSString *) s
-{
-    return [SystemConvert FromBase64String:s];
-}
-
-+ (BOOL) TestRequestVerifier: (Request *) r aes:(Aes *) aes key:(NSString *) key
-{
-    bool success = false;
-    NSArray* crypted = [self decode64:r->Verifier];
-    
-    /*
-    aes->Key = [self decode64:key];
-    aes->IV = [self decode64:r->Nonce];
-    
-    using (var dec = aes.CreateDecryptor())
-    {
-        try {
-            var buf = dec.TransformFinalBlock(crypted, 0, crypted.Length);
-            var value = Encoding.UTF8.GetString(buf);
-            success = value == r.Nonce;
-        } catch (CryptographicException) { } // implicit failure
+    NSData *decryptedData = [Aes decrypt:r->Verifier iv:r->Nonce key:key];
+    if(decryptedData == nil){
+        return false;
     }
-    return success;
-     */
-    return false;
+
+    NSString* verifier = [SystemConvert ToUTF8String:decryptedData];
+    return [verifier isEqual:r->Nonce];
 }
 
 
-+ (BOOL) VerifyRequest:(Request *) r aes:(Aes *) aes
++ (BOOL) VerifyRequest:(Request *) r
 {
     
     PwEntry* entry = [KPHUtil GetConfigEntry:false];
@@ -55,10 +34,10 @@
     if (s == nil)
         return false;
     
-    return [self TestRequestVerifier:r aes:aes key:s];
+    return [self TestRequestVerifier:r key:s];
 }
 
-+ (void) SetResponseVerifier: (Response *) r aes:(Aes *) aes
++ (void) SetResponseVerifier: (Response *) r
 {
     /*
     aes->GenerateIV();

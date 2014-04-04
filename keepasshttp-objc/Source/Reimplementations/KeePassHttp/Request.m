@@ -18,6 +18,7 @@
         self->Id = [requestDictionary valueForKey:@"Id"];
         self->RequestType = [requestDictionary valueForKey:@"RequestType"];
         self->Verifier = [requestDictionary valueForKey:@"Verifier"];
+        self->Nonce = [requestDictionary valueForKey:@"Nonce"];
     }
     return self;
 }

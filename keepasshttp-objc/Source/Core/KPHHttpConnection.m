@@ -34,7 +34,7 @@
 {
     NSLog(@"Parsing request body: %@",postDataChunk);
     
-    NSString* requestBody = [[NSString alloc] initWithData:postDataChunk encoding:NSUTF8StringEncoding];
+    NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
     NSLog(@"Decoded request: %@",requestBody);
     
     NSError *theError = NULL;

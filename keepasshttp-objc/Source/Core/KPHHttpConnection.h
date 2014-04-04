@@ -14,6 +14,8 @@
 #import "KPHRequestHandler.h"
 #import "KPHAssociationHandler.h"
 
+#import "SystemConvert.h"
+
 @interface KPHHttpConnection : HTTPConnection
 {
     NSMutableDictionary* handlers;
