@@ -9,6 +9,10 @@
 #import "Request.h"
 
 @implementation Request
++ (BOOL) requiresEntriesInResponse: (NSString*)requestType
+{
+    return [requestType isEqual:@"get-logins"] || [requestType isEqual:@"get-all-logins"] || [requestType isEqual:@"generate-password"];
+}
 - (id)init: (NSDictionary*) requestDictionary
 {
     self = [super init];
@@ -21,29 +25,5 @@
         self->Nonce = [requestDictionary valueForKey:@"Nonce"];
     }
     return self;
-}
-+ (NSString*) GET_LOGINS
-{
-    return @"get-logins";
-}
-+ (NSString*) GET_LOGINS_COUNT
-{
-    return @"get-logins-count";
-}
-+ (NSString*) GET_ALL_LOGINS
-{
-    return @"get-all-logins";
-}
-+ (NSString*) SET_LOGIN{
-    return @"set-login";
-}
-+ (NSString*) ASSOCIATE{
-    return @"associate";
-}
-+ (NSString*) TEST_ASSOCIATE{
-    return @"test-associate";
-}
-+ (NSString*) GENERATE_PASSWORD{
-    return @"generate-password";
 }
 @end

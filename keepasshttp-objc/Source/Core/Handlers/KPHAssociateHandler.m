@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "KPHAssociationHandler.h"
+#import "KPHAssociateHandler.h"
 
-@implementation KPHAssociationHandler
+@implementation KPHAssociateHandler
 
 - (void) handle: (Request*)request response:(Response*)response;
 {

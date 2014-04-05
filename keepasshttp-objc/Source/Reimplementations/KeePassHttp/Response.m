@@ -19,7 +19,7 @@
         Count = 0;
         RequestType = requestType;
 
-        if ([requestType isEqualToString:[Request GET_LOGINS]] || [requestType isEqualToString:[Request GET_ALL_LOGINS]] || [requestType isEqualToString:[Request GENERATE_PASSWORD]])
+        if ([Request requiresEntriesInResponse:requestType])
         {
             Entries = [NSMutableArray init];
         }

@@ -23,12 +23,6 @@
     @public NSString * Nonce;
     @public NSString * Realm;
 }
++ (BOOL) requiresEntriesInResponse: (NSString*)requestType;
 - (id) init: (NSDictionary*)requestDictionary;
-+ (NSString*) GET_LOGINS;
-+ (NSString*) GET_LOGINS_COUNT;
-+ (NSString*) GET_ALL_LOGINS;
-+ (NSString*) SET_LOGIN;
-+ (NSString*) ASSOCIATE;
-+ (NSString*) TEST_ASSOCIATE;
-+ (NSString*) GENERATE_PASSWORD;
 @end

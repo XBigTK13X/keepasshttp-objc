@@ -1,5 +1,5 @@
 //
-//  KPHHandlers.h
+//  KPHGetLoginsCountHandler.h
 //  keepasshttp-objc
 //
 //  Created by Tim Kretschmer on 4/5/14.
@@ -7,13 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "KPHRequestHandler.h"
-#import "KPHAssociationHandler.h"
 
-@interface KPHHandlers : NSObject
-{
-    NSMutableDictionary* handlers;
-}
-- (NSObject<KPHRequestHandler>*) forRequest:(NSString*) requestType;
+@interface KPHGetLoginsCountHandler : NSObject<KPHRequestHandler>
+
 @end
