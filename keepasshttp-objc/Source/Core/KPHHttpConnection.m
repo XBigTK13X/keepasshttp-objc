@@ -22,6 +22,12 @@
 {
     return YES;
 }
+
+- (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
+{
+    NSLog(@"Sending reply: %@",httpResponse);
+    return httpResponse;
+}
 - (void)processBodyData:(NSData *)postDataChunk
 {
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
@@ -39,7 +45,7 @@
         [handler handle:pluginRequest response:handlerResponse];
     }
     
-    NSString* responseBody = [SystemConvert ToBase64String:[handlerResponse toJson]];
+    NSString* responseBody = [handlerResponse toJson];
     NSData* response = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
     httpResponse =  [[HTTPDataResponse alloc] initWithData:response];
 }

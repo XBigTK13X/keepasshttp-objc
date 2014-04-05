@@ -16,6 +16,10 @@
     if (![KPHProtocol TestRequestVerifier:request key:request->Key])
         return;
     NSLog(@"Ready to associate");
+    response->Id = request->Key;
+    response->Success = true;
+    [KPHProtocol SetResponseVerifier:response];
+    
     // key is good, prompt user to save
     /*
     using (var f = new ConfirmAssociationForm())

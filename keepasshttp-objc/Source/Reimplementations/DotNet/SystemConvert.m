@@ -22,9 +22,13 @@
     return [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
 }
 
-+ (NSString* ) ToJSONString:(NSString *) rawString
++ (NSString*) ToJSONLast:(NSString *) key value:(NSString*)value
 {
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:rawString options:NSJSONWritingPrettyPrinted error:nil];
-    return [SystemConvert ToUTF8String:jsonData];
+    return [NSString stringWithFormat:@"\"%@\":\"%@\"",key,value];
+}
+
++ (NSString* ) ToJSON:(NSString *) key value:(NSString*)value
+{
+    return [NSString stringWithFormat:@"%@,",[SystemConvert ToJSONLast:key value:value]];
 }
 @end

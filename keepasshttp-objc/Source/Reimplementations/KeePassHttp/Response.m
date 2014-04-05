@@ -51,7 +51,20 @@
      */
     NSMutableString* json = [NSMutableString new];
     [json appendString:@"{"];
-    [json appendString: [SystemConvert ToJSONString:self->RequestType]];
+    if(self->RequestType != nil){
+        [json appendString: [SystemConvert ToJSON:@"RequestType" value:self->RequestType]];
+    }
+    if(self->Error != nil){
+        [json appendString: [SystemConvert ToJSON:@"Error" value:self->Error]];
+    }
+    if(self->Nonce != nil){
+        [json appendString: [SystemConvert ToJSON:@"Nonce" value:self->Nonce]];
+    }
+    if(self->Verifier != nil){
+        [json appendString: [SystemConvert ToJSON:@"Verifier" value:self->Verifier]];
+    }
+    [json appendString: [SystemConvert ToJSON:@"Success" value:(self->Success)?@"true":@"false"]];
+    [json deleteCharactersInRange:NSMakeRange([json length]-1, 1)];
     [json appendString:@"}"];
     return json;
 }
