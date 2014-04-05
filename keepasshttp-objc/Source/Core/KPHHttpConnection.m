@@ -9,15 +9,6 @@
 #import "KPHHttpConnection.h"
 
 @implementation KPHHttpConnection
-- (id) init{
-    self = [super init];
-    if (self)
-    {
-        handlers = [NSMutableDictionary init];
-        [handlers setObject:[KPHAssociationHandler init] forKey:[Request ASSOCIATE]];
-    }
-    return self;
-}
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
     return YES;
@@ -30,18 +21,22 @@
 }
 - (void)processBodyData:(NSData *)postDataChunk
 {
+    if(handlers == nil){
+        handlers = [KPHHandlers new];
+    }
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
     NSError *theError = NULL;
     NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestBody error:&theError];
     
-    NSLog(@"Decoded request: %@",requestBody);
-    NSLog(@"Request Type: %@",[requestDictionary valueForKey:@"RequestType"]);
-    
+    NSLog(@"===== Received request: %@",requestBody);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     Response* handlerResponse = [Response new];
     
-    if( [[Request ASSOCIATE] isEqualToString:[requestDictionary objectForKey:@"RequestType"]]){
-        NSObject<KPHRequestHandler>* handler = [[KPHAssociationHandler alloc] init];
+    NSObject<KPHRequestHandler> *handler = [handlers forRequest:pluginRequest->RequestType];
+    if(handler == nil){
+        NSLog(@"No handler is registered for request: [%@]",pluginRequest->RequestType);
+    }
+    else{
         [handler handle:pluginRequest response:handlerResponse];
     }
     

@@ -11,14 +11,12 @@
 #import "CJSONDeserializer.h"
 #import "NSDictionary_JSONExtensions.h"
 
-#import "KPHRequestHandler.h"
-#import "KPHAssociationHandler.h"
+#import "KPHHandlers.h"
 
 #import "SystemConvert.h"
 
 @interface KPHHttpConnection : HTTPConnection
 {
-    NSMutableDictionary* handlers;
+    KPHHandlers* handlers;
 }
-
 @end

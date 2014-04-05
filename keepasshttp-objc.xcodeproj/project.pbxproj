@@ -16,6 +16,7 @@
 		B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
 		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
+		B6E2757218F0A98C00AA0EFC /* KPHHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757118F0A98C00AA0EFC /* KPHHandlers.m */; };
 		B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */; };
 		B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */; };
 		B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */; };
@@ -101,6 +102,8 @@
 		B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objcTests-Info.plist"; sourceTree = "<group>"; };
 		B63F52AE18EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
+		B6E2757018F0A98C00AA0EFC /* KPHHandlers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHHandlers.h; sourceTree = "<group>"; };
+		B6E2757118F0A98C00AA0EFC /* KPHHandlers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHHandlers.m; sourceTree = "<group>"; };
 		B6F12CD718EDDAE100BC50EB /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		B6F12CD918EDDAE100BC50EB /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
@@ -513,6 +516,8 @@
 				B6FD319B18ECA93800214787 /* KPHAssociationHandler.h */,
 				B6FD319C18ECA93800214787 /* KPHAssociationHandler.m */,
 				B6F12CE118EDDF7C00BC50EB /* KPHRequestHandler.h */,
+				B6E2757018F0A98C00AA0EFC /* KPHHandlers.h */,
+				B6E2757118F0A98C00AA0EFC /* KPHHandlers.m */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -696,6 +701,7 @@
 				B6FD31EC18ECA93800214787 /* PwDefs.m in Sources */,
 				B6FD31F118ECA93800214787 /* Response.m in Sources */,
 				B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */,
+				B6E2757218F0A98C00AA0EFC /* KPHHandlers.m in Sources */,
 				B6FD31DC18ECA93800214787 /* WebSocket.m in Sources */,
 				B6FD31DE18ECA93800214787 /* RNCryptorEngine.m in Sources */,
 				B6FD31E018ECA93800214787 /* RNEncryptor.m in Sources */,
