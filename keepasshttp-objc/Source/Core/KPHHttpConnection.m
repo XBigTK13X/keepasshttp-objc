@@ -46,6 +46,7 @@
     }
     
     NSString* responseBody = [handlerResponse toJson];
+    NSLog(@"Responding with: %@",responseBody);
     NSData* response = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
     httpResponse =  [[HTTPDataResponse alloc] initWithData:response];
 }
