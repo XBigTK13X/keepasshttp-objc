@@ -12,7 +12,8 @@
 #import "stdlib.h"
 
 @interface Aes : NSObject
-+ (NSData*) encrypt:(NSString*)plainText iv:(NSString*)iv key:(NSString*)key;
-+ (NSData*) decrypt:(NSString*)cipherText iv:(NSString*)iv key:(NSString*)key;
++ (NSData*) encrypt:(NSData*) plainText iv:(NSData*) iv key:(NSData *)key;
++ (NSData*) decrypt:(NSData*) cipherText iv:(NSData*) iv key:(NSData*)key;
 + (NSData*) randomIV: (unsigned int)lengthInBytes;
++ (void) test;
 @end

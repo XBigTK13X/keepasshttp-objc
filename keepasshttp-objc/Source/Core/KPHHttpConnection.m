@@ -37,6 +37,7 @@
         NSLog(@"No handler is registered for request: [%@]",pluginRequest->RequestType);
     }
     else{
+        NSLog(@"Handling request type: %@",pluginRequest->RequestType);
         [handler handle:pluginRequest response:handlerResponse];
     }
     

@@ -23,6 +23,7 @@
         self->RequestType = [requestDictionary valueForKey:@"RequestType"];
         self->Verifier = [requestDictionary valueForKey:@"Verifier"];
         self->Nonce = [requestDictionary valueForKey:@"Nonce"];
+        self->TriggerUnlock = [requestDictionary valueForKey:@"TriggerUnlock"];
     }
     return self;
 }

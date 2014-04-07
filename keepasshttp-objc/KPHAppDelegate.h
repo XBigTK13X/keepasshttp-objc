@@ -10,6 +10,8 @@
 #import "HttpServer.h"
 #import "KPHHttpConnection.h"
 
+#import "Aes.h"
+
 @interface KPHAppDelegate : NSObject <NSApplicationDelegate>
 {
     HTTPServer *httpServer;

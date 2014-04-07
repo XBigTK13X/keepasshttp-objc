@@ -15,7 +15,7 @@
 #import "RNDecryptor.h"
 
 @interface KPHProtocol : NSObject
-+ (BOOL) VerifyRequest:(Request *) r;
-+ (BOOL) TestRequestVerifier: (Request *) r key:(NSString *) key;
-+ (void) SetResponseVerifier: (Response *) r;
++ (BOOL) VerifyRequest:(Request *) request;
++ (BOOL) TestRequestVerifier: (Request *) request key:(NSString *) key;
++ (void) SetResponseVerifier: (Request *) request response:(Response *) response;
 @end

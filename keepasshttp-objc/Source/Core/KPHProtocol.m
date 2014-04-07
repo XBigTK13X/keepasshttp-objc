@@ -10,38 +10,42 @@
 
 @implementation KPHProtocol
 
-+ (BOOL) TestRequestVerifier: (Request *) r key:(NSString *) key
++ (BOOL) TestRequestVerifier: (Request *) request key:(NSString *) key
 {
-    NSData *decryptedData = [Aes decrypt:r->Verifier iv:r->Nonce key:key];
+    NSData* cipherData = [SystemConvert FromBase64String:request->Verifier];
+    NSData* keyData = [SystemConvert FromBase64String:key];
+    NSData* ivData = [SystemConvert FromBase64String:request->Nonce];
+    NSData *decryptedData = [Aes decrypt:cipherData iv:ivData key:keyData];
     if(decryptedData == nil){
         return false;
     }
 
     NSString* verifier = [SystemConvert ToUTF8String:decryptedData];
-    return [verifier isEqual:r->Nonce];
+    return [verifier isEqual:request->Nonce];
 }
 
 
-+ (BOOL) VerifyRequest:(Request *) r
++ (BOOL) VerifyRequest:(Request *) request
 {    
     PwEntry* entry = [KPHUtil GetConfigEntry:false];
     if (entry == nil){
         return false;
     }
-    NSString* entryLookup = [NSString stringWithFormat:@"%@/%@",[KPHUtil KPH_ASSOCIATE_KEY_PREFIX],r->Id];
-    NSString* s = [entry getString:entryLookup];
-    if (s == nil)
+    NSString* connectionId = [NSString stringWithFormat:@"%@/%@",[KPHUtil KPH_ASSOCIATE_KEY_PREFIX],request->Id];
+    NSString* connectionPassword = [entry getString:connectionId];
+    if (connectionPassword == nil)
         return false;
     
-    return [self TestRequestVerifier:r key:s];
+    return [KPHProtocol TestRequestVerifier:request key:connectionPassword];
 }
 
-+ (void) SetResponseVerifier: (Response *) r
++ (void) SetResponseVerifier: (Request *) request response:(Response *) response
 {
     NSData* iv = [Aes randomIV:16];
-    r->Nonce = [SystemConvert ToBase64String:iv];
-    NSData* encrypted = [Aes encrypt: r->Nonce iv:r->Nonce key:@""];
-    r->Verifier = [SystemConvert ToBase64String:encrypted];
+    response->Nonce = [SystemConvert ToBase64String:iv];
+    NSData* keyData = [SystemConvert FromBase64String:request->Key];
+    NSData* encrypted = [Aes encrypt: iv iv:iv key:keyData];
+    response->Verifier = [SystemConvert ToBase64String:encrypted];
 }
 
 @end

@@ -18,79 +18,17 @@
     NSLog(@"Ready to associate");
     response->Id = request->Key;
     response->Success = true;
-    [KPHProtocol SetResponseVerifier:response];
-    
-    // key is good, prompt user to save
-    /*
-    using (var f = new ConfirmAssociationForm())
-    {
-        var win = host.MainWindow;
-        win.Invoke((MethodInvoker)delegate
-                   {
-                       f.Activate();
-                       f.Icon = win.Icon;
-                       f.Key = r.Key;
-                       f.Load += delegate { f.Activate(); };
-                       f.ShowDialog(win);
-                       
-                       if (f.KeyId != null)
-                       {
-                           var entry = GetConfigEntry(true);
-                           
-                           bool keyNameExists = true;
-                           while (keyNameExists)
-                           {
-                               DialogResult keyExistsResult = DialogResult.Yes;
-                               foreach (var s in entry.Strings)
-                               {
-                                   if (s.Key == ASSOCIATE_KEY_PREFIX + f.KeyId)
-                                   {
-                                       keyExistsResult = MessageBox.Show(
-                                                                         win,
-                                                                         "A shared encryption-key with the name \"" + f.KeyId + "\" already exists.\nDo you want to overwrite it?",
-                                                                         "Overwrite existing key?",
-                                                                         MessageBoxButtons.YesNo,
-                                                                         MessageBoxIcon.Warning,
-                                                                         MessageBoxDefaultButton.Button1
-                                                                         );
-                                       break;
-                                   }
-                               }
-                               
-                               if (keyExistsResult == DialogResult.No)
-                               {
-                                   f.ShowDialog(win);
-                               }
-                               else
-                               {
-                                   keyNameExists = false;
-                               }
-                           }
-                           
-                           if (f.KeyId != null)
-                           {
-                               entry.Strings.Set(ASSOCIATE_KEY_PREFIX + f.KeyId, new ProtectedString(true, r.Key));
-                               entry.Touch(true);
-                               resp.Id = f.KeyId;
-                               resp.Success = true;
-                               SetResponseVerifier(resp, aes);
-                               UpdateUI(null);
-                           }
-                       }
-                   });
-     
-    }
-     */
+    [KPHProtocol SetResponseVerifier:request response:response];
 }
 
-- (void) TestAssociateHandler: (Request*) r resp:(Response*) resp aes:(Aes*) aes
+- (void) TestAssociateHandler: (Request*) request response:(Response*) response
 {
-    if (![KPHProtocol VerifyRequest:r])
+    if (![KPHProtocol VerifyRequest:request])
         return;
     
-    resp->Success = true;
-    resp->Id = r->Id;
-    [KPHProtocol SetResponseVerifier:resp];
+    response->Success = true;
+    response->Id = request->Id;
+    [KPHProtocol SetResponseVerifier:request response:response];
 }
 
 @end

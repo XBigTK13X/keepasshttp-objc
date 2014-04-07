@@ -11,5 +11,11 @@
 @implementation KPHTestAssociateHandler
 - (void) handle: (Request*)request response:(Response*)response;
 {
+    if (![KPHProtocol VerifyRequest:request])
+        return;
+    
+    response->Success = true;
+    response->Id = request->Id;
+    [KPHProtocol SetResponseVerifier:request response:response];
 }
 @end

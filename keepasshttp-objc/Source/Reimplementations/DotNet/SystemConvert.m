@@ -21,7 +21,10 @@
 {
     return [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
 }
-
++ (NSData *) FromUTF8String: (NSString *) utf8String
+{
+    return [utf8String dataUsingEncoding:NSUTF8StringEncoding];
+}
 + (NSString*) ToJSONLast:(NSString *) key value:(NSString*)value
 {
     return [NSString stringWithFormat:@"\"%@\":\"%@\"",key,value];
