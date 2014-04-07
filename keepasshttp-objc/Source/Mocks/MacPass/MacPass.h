@@ -10,4 +10,6 @@
 
 @interface MacPass : NSObject
 + (NSString *) getRootGroup;
++ (NSString *) getRecycleGroupUUID;
++ (NSString *) getRootGroupUUID;
 @end

@@ -12,22 +12,10 @@
 
 - (void) handle: (Request*)request response:(Response*)response;
 {
-    NSLog(@"Handling request - associate");
     if (![KPHProtocol TestRequestVerifier:request key:request->Key])
         return;
-    NSLog(@"Ready to associate");
     response->Id = request->Key;
     response->Success = true;
-    [KPHProtocol SetResponseVerifier:request response:response];
-}
-
-- (void) TestAssociateHandler: (Request*) request response:(Response*) response
-{
-    if (![KPHProtocol VerifyRequest:request])
-        return;
-    
-    response->Success = true;
-    response->Id = request->Id;
     [KPHProtocol SetResponseVerifier:request response:response];
 }
 

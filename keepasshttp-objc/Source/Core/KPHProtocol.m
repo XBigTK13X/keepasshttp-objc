@@ -41,10 +41,10 @@
 
 + (void) SetResponseVerifier: (Request *) request response:(Response *) response
 {
-    NSData* iv = [Aes randomIV:16];
+    NSData* iv = [Aes randomIV:32];
     response->Nonce = [SystemConvert ToBase64String:iv];
     NSData* keyData = [SystemConvert FromBase64String:request->Key];
-    NSData* encrypted = [Aes encrypt: iv iv:iv key:keyData];
+    NSData* encrypted = [Aes encrypt:iv iv:iv key:keyData];
     response->Verifier = [SystemConvert ToBase64String:encrypted];
 }
 

@@ -8,6 +8,7 @@
 
 #import "KPHHttpConnection.h"
 
+
 @implementation KPHHttpConnection
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
@@ -25,12 +26,13 @@
         handlers = [KPHHandlers new];
     }
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
-    NSError *theError = NULL;
-    NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestBody error:&theError];
-    
-    NSLog(@"===== Received request: %@",requestBody);
+    NSError *error = NULL;
+    NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestBody error:&error];
+    NSLog(@"===========================================\nReceived request: %@",requestBody);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
-    Response* handlerResponse = [Response new];
+    
+    NSString* hash = [[NSString stringWithFormat:@"%@%@", [MacPass getRootGroupUUID], [MacPass getRecycleGroupUUID]] sha1];
+    Response* handlerResponse = [[Response alloc] init:pluginRequest->RequestType hash:hash];
     
     NSObject<KPHRequestHandler> *handler = [handlers forRequest:pluginRequest->RequestType];
     if(handler == nil){

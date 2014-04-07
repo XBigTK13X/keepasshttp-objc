@@ -42,12 +42,13 @@
     @public NSString* Error;
     @public BOOL Success;
     @public NSString* Id;
-    @public int Count;
     @public NSString* Version;
     @public NSString* Hash;
-    @public NSArray* Entries;
     @public NSString* Nonce;
     @public NSString* Verifier;
+     
+     @public NSArray* Entries;
+     @public int Count;
      */
     NSMutableString* json = [NSMutableString new];
     [json appendString:@"{"];
@@ -63,6 +64,11 @@
     if(self->Verifier != nil){
         [json appendString: [SystemConvert ToJSON:@"Verifier" value:self->Verifier]];
     }
+    if(self->Id != nil){
+        [json appendString: [SystemConvert ToJSON:@"Id" value:self->Id]];
+    }
+    [json appendString: [SystemConvert ToJSON:@"Version" value:self->Version]];
+    [json appendString: [SystemConvert ToJSON:@"Hash" value:self->Hash]];
     [json appendString: [SystemConvert ToJSON:@"Success" value:(self->Success)?@"true":@"false"]];
     [json deleteCharactersInRange:NSMakeRange([json length]-1, 1)];
     [json appendString:@"}"];

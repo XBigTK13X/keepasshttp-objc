@@ -12,4 +12,12 @@
 + (NSString*) getRootGroup{
     return @"root";
 }
++ (NSString *) getRecycleGroupUUID
+{
+    return @"2548-bsdf-2345-gsdf-3242";
+}
++ (NSString *) getRootGroupUUID
+{
+    return @"0384-2548-bsdf-2345-gsdf";
+}
 @end

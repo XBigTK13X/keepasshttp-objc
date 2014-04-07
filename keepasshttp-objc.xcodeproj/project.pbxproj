@@ -16,6 +16,7 @@
 		B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
 		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
+		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
 		B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */; };
 		B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757A18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m */; };
 		B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757D18F0AF5900AA0EFC /* KPHHandlers.m */; };
@@ -108,6 +109,8 @@
 		B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objcTests-Info.plist"; sourceTree = "<group>"; };
 		B63F52AE18EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
+		B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
+		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHTestAssociateHandler.h; sourceTree = "<group>"; };
 		B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHTestAssociateHandler.m; sourceTree = "<group>"; };
 		B6E2757918F0AEE000AA0EFC /* KPHGetLoginsCountHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGetLoginsCountHandler.h; sourceTree = "<group>"; };
@@ -339,6 +342,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B69D59BD18F317BA00BC57CA /* Hash */ = {
+			isa = PBXGroup;
+			children = (
+				B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */,
+				B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */,
+			);
+			path = Hash;
+			sourceTree = "<group>";
+		};
 		B6F12CD618EDDAE100BC50EB /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,6 +368,7 @@
 		B6FD314718ECA93800214787 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B69D59BD18F317BA00BC57CA /* Hash */,
 				B6F12CD618EDDAE100BC50EB /* TouchJSON */,
 				B6FD314818ECA93800214787 /* CocoaHttpServer */,
 				B6FD318718ECA93800214787 /* RNCryptor */,
@@ -768,6 +781,7 @@
 				B6E2758418F0AFA900AA0EFC /* KPHGetAllLoginsHandler.m in Sources */,
 				B6FD31CB18ECA93800214787 /* HTTPAsyncFileResponse.m in Sources */,
 				B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */,
+				B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */,
 				B6FD31CE18ECA93800214787 /* HTTPErrorResponse.m in Sources */,
 				B6FD31D818ECA93800214787 /* DDTTYLogger.m in Sources */,
 				B6FD31E318ECA93800214787 /* RNOpenSSLEncryptor.m in Sources */,

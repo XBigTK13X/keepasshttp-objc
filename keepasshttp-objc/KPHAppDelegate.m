@@ -14,6 +14,9 @@ static const int KEE_PASS_HTTP_PORT = 19455;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    //TODO Remove debugging code
+    [Aes test];
+    
     httpServer = [[HTTPServer alloc] init];
     [httpServer setPort:KEE_PASS_HTTP_PORT];
 	[httpServer setDocumentRoot:nil];
