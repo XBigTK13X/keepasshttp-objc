@@ -72,40 +72,52 @@ const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
     return nil;
 }
 
-+ (void) test
++ (NSData*) testDecrypt: (NSString*)cipher iv:(NSString*)iv key:(NSString*)key expected:(NSString*)expected
 {
-    NSString* key = @"CekqCTOIQvjx1GyX4Cypl3lfKZ4rUUPYsVmCavkseMo=";
-    NSString* debugNonce = @"SmXsbPYhAbpCr0oZXfDFd0twEDa+1Ml9L2rFEGHjD1o=";
-    NSString* verifier = @"Ug3YpyjKyn3aiBEPTPukWVC6dKqywdH6VbtniMz/P1zhHCQdCUtdIll3fVRQV9xZ";
+    NSData* inData = [SystemConvert FromBase64String:cipher];
+    NSData* ivData = [SystemConvert FromBase64String:iv];
     NSData* keyData = [SystemConvert FromBase64String:key];
-    NSData* nonce = [SystemConvert FromBase64String:debugNonce];//[Aes randomIV:16];
-    NSData* verifierData = [SystemConvert FromBase64String:verifier];
     
-    NSData* verifierDecrypt = [Aes decrypt:verifierData iv:nonce key:keyData];
-    NSString* decryptedVerifier = [SystemConvert ToBase64String:verifierDecrypt];
-    NSLog(@"Decrypt ver: %@",decryptedVerifier);
-    NSLog(@"Should be  : %@",debugNonce);
- 
-    NSString* plainText = @"Alpha Bravo Charlie Delta Erie Foxtrot Golf Hotel India Juliet";
-    NSData* plainData = [SystemConvert FromUTF8String:plainText];
-    
-    NSData* encrypted = [Aes encrypt:plainData iv:nonce key:keyData];
-    NSString* encryptedString = [SystemConvert ToBase64String:encrypted];
+    NSData* decrypted = [Aes decrypt:inData iv:ivData key:keyData];
+    if(decrypted == nil){
+        return nil;
+    }
+    NSString* decryptedText = [SystemConvert ToBase64String:decrypted];
+    NSLog(@"Decrypted : %@",decryptedText);
+    NSLog(@"Should be : %@",expected);
+    NSLog(@"Test Pass : %@",([decryptedText isEqual:expected])?@"Yes":@"No");
+    return decrypted;
+}
+
++ (NSData*) testEncrypt: (NSString*)plain iv:(NSString*)iv key:(NSString*)key
+{
+    NSData* inData = [SystemConvert FromBase64String:plain];
+    NSData* ivData = [SystemConvert FromBase64String:iv];
+    NSData* keyData = [SystemConvert FromBase64String:key];
+
+    NSData* encrypted = [Aes encrypt:inData iv:ivData key:keyData];
     if(encrypted == nil){
         NSLog(@"Encryption failed");
-        return;
+        return nil;
     }
+    NSString* encryptedString = [SystemConvert ToBase64String:encrypted];
     NSLog(@"Encrypted result: %lu [ %@ ]",(unsigned long)encrypted.length,encryptedString);
-    NSLog(@"Test AES - expecting: [ %@ ]",plainText);
+    return encrypted;
+}
+
+
++ (void) test
+{
     
-    NSData* rawDecrypted= [Aes decrypt:encrypted iv:nonce key:keyData];
-    NSString* decrypted = [SystemConvert ToUTF8String:rawDecrypted];
-    if(decrypted == nil){
-        NSLog(@"Decryption failed");
-        return;
-    }
+    NSString* pluginKey = @"CekqCTOIQvjx1GyX4Cypl3lfKZ4rUUPYsVmCavkseMo=";
+    NSString* pluginNonce = @"SmXsbPYhAbpCr0oZXfDFd0twEDa+1Ml9L2rFEGHjD1o=";
+    NSString* pluginVerifier = @"Ug3YpyjKyn3aiBEPTPukWVC6dKqywdH6VbtniMz/P1zhHCQdCUtdIll3fVRQV9xZ";
+    [self testDecrypt:pluginVerifier iv:pluginNonce key:pluginKey expected:pluginNonce];
     
-    NSLog(@"Test AES - actual: [ %@ ]",decrypted);
-    NSLog(@"Test Pass : %@",([decrypted isEqual:plainText])?@"Yes":@"No");
+    NSString* plainText = [SystemConvert ToBase64String:[SystemConvert FromUTF8String:@"Alpha Bravo Charlie Delta Erie Foxtrot Golf Hotel India Juliet"]];
+    [self testDecrypt: [SystemConvert ToBase64String:[self testEncrypt:plainText iv:pluginNonce key:pluginKey]] iv:pluginNonce key:pluginKey expected:plainText];
+    
+    NSString* generatedNonce = [SystemConvert ToBase64String:[Aes randomIV:16]];
+    [self testDecrypt: [SystemConvert ToBase64String:[self testEncrypt:plainText iv:generatedNonce key:pluginKey]] iv:generatedNonce key:pluginKey expected:plainText];
 }
 @end
