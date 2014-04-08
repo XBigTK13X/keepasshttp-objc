@@ -14,7 +14,7 @@
 const CCAlgorithm ALGORITHM = kCCAlgorithmAES128;
 const NSUInteger ALGORITHM_BLOCK_SIZE = kCCBlockSizeAES128;
 const NSUInteger ALGORITHM_OPTIONS = kCCOptionPKCS7Padding;
-const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
+const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES128;
 
 @implementation Aes
 + (NSData*) randomIV: (unsigned int)lengthInBytes
@@ -108,10 +108,9 @@ const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
 
 + (void) test
 {
-    
-    NSString* pluginKey = @"CekqCTOIQvjx1GyX4Cypl3lfKZ4rUUPYsVmCavkseMo=";
-    NSString* pluginNonce = @"SmXsbPYhAbpCr0oZXfDFd0twEDa+1Ml9L2rFEGHjD1o=";
-    NSString* pluginVerifier = @"Ug3YpyjKyn3aiBEPTPukWVC6dKqywdH6VbtniMz/P1zhHCQdCUtdIll3fVRQV9xZ";
+    NSString* pluginKey = @"jyyd1lsYq+5b9RIpb0NPTQS1V/87eyVQdpyjS/AObOM=";
+    NSString* pluginNonce = @"ZXXhALT9M7Epv3ik7idBIA==";
+    NSString* pluginVerifier = @"Vgd9ZVIR/uaHx6Xg5U8SdbwsBA05Q4tVFEnPK8N1mBU=";
     [self testDecrypt:pluginVerifier iv:pluginNonce key:pluginKey expected:pluginNonce];
     
     NSString* plainText = [SystemConvert ToBase64String:[SystemConvert FromUTF8String:@"Alpha Bravo Charlie Delta Erie Foxtrot Golf Hotel India Juliet"]];
