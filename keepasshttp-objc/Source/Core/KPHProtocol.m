@@ -12,7 +12,6 @@
 
 + (BOOL) VerifyRequest:(Request *) request aes:(Aes*)aes
 {
-    return true;
     PwEntry* entry = [KPHUtil GetConfigEntry:false];
     if (entry == nil){
         return false;
