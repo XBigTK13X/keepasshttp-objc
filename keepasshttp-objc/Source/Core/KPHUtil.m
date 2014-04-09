@@ -48,7 +48,7 @@ const unsigned char KPH_KEEPASSHTTP_UUID[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x
 }
 + (PwEntry *) GetConfigEntry: (BOOL) create
 {
-    PwGroup* root = [MacPass getRootGroup];
+    PwGroup* root = [[MacPass instance] getRootGroup];
     PwUuid* uuid = [[PwUuid alloc] initWithUUID:[KPHUtil getUuid]];
     PwEntry* entry = [root findEntry:uuid searchRecursive:false];
     if (entry == nil && create)
@@ -57,7 +57,7 @@ const unsigned char KPH_KEEPASSHTTP_UUID[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x
         entry->Uuid = uuid;
         [entry->Strings setObject:KPH_KEEPASSHTTP_NAME forKey:[PwDefs TitleField]];
         [root addEntry:entry takeOwnership:true];
-        [MacPass UpdateUI];
+        [[MacPass instance] UpdateUI];
     }
     return entry;
     return nil;

@@ -10,8 +10,9 @@
 #import "KeePassTypes.h"
 
 @interface MacPass : NSObject
-+ (PwGroup *) getRootGroup;
-+ (NSString *) getRecycleGroupUUID;
-+ (NSString *) getRootGroupUUID;
-+ (void) UpdateUI;
++ (MacPass *)instance;
+- (PwGroup *) getRootGroup;
+- (NSString *) getRecycleGroupUUID;
+- (NSString *) getRootGroupUUID;
+- (void) UpdateUI;
 @end

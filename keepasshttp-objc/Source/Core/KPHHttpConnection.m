@@ -31,7 +31,7 @@
     NSLog(@"===========================================\nReceived request: %@",requestBody);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     
-    NSString* hash = [[NSString stringWithFormat:@"%@%@", [MacPass getRootGroupUUID], [MacPass getRecycleGroupUUID]] sha1];
+    NSString* hash = [[NSString stringWithFormat:@"%@%@", [[MacPass instance] getRootGroupUUID], [[MacPass instance] getRecycleGroupUUID]] sha1];
     Response* handlerResponse = [[Response alloc] init:pluginRequest->RequestType hash:hash];
     
     NSObject<KPHRequestHandler> *handler = [handlers forRequest:pluginRequest->RequestType];

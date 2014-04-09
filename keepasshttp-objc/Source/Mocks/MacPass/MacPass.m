@@ -9,18 +9,37 @@
 #import "MacPass.h"
 
 @implementation MacPass
-+ (PwGroup*) getRootGroup{
-    return nil;
+{
+    PwGroup* root;
 }
-+ (NSString *) getRecycleGroupUUID
+
++ (MacPass *)instance
+{
+    static MacPass *sharedSingleton;
+    
+    @synchronized(self)
+    {
+        if (!sharedSingleton)
+        {
+            sharedSingleton = [MacPass new];
+            sharedSingleton->root = [PwGroup new];
+        }
+        
+        return sharedSingleton;
+    }
+}
+- (PwGroup*) getRootGroup{
+    return root;
+}
+- (NSString *) getRecycleGroupUUID
 {
     return @"2548-bsdf-2345-gsdf-3242";
 }
-+ (NSString *) getRootGroupUUID
+- (NSString *) getRootGroupUUID
 {
     return @"0384-2548-bsdf-2345-gsdf";
 }
-+ (void) UpdateUI
+- (void) UpdateUI
 {
     
 }
