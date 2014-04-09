@@ -9,5 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface PwUuid : NSObject
-
+{
+@public NSUUID* Uuid;
+}
+- (id) initAndCreate:(BOOL)createNew;
+- (id) initWithUUID:(NSData*)uuid;
 @end

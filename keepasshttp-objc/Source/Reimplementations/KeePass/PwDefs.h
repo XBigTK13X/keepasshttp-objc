@@ -10,4 +10,6 @@
 
 @interface PwDefs : NSObject
 
++ (NSString*) TitleField;
+
 @end

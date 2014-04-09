@@ -8,6 +8,37 @@
 
 #import "PwUuid.h"
 
-@implementation PwUuid
+const u_int UuidSize = 16;
 
+@implementation PwUuid
+-(id) initWithUUID:(NSUUID*)uuid
+{
+    self = [super init];
+    if(self)
+    {
+        self->Uuid = uuid;
+    }
+    return self;
+
+}
+-(id) initAndCreate:(BOOL) createNew
+{
+    self = [super init];
+    if(self){
+        if(createNew)
+        {
+            self->Uuid = [NSUUID UUID];
+        }
+        else
+        {
+            self->Uuid = nil;
+        }
+    }
+    return self;
+}
+
+- (void) SetZero
+{
+    
+}
 @end

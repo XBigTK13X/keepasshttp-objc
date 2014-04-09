@@ -16,6 +16,7 @@
 		B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
 		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
+		B6820BEB18F5F77B008B612C /* PwGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B6820BEA18F5F77B008B612C /* PwGroup.m */; };
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
 		B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */; };
 		B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757A18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m */; };
@@ -102,6 +103,9 @@
 		B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objcTests-Info.plist"; sourceTree = "<group>"; };
 		B63F52AE18EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
+		B6820BE918F5F77B008B612C /* PwGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwGroup.h; sourceTree = "<group>"; };
+		B6820BEA18F5F77B008B612C /* PwGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwGroup.m; sourceTree = "<group>"; };
+		B6820BED18F5F84B008B612C /* KeePassTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeePassTypes.h; sourceTree = "<group>"; };
 		B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHTestAssociateHandler.h; sourceTree = "<group>"; };
@@ -561,12 +565,15 @@
 		B6FD31AF18ECA93800214787 /* KeePass */ = {
 			isa = PBXGroup;
 			children = (
+				B6820BED18F5F84B008B612C /* KeePassTypes.h */,
 				B6FD31B018ECA93800214787 /* PwDefs.h */,
 				B6FD31B118ECA93800214787 /* PwDefs.m */,
 				B6FD31B218ECA93800214787 /* PwEntry.h */,
 				B6FD31B318ECA93800214787 /* PwEntry.m */,
 				B6FD31B418ECA93800214787 /* PwUuid.h */,
 				B6FD31B518ECA93800214787 /* PwUuid.m */,
+				B6820BE918F5F77B008B612C /* PwGroup.h */,
+				B6820BEA18F5F77B008B612C /* PwGroup.m */,
 			);
 			path = KeePass;
 			sourceTree = "<group>";
@@ -738,6 +745,7 @@
 				B6FD31CA18ECA93800214787 /* MultipartMessageHeaderField.m in Sources */,
 				B6FD31CF18ECA93800214787 /* HTTPFileResponse.m in Sources */,
 				B6FD31C518ECA93800214787 /* HTTPConnection.m in Sources */,
+				B6820BEB18F5F77B008B612C /* PwGroup.m in Sources */,
 				B6FD31ED18ECA93800214787 /* PwEntry.m in Sources */,
 				B6E2758A18F0AFF400AA0EFC /* KPHGeneratePasswordHandler.m in Sources */,
 				B6FD31EF18ECA93800214787 /* KeePassHttpEntryConfig.m in Sources */,

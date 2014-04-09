@@ -40,7 +40,6 @@
 
 + (void) SetResponseVerifier: (Response *) response aes:(Aes*) aes
 {
-    
     aes->IV = [Aes randomIV:16];
     response->Nonce = [SystemConvert ToBase64String:aes->IV];
     response->Verifier = [KPHUtil CryptoTransform:response->Nonce base64in:false base64out:true aes:aes encrypt:true];

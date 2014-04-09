@@ -9,5 +9,8 @@
 #import "PwDefs.h"
 
 @implementation PwDefs
-
++ (NSString*) TitleField
+{
+    return @"Title";
+}
 @end

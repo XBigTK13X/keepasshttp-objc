@@ -9,8 +9,8 @@
 #import "MacPass.h"
 
 @implementation MacPass
-+ (NSString*) getRootGroup{
-    return @"root";
++ (PwGroup*) getRootGroup{
+    return nil;
 }
 + (NSString *) getRecycleGroupUUID
 {
@@ -19,5 +19,9 @@
 + (NSString *) getRootGroupUUID
 {
     return @"0384-2548-bsdf-2345-gsdf";
+}
++ (void) UpdateUI
+{
+    
 }
 @end

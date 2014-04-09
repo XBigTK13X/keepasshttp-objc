@@ -8,10 +8,12 @@
 
 #import "KPHUtil.h"
 
-const Byte KEEPASSHTTP_UUID[] = {
-    0x34, 0x69, 0x7a, 0x40, 0x8a, 0x5b, 0x41, 0xc0,
-    0x9f, 0x36, 0x89, 0x7d, 0x62, 0x3e, 0xcb, 0x31
-};
+const int KPH_DEFAULT_NOTIFICATION_TIME =  5000;
+const NSString* KPH_KEEPASSHTTP_NAME =  @"KeePassHttp Settings";
+const NSString* KPH_KEEPASSHTTP_GROUP_NAME =  @"KeePassHttp Passwords";
+int KPH_DEFAULT_PORT = 19455;
+NSString* KPH_HTTP_PREFIX = @"http://localhost:";
+const unsigned char KPH_KEEPASSHTTP_UUID[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x5b, 0x41, 0xc0,0x9f, 0x36, 0x89, 0x7d, 0x62, 0x3e, 0xcb, 0x31};
 
 @implementation KPHUtil
 + (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt
@@ -46,26 +48,29 @@ const Byte KEEPASSHTTP_UUID[] = {
 }
 + (PwEntry *) GetConfigEntry: (BOOL) create
 {
-    NSString* root = [MacPass getRootGroup];
-    /*
-    uuid = new PwUuid(KEEPASSHTTP_UUID);
-    entry = root.FindEntry(uuid, false);
-    if (entry == null && create)
+    PwGroup* root = [MacPass getRootGroup];
+    PwUuid* uuid = [[PwUuid alloc] initWithUUID:[KPHUtil getUuid]];
+    PwEntry* entry = [root findEntry:uuid searchRecursive:false];
+    if (entry == nil && create)
     {
-        entry = new PwEntry(false, true);
-        entry.Uuid = uuid;
-        entry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, KEEPASSHTTP_NAME));
-        root.AddEntry(entry, true);
-        UpdateUI(null);
+        entry = [[PwEntry alloc] init:false setTimes:true];
+        entry->Uuid = uuid;
+        [entry->Strings setObject:KPH_KEEPASSHTTP_NAME forKey:[PwDefs TitleField]];
+        [root addEntry:entry takeOwnership:true];
+        [MacPass UpdateUI];
     }
     return entry;
-     */
     return nil;
 }
-+ (int) KPH_DEFAULT_NOTIFICATION_TIME{return 5000;}
-+ (NSString*) KPH_KEEPASSHTTP_NAME{return @"KeePassHttp Settings";}
-+ (NSString*) KPH_KEEPASSHTTP_GROUP_NAME{return @"KeePassHttp Passwords";}
-+ (NSString*) KPH_ASSOCIATE_KEY_PREFIX{ return @"AES Key: ";}
-+ (int) KPH_DEFAULT_PORT{return 19455;}
-+ (NSString*) KPH_HTTP_PREFIX{return @"http://localhost:";}
+
++ (NSData*) getUuid
+{
+    NSData* uuid = [[NSData alloc] initWithBytes:KPH_KEEPASSHTTP_UUID length:16];
+    return uuid;
+}
+
++ (NSString*) KPH_ASSOCIATE_KEY_PREFIX
+{
+    return  @"AES Key: ";
+}
 @end
