@@ -11,7 +11,7 @@
 @implementation SystemConvert
 + (NSString *) ToBase64String: (NSData *) base64Data
 {
-    return [base64Data base64EncodedStringWithOptions:0];
+    return [base64Data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
 + (NSData *) FromBase64String: (NSString *) base64String
 {

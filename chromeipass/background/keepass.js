@@ -562,7 +562,8 @@ keepass.setVerifier = function(request, inputKey) {
 }
 
 keepass.verifyResponse = function(response, key, id) {
-	console.log("Attempting to verify response")
+	console.log("Attempting to verify response");
+	console.log(response);
 	keepass.associated.value = response.Success;
 	if (!response.Success) {
 		console.log("Response reports a failure")

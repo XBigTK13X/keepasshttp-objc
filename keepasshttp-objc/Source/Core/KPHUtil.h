@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "PwEntry.h"
 #import "MacPass.h"
+#import "Aes.h"
 
 @interface KPHUtil : NSObject
 {
     int port;
     BOOL stopped;
 }
++ (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt;
 + (PwEntry *) GetConfigEntry : (BOOL) access;
 + (int) KPH_DEFAULT_NOTIFICATION_TIME;
 + (NSString*) KPH_KEEPASSHTTP_NAME;

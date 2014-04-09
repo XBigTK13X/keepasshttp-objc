@@ -9,13 +9,13 @@
 #import "KPHTestAssociateHandler.h"
 
 @implementation KPHTestAssociateHandler
-- (void) handle: (Request*)request response:(Response*)response;
+- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
-    if (![KPHProtocol VerifyRequest:request])
+    if (![KPHProtocol VerifyRequest:request aes:aes])
         return;
     
     response->Success = true;
     response->Id = request->Id;
-    [KPHProtocol SetResponseVerifier:request response:response];
+    [KPHProtocol SetResponseVerifier:response aes:aes];
 }
 @end

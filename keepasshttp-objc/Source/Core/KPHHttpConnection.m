@@ -40,7 +40,8 @@
     }
     else{
         NSLog(@"Handling request type: %@",pluginRequest->RequestType);
-        [handler handle:pluginRequest response:handlerResponse];
+        Aes* aes = [Aes new];
+        [handler handle:pluginRequest response:handlerResponse aes:aes];
     }
     
     NSString* responseBody = [handlerResponse toJson];

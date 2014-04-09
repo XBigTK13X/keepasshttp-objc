@@ -52,13 +52,6 @@
 		B6FD31D918ECA93800214787 /* ContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD318118ECA93800214787 /* ContextFilterLogFormatter.m */; };
 		B6FD31DA18ECA93800214787 /* DispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD318318ECA93800214787 /* DispatchQueueLogFormatter.m */; };
 		B6FD31DC18ECA93800214787 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD318618ECA93800214787 /* WebSocket.m */; };
-		B6FD31DD18ECA93800214787 /* RNCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD318B18ECA93800214787 /* RNCryptor.m */; };
-		B6FD31DE18ECA93800214787 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD318D18ECA93800214787 /* RNCryptorEngine.m */; };
-		B6FD31DF18ECA93800214787 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD318F18ECA93800214787 /* RNDecryptor.m */; };
-		B6FD31E018ECA93800214787 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319118ECA93800214787 /* RNEncryptor.m */; };
-		B6FD31E118ECA93800214787 /* RNOpenSSLCryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319318ECA93800214787 /* RNOpenSSLCryptor.m */; };
-		B6FD31E218ECA93800214787 /* RNOpenSSLDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319518ECA93800214787 /* RNOpenSSLDecryptor.m */; };
-		B6FD31E318ECA93800214787 /* RNOpenSSLEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319718ECA93800214787 /* RNOpenSSLEncryptor.m */; };
 		B6FD31E418ECA93800214787 /* KPHAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319C18ECA93800214787 /* KPHAssociateHandler.m */; };
 		B6FD31E518ECA93800214787 /* KPHHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319E18ECA93800214787 /* KPHHttpConnection.m */; };
 		B6FD31E618ECA93800214787 /* KPHProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31A018ECA93800214787 /* KPHProtocol.m */; };
@@ -188,22 +181,6 @@
 		B6FD318418ECA93800214787 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		B6FD318518ECA93800214787 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
 		B6FD318618ECA93800214787 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
-		B6FD318818ECA93800214787 /* RNCryptor+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor+Private.h"; sourceTree = "<group>"; };
-		B6FD318918ECA93800214787 /* RNCryptor-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RNCryptor-Prefix.pch"; sourceTree = "<group>"; };
-		B6FD318A18ECA93800214787 /* RNCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptor.h; sourceTree = "<group>"; };
-		B6FD318B18ECA93800214787 /* RNCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptor.m; sourceTree = "<group>"; };
-		B6FD318C18ECA93800214787 /* RNCryptorEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNCryptorEngine.h; sourceTree = "<group>"; };
-		B6FD318D18ECA93800214787 /* RNCryptorEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNCryptorEngine.m; sourceTree = "<group>"; };
-		B6FD318E18ECA93800214787 /* RNDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNDecryptor.h; sourceTree = "<group>"; };
-		B6FD318F18ECA93800214787 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
-		B6FD319018ECA93800214787 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
-		B6FD319118ECA93800214787 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
-		B6FD319218ECA93800214787 /* RNOpenSSLCryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNOpenSSLCryptor.h; sourceTree = "<group>"; };
-		B6FD319318ECA93800214787 /* RNOpenSSLCryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNOpenSSLCryptor.m; sourceTree = "<group>"; };
-		B6FD319418ECA93800214787 /* RNOpenSSLDecryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNOpenSSLDecryptor.h; sourceTree = "<group>"; };
-		B6FD319518ECA93800214787 /* RNOpenSSLDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNOpenSSLDecryptor.m; sourceTree = "<group>"; };
-		B6FD319618ECA93800214787 /* RNOpenSSLEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNOpenSSLEncryptor.h; sourceTree = "<group>"; };
-		B6FD319718ECA93800214787 /* RNOpenSSLEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNOpenSSLEncryptor.m; sourceTree = "<group>"; };
 		B6FD319B18ECA93800214787 /* KPHAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHAssociateHandler.h; sourceTree = "<group>"; };
 		B6FD319C18ECA93800214787 /* KPHAssociateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHAssociateHandler.m; sourceTree = "<group>"; };
 		B6FD319D18ECA93800214787 /* KPHHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHHttpConnection.h; sourceTree = "<group>"; };
@@ -371,7 +348,6 @@
 				B69D59BD18F317BA00BC57CA /* Hash */,
 				B6F12CD618EDDAE100BC50EB /* TouchJSON */,
 				B6FD314818ECA93800214787 /* CocoaHttpServer */,
-				B6FD318718ECA93800214787 /* RNCryptor */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -492,29 +468,6 @@
 				B6FD318418ECA93800214787 /* README.txt */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		B6FD318718ECA93800214787 /* RNCryptor */ = {
-			isa = PBXGroup;
-			children = (
-				B6FD318818ECA93800214787 /* RNCryptor+Private.h */,
-				B6FD318918ECA93800214787 /* RNCryptor-Prefix.pch */,
-				B6FD318A18ECA93800214787 /* RNCryptor.h */,
-				B6FD318B18ECA93800214787 /* RNCryptor.m */,
-				B6FD318C18ECA93800214787 /* RNCryptorEngine.h */,
-				B6FD318D18ECA93800214787 /* RNCryptorEngine.m */,
-				B6FD318E18ECA93800214787 /* RNDecryptor.h */,
-				B6FD318F18ECA93800214787 /* RNDecryptor.m */,
-				B6FD319018ECA93800214787 /* RNEncryptor.h */,
-				B6FD319118ECA93800214787 /* RNEncryptor.m */,
-				B6FD319218ECA93800214787 /* RNOpenSSLCryptor.h */,
-				B6FD319318ECA93800214787 /* RNOpenSSLCryptor.m */,
-				B6FD319418ECA93800214787 /* RNOpenSSLDecryptor.h */,
-				B6FD319518ECA93800214787 /* RNOpenSSLDecryptor.m */,
-				B6FD319618ECA93800214787 /* RNOpenSSLEncryptor.h */,
-				B6FD319718ECA93800214787 /* RNOpenSSLEncryptor.m */,
-			);
-			path = RNCryptor;
 			sourceTree = "<group>";
 		};
 		B6FD319818ECA93800214787 /* Source */ = {
@@ -741,15 +694,11 @@
 				B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */,
 				B6FD31F218ECA93800214787 /* ResponseEntry.m in Sources */,
 				B6FD31E518ECA93800214787 /* KPHHttpConnection.m in Sources */,
-				B6FD31DD18ECA93800214787 /* RNCryptor.m in Sources */,
 				B6FD31EC18ECA93800214787 /* PwDefs.m in Sources */,
 				B6FD31F118ECA93800214787 /* Response.m in Sources */,
 				B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */,
 				B6E2758718F0AFCC00AA0EFC /* KPHSetLoginHandler.m in Sources */,
 				B6FD31DC18ECA93800214787 /* WebSocket.m in Sources */,
-				B6FD31DE18ECA93800214787 /* RNCryptorEngine.m in Sources */,
-				B6FD31E018ECA93800214787 /* RNEncryptor.m in Sources */,
-				B6FD31E218ECA93800214787 /* RNOpenSSLDecryptor.m in Sources */,
 				B6FD31F318ECA93800214787 /* ResponseStringField.m in Sources */,
 				B6FD31E918ECA93800214787 /* Aes.m in Sources */,
 				B6FD31E418ECA93800214787 /* KPHAssociateHandler.m in Sources */,
@@ -759,7 +708,6 @@
 				B6FD31C318ECA93800214787 /* DDRange.m in Sources */,
 				B6FD31C818ECA93800214787 /* MultipartFormDataParser.m in Sources */,
 				B6FD31D018ECA93800214787 /* HTTPRedirectResponse.m in Sources */,
-				B6FD31DF18ECA93800214787 /* RNDecryptor.m in Sources */,
 				B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */,
 				B6FD31EB18ECA93800214787 /* SystemConvert.m in Sources */,
 				B6FD31CC18ECA93800214787 /* HTTPDataResponse.m in Sources */,
@@ -768,7 +716,6 @@
 				B6FD31D918ECA93800214787 /* ContextFilterLogFormatter.m in Sources */,
 				B6FD31C618ECA93800214787 /* HTTPMessage.m in Sources */,
 				B6FD31EA18ECA93800214787 /* AssemblyInfo.m in Sources */,
-				B6FD31E118ECA93800214787 /* RNOpenSSLCryptor.m in Sources */,
 				B6FD31D218ECA93800214787 /* GCDAsyncSocket.m in Sources */,
 				B6FD31F018ECA93800214787 /* Request.m in Sources */,
 				B6FD31EE18ECA93800214787 /* PwUuid.m in Sources */,
@@ -784,7 +731,6 @@
 				B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */,
 				B6FD31CE18ECA93800214787 /* HTTPErrorResponse.m in Sources */,
 				B6FD31D818ECA93800214787 /* DDTTYLogger.m in Sources */,
-				B6FD31E318ECA93800214787 /* RNOpenSSLEncryptor.m in Sources */,
 				B6FD31C918ECA93800214787 /* MultipartMessageHeader.m in Sources */,
 				B6E2758118F0AF8200AA0EFC /* KPHGetLoginsHandler.m in Sources */,
 				B6FD31C718ECA93800214787 /* HTTPServer.m in Sources */,

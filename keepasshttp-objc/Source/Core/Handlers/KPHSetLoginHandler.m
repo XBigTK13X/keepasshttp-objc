@@ -9,7 +9,7 @@
 #import "KPHSetLoginHandler.h"
 
 @implementation KPHSetLoginHandler
-- (void) handle: (Request*)request response:(Response*)response;
+- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
 {
 }
 @end

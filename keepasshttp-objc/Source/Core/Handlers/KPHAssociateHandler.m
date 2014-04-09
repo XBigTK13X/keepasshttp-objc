@@ -10,13 +10,13 @@
 
 @implementation KPHAssociateHandler
 
-- (void) handle: (Request*)request response:(Response*)response;
+- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
-    if (![KPHProtocol TestRequestVerifier:request key:request->Key])
+    if (![KPHProtocol TestRequestVerifier:request aes:aes key:request->Key])
         return;
     response->Id = request->Key;
     response->Success = true;
-    [KPHProtocol SetResponseVerifier:request response:response];
+    [KPHProtocol SetResponseVerifier:response aes:aes];
 }
 
 @end

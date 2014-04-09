@@ -10,23 +10,9 @@
 
 @implementation KPHProtocol
 
-+ (BOOL) TestRequestVerifier: (Request *) request key:(NSString *) key
++ (BOOL) VerifyRequest:(Request *) request aes:(Aes*)aes
 {
-    NSData* cipherData = [SystemConvert FromBase64String:request->Verifier];
-    NSData* keyData = [SystemConvert FromBase64String:key];
-    NSData* ivData = [SystemConvert FromBase64String:request->Nonce];
-    NSData *decryptedData = [Aes decrypt:cipherData iv:ivData key:keyData];
-    if(decryptedData == nil){
-        return false;
-    }
-
-    NSString* verifier = [SystemConvert ToUTF8String:decryptedData];
-    return [verifier isEqual:request->Nonce];
-}
-
-
-+ (BOOL) VerifyRequest:(Request *) request
-{    
+    return true;
     PwEntry* entry = [KPHUtil GetConfigEntry:false];
     if (entry == nil){
         return false;
@@ -36,16 +22,30 @@
     if (connectionPassword == nil)
         return false;
     
-    return [KPHProtocol TestRequestVerifier:request key:connectionPassword];
+    return [KPHProtocol TestRequestVerifier:request aes:aes key:connectionPassword];
 }
 
-+ (void) SetResponseVerifier: (Request *) request response:(Response *) response
++ (BOOL) TestRequestVerifier: (Request *) request aes:(Aes*)aes key:(NSString *) key
 {
-    NSData* iv = [Aes randomIV:16];
-    response->Nonce = [SystemConvert ToBase64String:iv];
-    NSData* keyData = [SystemConvert FromBase64String:request->Key];
-    NSData* encrypted = [Aes encrypt:iv iv:iv key:keyData];
-    response->Verifier = [SystemConvert ToBase64String:encrypted];
+    NSData* cipherData = [SystemConvert FromBase64String:request->Verifier];
+    aes->Key = [SystemConvert FromBase64String:key];
+    aes->IV = [SystemConvert FromBase64String:request->Nonce];
+    NSData *decryptedData = [aes decrypt:cipherData];
+    if(decryptedData == nil){
+        return false;
+    }
+
+    NSString* verifier = [SystemConvert ToUTF8String:decryptedData];
+    return [verifier isEqual:request->Nonce];
+}
+
++ (void) SetResponseVerifier: (Response *) response aes:(Aes*) aes
+{
+    
+    aes->IV = [Aes randomIV:16];
+    response->Nonce = [SystemConvert ToBase64String:aes->IV];
+    response->Verifier = [KPHUtil CryptoTransform:response->Nonce base64in:false base64out:true aes:aes encrypt:true];
+    
 }
 
 @end

@@ -14,6 +14,36 @@ const Byte KEEPASSHTTP_UUID[] = {
 };
 
 @implementation KPHUtil
++ (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt
+{
+    NSData* inBytes;
+    if (base64in)
+    {
+        inBytes = [SystemConvert FromBase64String:input];
+    }
+    else
+    {
+        inBytes = [SystemConvert FromUTF8String:input];
+    }
+    NSData* outBytes;
+    if(encrypt)
+    {
+        outBytes = [aes encrypt:inBytes];
+    }
+    else
+    {
+        outBytes = [aes decrypt:inBytes];
+    }
+    
+    if(base64out)
+    {
+        return [SystemConvert ToBase64String:outBytes];
+    }
+    else
+    {
+        return [SystemConvert ToUTF8String:outBytes];
+    }
+}
 + (PwEntry *) GetConfigEntry: (BOOL) create
 {
     NSString* root = [MacPass getRootGroup];

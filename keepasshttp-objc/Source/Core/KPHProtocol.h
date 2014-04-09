@@ -12,10 +12,9 @@
 #import "Aes.h"
 #import "SystemConvert.h"
 #import "KPHUtil.h"
-#import "RNDecryptor.h"
 
 @interface KPHProtocol : NSObject
-+ (BOOL) VerifyRequest:(Request *) request;
-+ (BOOL) TestRequestVerifier: (Request *) request key:(NSString *) key;
-+ (void) SetResponseVerifier: (Request *) request response:(Response *) response;
++ (BOOL) VerifyRequest:(Request *) request aes:(Aes*)aes;
++ (BOOL) TestRequestVerifier: (Request *) request aes:(Aes*)aes key:(NSString *) key;
++ (void) SetResponseVerifier: (Response *) response aes:(Aes*) aes;
 @end

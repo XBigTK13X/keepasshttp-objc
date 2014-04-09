@@ -12,5 +12,5 @@
 #import "Aes.h"
 
 @protocol KPHRequestHandler
-- (void) handle: (Request*)request response:(Response*)response;
+- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 @end
