@@ -13,6 +13,7 @@
 - (PwGroup *) rootGroup;
 - (PwGroup *) recycleGroup;
 - (void) updateUI;
-- (BOOL) showOverwriteKeyConfirmation;
-- (BOOL) showAssociationConfirmation;
+- (BOOL) promptUserForOverwrite;
+//Return nil if user declines
+- (NSString*) promptUserForKeyName;
 @end

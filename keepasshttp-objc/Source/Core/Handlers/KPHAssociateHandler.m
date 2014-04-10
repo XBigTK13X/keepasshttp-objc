@@ -15,28 +15,28 @@
     if (![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
         return;
     
-    NSString* keyId = [NSString stringWithFormat:@"%@%@",[KPHUtil globalVars].ASSOCIATE_KEY_PREFIX,response.Hash];
-    
-    if([[KPHUtil client] showAssociationConfirmation])
+    NSString* keyId = [[KPHUtil client] promptUserForKeyName];
+    if(keyId != nil)
     {
+        NSString* keyConfigId = [NSString stringWithFormat:@"%@%@",[KPHUtil globalVars].ASSOCIATE_KEY_PREFIX,keyId];
         PwEntry* entry = [KPHCore GetConfigEntry:true];
         BOOL keyNameExists = true;
         while(keyNameExists){
             BOOL overwriteConfirmed = true;
             for(id key in entry.Strings){
-                if([key isEqual:keyId]){
-                    overwriteConfirmed = [[KPHUtil client] showOverwriteKeyConfirmation];
+                if([key isEqual:keyConfigId]){
+                    overwriteConfirmed = [[KPHUtil client] promptUserForOverwrite];
                 }
             }
-            if(!overwriteConfirmed){
-                //Try again? Need to look more into what actually generates f.KeyId
-            }
-            else{
+            if(overwriteConfirmed){
                 keyNameExists = false;
             }
+            else{
+                //TODO Might need to call something like [client closeNotification]
+            }
         }
-        entry.Strings[keyId] = request.Key;
-        response.Id = request.Key;
+        entry.Strings[keyConfigId] = request.Key;
+        response.Id = keyId;
         response.Success = true;
         [KPHProtocol SetResponseVerifier:response aes:aes];
         [[KPHUtil client] updateUI];

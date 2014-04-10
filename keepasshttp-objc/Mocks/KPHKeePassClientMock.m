@@ -30,12 +30,12 @@
 {
     
 }
-- (BOOL) showOverwriteKeyConfirmation
+- (BOOL) promptUserForOverwrite
 {
     return true;
 }
-- (BOOL) showAssociationConfirmation
+- (NSString*) promptUserForKeyName
 {
-    return true;
+    return @"keepasshttp-objcmock";
 }
 @end
