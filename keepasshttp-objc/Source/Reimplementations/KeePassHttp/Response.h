@@ -12,18 +12,19 @@
 #import "CJSONSerializer.h"
 #import "SystemConvert.h"
 
-@interface Response : NSObject<NSObject>{
-    @public NSString* RequestType;
-    @public NSString* Error;
-    @public BOOL Success;
-    @public NSString* Id;
-    @public int Count;
-    @public NSString* Version;
-    @public NSString* Hash;
-    @public NSArray* Entries;
-    @public NSString* Nonce;
-    @public NSString* Verifier;
-}
+@interface Response : NSObject<NSObject>
+
+@property (nonatomic) NSString* RequestType;
+@property (nonatomic) NSString* Error;
+@property (nonatomic) BOOL Success;
+@property (nonatomic) NSString* Id;
+@property (nonatomic) int Count;
+@property (nonatomic) NSString* Version;
+@property (nonatomic) NSString* Hash;
+@property (nonatomic) NSArray* Entries;
+@property (nonatomic) NSString* Nonce;
+@property (nonatomic) NSString* Verifier;
+
 - (id)init: (NSString *) requestType  hash:(NSString*) hash;
 - (NSString*) toJson;
 @end

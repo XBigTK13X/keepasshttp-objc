@@ -16,14 +16,17 @@
     {
         if(createNewUuid)
         {
-            Uuid = [[PwUuid alloc] initAndCreate:true];
+            [self setUuid:[[PwUuid alloc] initAndCreate:true]];
         }
         
         if(setTimes)
         {
             NSDate* currentTime = [NSDate date];
             
-            m_tCreation = m_tLastMod = m_tLastAccess = m_tParentGroupLastMod = currentTime;
+            [self setM_tCreation:currentTime];
+            [self setM_tLastMod:currentTime];
+            [self setM_tLastAccess:currentTime];
+            [self setM_tParentGroupLastMod:currentTime];
         }
     }
     return self;

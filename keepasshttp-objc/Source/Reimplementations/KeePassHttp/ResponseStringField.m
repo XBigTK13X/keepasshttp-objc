@@ -13,8 +13,8 @@
     self = [super init];
     if (self)
     {
-        Key = key;
-        Value = value;
+        [self setKey:key];
+        [self setValue:value];
     }
     return self;
 }

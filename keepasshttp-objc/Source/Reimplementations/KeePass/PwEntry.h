@@ -9,15 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "PwUuid.h"
 @interface PwEntry : NSObject
-{
-    @public PwUuid* Uuid;
-    @public NSMutableDictionary* Strings;
-    
-    NSDate* m_tCreation;
-    NSDate* m_tLastMod;
-    NSDate* m_tLastAccess;
-    NSDate* m_tParentGroupLastMod;
-}
+
+@property (nonatomic) PwUuid* Uuid;
+@property (nonatomic) NSMutableDictionary* Strings;
+@property (nonatomic) NSDate* m_tCreation;
+@property (nonatomic) NSDate* m_tLastMod;
+@property (nonatomic) NSDate* m_tLastAccess;
+@property (nonatomic) NSDate* m_tParentGroupLastMod;
+
 - (id) init:(BOOL) createNewUuid setTimes:(BOOL) setTimes;
 - (NSString* ) getString: (NSString * )lookup;
 @end

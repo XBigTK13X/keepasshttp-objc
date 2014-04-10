@@ -14,11 +14,11 @@
     self = [super init];
     if (self)
     {
-        Login = login;
-        Password = password;
-        Uuid = uuid;
-        Name = name;
-        StringFields = stringFields;
+        [self setLogin: login];
+        [self setPassword:password];
+        [self setUuid:uuid];
+        [self setName:name];
+        [self setStringFields:stringFields];
     }
     return self;
 }

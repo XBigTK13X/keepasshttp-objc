@@ -10,13 +10,12 @@
 #import "ResponseStringField.h"
 
 @interface ResponseEntry : NSObject
-{
-    NSString* Login;
-    NSString* Password;
-    NSString* Uuid;
-    NSString* Name;
-    //Array of ResponseStringField
-    NSArray* StringFields;
-}
+
+@property (nonatomic) NSString* Login;
+@property (nonatomic) NSString* Password;
+@property (nonatomic) NSString* Uuid;
+@property (nonatomic) NSString* Name;
+//Array of ResponseStringField
+@property (nonatomic) NSArray* StringFields;
 
 @end

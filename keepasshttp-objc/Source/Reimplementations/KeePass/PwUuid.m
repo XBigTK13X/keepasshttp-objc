@@ -16,7 +16,7 @@ const u_int UuidSize = 16;
     self = [super init];
     if(self)
     {
-        self->Uuid = uuid;
+        self.Uuid = uuid;
     }
     return self;
 
@@ -27,11 +27,11 @@ const u_int UuidSize = 16;
     if(self){
         if(createNew)
         {
-            self->Uuid = [NSUUID UUID];
+            [self setUuid:[NSUUID UUID]];
         }
         else
         {
-            self->Uuid = nil;
+            [self setUuid:nil];
         }
     }
     return self;

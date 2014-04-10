@@ -12,9 +12,8 @@
 #import "MacPass.h"
 
 @interface KPHAppDelegate : NSObject <NSApplicationDelegate>
-{
-    KPHServer* kphServer;
-}
+
+@property KPHServer* kphServer;
 @property (assign) IBOutlet NSWindow *window;
 
 @end

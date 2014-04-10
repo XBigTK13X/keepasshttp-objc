@@ -18,8 +18,8 @@
 #import "KPHGeneratePasswordHandler.h"
 
 @interface KPHHandlers : NSObject
-{
-    NSMutableDictionary* handlers;
-}
+
+@property (nonatomic) NSMutableDictionary* handlers;
+
 - (NSObject<KPHRequestHandler>*) forRequest:(NSString*) requestType;
 @end

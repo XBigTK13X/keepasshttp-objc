@@ -12,9 +12,9 @@
 #import "KPHHttpConnection.h"
 
 @interface KPHServer : NSObject
-{
-    HTTPServer* httpServer;
-}
+
+@property (nonatomic) HTTPServer* httpServer;
+
 - (void) startWithClient: (NSObject<KPHKeePassClient> *) keePassClient;
 - (void) startWithClientOnPort: (NSObject<KPHKeePassClient> *) keePassClient port:(int)port;
 @end

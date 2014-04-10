@@ -20,8 +20,8 @@
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
 @interface KPHHttpConnection : HTTPConnection
-{
-    KPHHandlers* handlers;
-}
+
+@property (nonatomic) KPHHandlers* handlers;
+
 + (int) defaultPort;
 @end

@@ -14,8 +14,8 @@
     if (![KPHProtocol VerifyRequest:request aes:aes])
         return;
     
-    response->Success = true;
-    response->Id = request->Id;
+    response.Success = true;
+    response.Id = request.Id;
     [KPHProtocol SetResponseVerifier:response aes:aes];
 }
 @end

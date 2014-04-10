@@ -12,8 +12,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    kphServer = [KPHServer new];
-    [kphServer startWithClient:[MacPass new]];
+    [self setKphServer:[KPHServer new]];
+    [self.kphServer startWithClient:[MacPass new]];
 }
 
 @end

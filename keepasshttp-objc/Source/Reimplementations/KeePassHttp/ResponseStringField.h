@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface ResponseStringField : NSObject
-{
-    NSString* Key;
-    NSString* Value;
-}
+
+@property (nonatomic) NSString* Key;
+@property (nonatomic) NSString* Value;
+
 @end

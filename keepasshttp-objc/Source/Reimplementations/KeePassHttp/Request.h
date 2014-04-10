@@ -8,21 +8,22 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Request : NSObject{
-    @public NSString * RequestType;
-    @public NSString * SortSelection;
-    @public NSString * TriggerUnlock;
-    @public NSString * Login;
-    @public NSString * Password;
-    @public NSString * Uuid;
-    @public NSString * Url;
-    @public NSString * SubmitUrl;
-    @public NSString * Key;
-    @public NSString * Id;
-    @public NSString * Verifier;
-    @public NSString * Nonce;
-    @public NSString * Realm;
-}
+@interface Request : NSObject
+
+@property (nonatomic) NSString * RequestType;
+@property (nonatomic) NSString * SortSelection;
+@property (nonatomic) NSString * TriggerUnlock;
+@property (nonatomic) NSString * Login;
+@property (nonatomic) NSString * Password;
+@property (nonatomic) NSString * Uuid;
+@property (nonatomic) NSString * Url;
+@property (nonatomic) NSString * SubmitUrl;
+@property (nonatomic) NSString * Key;
+@property (nonatomic) NSString * Id;
+@property (nonatomic) NSString * Verifier;
+@property (nonatomic) NSString * Nonce;
+@property (nonatomic) NSString * Realm;
+
 + (BOOL) requiresEntriesInResponse: (NSString*)requestType;
 - (id) init: (NSDictionary*)requestDictionary;
 @end

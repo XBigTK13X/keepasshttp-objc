@@ -26,8 +26,8 @@
 }
 - (void)processBodyData:(NSData *)postDataChunk
 {
-    if(handlers == nil){
-        handlers = [KPHHandlers new];
+    if(self.handlers == nil){
+        [self setHandlers:[KPHHandlers new]];
     }
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
     NSError *error = NULL;
@@ -36,14 +36,14 @@
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     
     NSString* hash = [[NSString stringWithFormat:@"%@%@", [[KPHUtil client] getRootGroupUUID], [[KPHUtil client] getRecycleGroupUUID]] sha1];
-    Response* handlerResponse = [[Response alloc] init:pluginRequest->RequestType hash:hash];
+    Response* handlerResponse = [[Response alloc] init:pluginRequest.RequestType hash:hash];
     
-    NSObject<KPHRequestHandler> *handler = [handlers forRequest:pluginRequest->RequestType];
+    NSObject<KPHRequestHandler> *handler = [self.handlers forRequest:pluginRequest.RequestType];
     if(handler == nil){
-        NSLog(@"No handler is registered for request: [%@]",pluginRequest->RequestType);
+        NSLog(@"No handler is registered for request: [%@]",pluginRequest.RequestType);
     }
     else{
-        NSLog(@"Handling request type: %@",pluginRequest->RequestType);
+        NSLog(@"Handling request type: %@",pluginRequest.RequestType);
         Aes* aes = [Aes new];
         [handler handle:pluginRequest response:handlerResponse aes:aes];
     }

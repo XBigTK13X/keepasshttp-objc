@@ -12,10 +12,10 @@
 
 - (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
-    if (![KPHProtocol TestRequestVerifier:request aes:aes key:request->Key])
+    if (![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
         return;
-    response->Id = request->Key;
-    response->Success = true;
+    [response setId:request.Key];
+    [response setSuccess:true];
     [KPHProtocol SetResponseVerifier:response aes:aes];
 }
 

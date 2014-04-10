@@ -17,13 +17,13 @@
 {
     [KPHUtil setClient:keePassClient];
     
-    httpServer = [[HTTPServer alloc] init];
-    [httpServer setPort:port];
-    [httpServer setDocumentRoot:nil];
-    [httpServer setConnectionClass:[KPHHttpConnection class]];
+    [self setHttpServer:[[HTTPServer alloc] init]];
+    [self.httpServer setPort:port];
+    [self.httpServer setDocumentRoot:nil];
+    [self.httpServer setConnectionClass:[KPHHttpConnection class]];
     
     NSError *error = nil;
-    if(![httpServer start:&error])
+    if(![self.httpServer start:&error])
     {
         NSLog(@"Error starting keepasshttp-objc server: %@", error);
     }

@@ -32,8 +32,8 @@ const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
 {
     self = [super init];
     if(self){
-        self->Key = key;
-        self->IV = iv;
+        [self setKey:key];
+        [self setIV:iv];
     }
     return self;
 }
@@ -47,8 +47,8 @@ const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
     size_t numBytesDecrypted    = 0;
     CCCryptorStatus cryptStatus = CCCrypt(
                                     kCCDecrypt, ALGORITHM, ALGORITHM_OPTIONS,
-                                    self->Key.bytes, ALGORITHM_KEY_SIZE,
-                                    self->IV.bytes,
+                                    self.Key.bytes, ALGORITHM_KEY_SIZE,
+                                    self.IV.bytes,
                                     cipherText.bytes, cipherText.length,
                                     buffer, bufferSize,
                                     &numBytesDecrypted);
@@ -70,8 +70,8 @@ const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
     size_t numBytesEncrypted    = 0;
     
     CCCryptorStatus result = CCCrypt(kCCEncrypt,ALGORITHM,ALGORITHM_OPTIONS,
-                     self->Key.bytes,ALGORITHM_KEY_SIZE,
-                     self->IV.bytes,
+                     self.Key.bytes,ALGORITHM_KEY_SIZE,
+                     self.IV.bytes,
                      plainText.bytes,plainText.length,
                      buffer,bufferSize,
                      &numBytesEncrypted);

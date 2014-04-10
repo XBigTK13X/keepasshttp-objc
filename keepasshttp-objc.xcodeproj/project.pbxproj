@@ -19,6 +19,7 @@
 		B6820BEB18F5F77B008B612C /* PwGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B6820BEA18F5F77B008B612C /* PwGroup.m */; };
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
 		B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B618F6D29A00536333 /* KPHServer.m */; };
+		B6C3C0BA18F6DD1400536333 /* KPHGlobalVars.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */; };
 		B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */; };
 		B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757A18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m */; };
 		B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757D18F0AF5900AA0EFC /* KPHHandlers.m */; };
@@ -112,6 +113,8 @@
 		B6C3C0B218F6D0EB00536333 /* KPHKeePassClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClient.h; sourceTree = "<group>"; };
 		B6C3C0B518F6D29A00536333 /* KPHServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHServer.h; sourceTree = "<group>"; };
 		B6C3C0B618F6D29A00536333 /* KPHServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHServer.m; sourceTree = "<group>"; };
+		B6C3C0B818F6DD1400536333 /* KPHGlobalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGlobalVars.h; sourceTree = "<group>"; };
+		B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHGlobalVars.m; sourceTree = "<group>"; };
 		B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHTestAssociateHandler.h; sourceTree = "<group>"; };
 		B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHTestAssociateHandler.m; sourceTree = "<group>"; };
 		B6E2757918F0AEE000AA0EFC /* KPHGetLoginsCountHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGetLoginsCountHandler.h; sourceTree = "<group>"; };
@@ -503,6 +506,8 @@
 				B6C3C0B218F6D0EB00536333 /* KPHKeePassClient.h */,
 				B6C3C0B518F6D29A00536333 /* KPHServer.h */,
 				B6C3C0B618F6D29A00536333 /* KPHServer.m */,
+				B6C3C0B818F6DD1400536333 /* KPHGlobalVars.h */,
+				B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -756,6 +761,7 @@
 				B6820BEB18F5F77B008B612C /* PwGroup.m in Sources */,
 				B6FD31ED18ECA93800214787 /* PwEntry.m in Sources */,
 				B6E2758A18F0AFF400AA0EFC /* KPHGeneratePasswordHandler.m in Sources */,
+				B6C3C0BA18F6DD1400536333 /* KPHGlobalVars.m in Sources */,
 				B6FD31EF18ECA93800214787 /* KeePassHttpEntryConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
