@@ -30,6 +30,6 @@
 
 - (NSObject<KPHRequestHandler>*) forRequest:(NSString*) requestType
 {
-    return [self.handlers objectForKey:requestType];
+    return self.handlers[requestType];
 }
 @end
