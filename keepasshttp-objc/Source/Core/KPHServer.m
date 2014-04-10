@@ -15,6 +15,9 @@
 }
 - (void) startWithClientOnPort: (NSObject<KPHKeePassClient> *) keePassClient port:(int)port
 {
+    if(keePassClient == nil){
+        [NSException raise:@"Uninitialized KPHKeePassClient" format:@"keePassClient can not be nil."];
+    }
     [KPHUtil setClient:keePassClient];
     
     [self setHttpServer:[[HTTPServer alloc] init]];

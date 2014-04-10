@@ -26,9 +26,6 @@ static KPHGlobalVars *globalVarsSingleton;
 {
     @synchronized(self)
     {
-        if(clientSingleton == nil){
-            [NSException raise:@"Uninitialized KPHKeePassClient" format:@"[KPHUtil setClient] has not been called."];
-        }
         return clientSingleton;
     }
 }

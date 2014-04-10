@@ -13,7 +13,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     [self setKphServer:[KPHServer new]];
-    [self.kphServer startWithClient:[MacPass new]];
+    [self.kphServer startWithClient:[KPHKeePassClientMock new]];
 }
 
 @end

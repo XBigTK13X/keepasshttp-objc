@@ -20,6 +20,7 @@
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
 		B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B618F6D29A00536333 /* KPHServer.m */; };
 		B6C3C0BA18F6DD1400536333 /* KPHGlobalVars.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */; };
+		B6C3C0C618F6F16C00536333 /* KPHKeePassClientMock.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */; };
 		B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */; };
 		B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757A18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m */; };
 		B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757D18F0AF5900AA0EFC /* KPHHandlers.m */; };
@@ -59,7 +60,6 @@
 		B6FD31E518ECA93800214787 /* KPHHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD319E18ECA93800214787 /* KPHHttpConnection.m */; };
 		B6FD31E618ECA93800214787 /* KPHProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31A018ECA93800214787 /* KPHProtocol.m */; };
 		B6FD31E718ECA93800214787 /* KPHUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31A218ECA93800214787 /* KPHUtil.m */; };
-		B6FD31E818ECA93800214787 /* MacPass.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31A618ECA93800214787 /* MacPass.m */; };
 		B6FD31E918ECA93800214787 /* Aes.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31AA18ECA93800214787 /* Aes.m */; };
 		B6FD31EA18ECA93800214787 /* AssemblyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31AC18ECA93800214787 /* AssemblyInfo.m */; };
 		B6FD31EB18ECA93800214787 /* SystemConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD31AE18ECA93800214787 /* SystemConvert.m */; };
@@ -115,6 +115,8 @@
 		B6C3C0B618F6D29A00536333 /* KPHServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHServer.m; sourceTree = "<group>"; };
 		B6C3C0B818F6DD1400536333 /* KPHGlobalVars.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGlobalVars.h; sourceTree = "<group>"; };
 		B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHGlobalVars.m; sourceTree = "<group>"; };
+		B6C3C0C418F6F16C00536333 /* KPHKeePassClientMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClientMock.h; sourceTree = "<group>"; };
+		B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHKeePassClientMock.m; sourceTree = "<group>"; };
 		B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHTestAssociateHandler.h; sourceTree = "<group>"; };
 		B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHTestAssociateHandler.m; sourceTree = "<group>"; };
 		B6E2757918F0AEE000AA0EFC /* KPHGetLoginsCountHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGetLoginsCountHandler.h; sourceTree = "<group>"; };
@@ -200,8 +202,6 @@
 		B6FD31A018ECA93800214787 /* KPHProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHProtocol.m; sourceTree = "<group>"; };
 		B6FD31A118ECA93800214787 /* KPHUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHUtil.h; sourceTree = "<group>"; };
 		B6FD31A218ECA93800214787 /* KPHUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHUtil.m; sourceTree = "<group>"; };
-		B6FD31A518ECA93800214787 /* MacPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPass.h; sourceTree = "<group>"; };
-		B6FD31A618ECA93800214787 /* MacPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacPass.m; sourceTree = "<group>"; };
 		B6FD31A918ECA93800214787 /* Aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aes.h; sourceTree = "<group>"; };
 		B6FD31AA18ECA93800214787 /* Aes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Aes.m; sourceTree = "<group>"; };
 		B6FD31AB18ECA93800214787 /* AssemblyInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssemblyInfo.h; sourceTree = "<group>"; };
@@ -289,6 +289,7 @@
 		B63F528C18EB63A80024CE2D /* keepasshttp-objc */ = {
 			isa = PBXGroup;
 			children = (
+				B6C3C0C318F6F16C00536333 /* Mocks */,
 				B6FD314718ECA93800214787 /* Lib */,
 				B6FD319818ECA93800214787 /* Source */,
 				B63F529818EB63A80024CE2D /* KPHAppDelegate.h */,
@@ -337,6 +338,15 @@
 				B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */,
 			);
 			path = Hash;
+			sourceTree = "<group>";
+		};
+		B6C3C0C318F6F16C00536333 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				B6C3C0C418F6F16C00536333 /* KPHKeePassClientMock.h */,
+				B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		B6F12CD618EDDAE100BC50EB /* TouchJSON */ = {
@@ -485,7 +495,6 @@
 			isa = PBXGroup;
 			children = (
 				B6FD319918ECA93800214787 /* Core */,
-				B6FD31A318ECA93800214787 /* Mocks */,
 				B6FD31A718ECA93800214787 /* Reimplementations */,
 			);
 			path = Source;
@@ -532,23 +541,6 @@
 				B6E2758918F0AFF400AA0EFC /* KPHGeneratePasswordHandler.m */,
 			);
 			path = Handlers;
-			sourceTree = "<group>";
-		};
-		B6FD31A318ECA93800214787 /* Mocks */ = {
-			isa = PBXGroup;
-			children = (
-				B6FD31A418ECA93800214787 /* MacPass */,
-			);
-			path = Mocks;
-			sourceTree = "<group>";
-		};
-		B6FD31A418ECA93800214787 /* MacPass */ = {
-			isa = PBXGroup;
-			children = (
-				B6FD31A518ECA93800214787 /* MacPass.h */,
-				B6FD31A618ECA93800214787 /* MacPass.m */,
-			);
-			path = MacPass;
 			sourceTree = "<group>";
 		};
 		B6FD31A718ECA93800214787 /* Reimplementations */ = {
@@ -718,10 +710,10 @@
 				B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */,
 				B6E2758718F0AFCC00AA0EFC /* KPHSetLoginHandler.m in Sources */,
 				B6FD31DC18ECA93800214787 /* WebSocket.m in Sources */,
+				B6C3C0C618F6F16C00536333 /* KPHKeePassClientMock.m in Sources */,
 				B6FD31F318ECA93800214787 /* ResponseStringField.m in Sources */,
 				B6FD31E918ECA93800214787 /* Aes.m in Sources */,
 				B6FD31E418ECA93800214787 /* KPHAssociateHandler.m in Sources */,
-				B6FD31E818ECA93800214787 /* MacPass.m in Sources */,
 				B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */,
 				B6FD31DA18ECA93800214787 /* DispatchQueueLogFormatter.m in Sources */,
 				B6FD31E718ECA93800214787 /* KPHUtil.m in Sources */,

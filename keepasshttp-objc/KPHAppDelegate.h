@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "KPHServer.h"
-#import "MacPass.h"
+#import "KPHKeePassClientMock.h"
 
 @interface KPHAppDelegate : NSObject <NSApplicationDelegate>
 
