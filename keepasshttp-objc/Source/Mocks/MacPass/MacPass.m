@@ -12,22 +12,6 @@
 {
     PwGroup* root;
 }
-
-+ (MacPass *)instance
-{
-    static MacPass *sharedSingleton;
-    
-    @synchronized(self)
-    {
-        if (!sharedSingleton)
-        {
-            sharedSingleton = [MacPass new];
-            sharedSingleton->root = [PwGroup new];
-        }
-        
-        return sharedSingleton;
-    }
-}
 - (PwGroup*) getRootGroup{
     return root;
 }
