@@ -13,8 +13,8 @@
     self = [super init];
     if (self)
     {
-        [self setKey:key];
-        [self setValue:value];
+        self.Key = key;
+        self.Value = value;
     }
     return self;
 }

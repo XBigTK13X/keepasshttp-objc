@@ -13,7 +13,7 @@
 {
     self = [super init];
     if(self){
-        [self setHandlers:
+        self.handlers =
          @{
              @"associate":[KPHAssociateHandler new],
              @"test-associate":[KPHTestAssociateHandler new],
@@ -23,7 +23,7 @@
              @"set-login":[KPHSetLoginHandler new],
              @"generate-password":[KPHGeneratePasswordHandler new]
              
-         }];
+         };
     }
     return self;
 }

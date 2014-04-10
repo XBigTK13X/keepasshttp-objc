@@ -27,7 +27,7 @@
 - (void)processBodyData:(NSData *)postDataChunk
 {
     if(self.handlers == nil){
-        [self setHandlers:[KPHHandlers new]];
+        self.handlers = [KPHHandlers new];
     }
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
     NSError *error = NULL;
@@ -35,7 +35,9 @@
     NSLog(@"===========================================\nReceived request: %@",requestBody);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     
-    NSString* hash = [[NSString stringWithFormat:@"%@%@", [[KPHUtil client] getRootGroupUUID], [[KPHUtil client] getRecycleGroupUUID]] sha1];
+    NSString* rootUuid =[[[KPHUtil client] rootGroup].Uuid UUIDString];
+    NSString* recycleUuid = [[[KPHUtil client] recycleGroup].Uuid UUIDString];
+    NSString* hash = [[NSString stringWithFormat:@"%@%@", rootUuid, recycleUuid] sha1];
     Response* handlerResponse = [[Response alloc] init:pluginRequest.RequestType hash:hash];
     
     NSObject<KPHRequestHandler> *handler = [self.handlers forRequest:pluginRequest.RequestType];

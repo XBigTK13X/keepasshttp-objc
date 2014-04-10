@@ -9,21 +9,24 @@
 #import "KPHKeePassClientMock.h"
 
 @implementation KPHKeePassClientMock
+-(id)init
 {
-    PwGroup* root;
+    self = [super init];
+    if(self){
+        [self setRoot:[PwGroup new]];
+        [self setRecycle:[PwGroup new]];
+    }
+    return self;
 }
-- (PwGroup*) getRootGroup{
-    return root;
+
+- (PwGroup*) rootGroup{
+    return self.root;
 }
-- (NSString *) getRecycleGroupUUID
+- (PwGroup *) recycleGroup
 {
-    return @"2548-bsdf-2345-gsdf-3242";
+    return self.recycle;
 }
-- (NSString *) getRootGroupUUID
-{
-    return @"0384-2548-bsdf-2345-gsdf";
-}
-- (void) UpdateUI
+- (void) updateUI
 {
     
 }

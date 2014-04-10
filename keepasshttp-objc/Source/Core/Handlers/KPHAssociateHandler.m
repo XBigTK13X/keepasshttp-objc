@@ -14,8 +14,8 @@
 {
     if (![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
         return;
-    [response setId:request.Key];
-    [response setSuccess:true];
+    response.Id = request.Key;
+    response.Success = true;
     [KPHProtocol SetResponseVerifier:response aes:aes];
 }
 

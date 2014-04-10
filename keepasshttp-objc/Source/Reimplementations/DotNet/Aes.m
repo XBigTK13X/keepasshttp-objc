@@ -32,8 +32,8 @@ const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
 {
     self = [super init];
     if(self){
-        [self setKey:key];
-        [self setIV:iv];
+        self.Key = key;
+        self.IV = iv;
     }
     return self;
 }

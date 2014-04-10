@@ -27,11 +27,11 @@ const u_int UuidSize = 16;
     if(self){
         if(createNew)
         {
-            [self setUuid:[NSUUID UUID]];
+            self.Uuid = [NSUUID UUID];
         }
         else
         {
-            [self setUuid:nil];
+            self.Uuid = nil;
         }
     }
     return self;

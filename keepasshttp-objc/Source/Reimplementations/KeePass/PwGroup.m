@@ -9,6 +9,18 @@
 #import "PwGroup.h"
 
 @implementation PwGroup
+- (id) init
+{
+    return [self initWithUuid:[[NSUUID UUID] UUIDString]];
+}
+- (id) initWithUuid: (NSString*)uuid
+{
+    self = [super init];
+    if(self){
+        self.Uuid = [[NSUUID alloc] initWithUUIDString:uuid];
+    }
+    return self;
+}
 - (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive
 {
     return nil;

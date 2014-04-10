@@ -12,6 +12,7 @@
 #import "Aes.h"
 #import "SystemConvert.h"
 #import "KPHUtil.h"
+#import "KPHCore.h"
 
 @interface KPHProtocol : NSObject
 + (BOOL) VerifyRequest:(Request *) request aes:(Aes*)aes;

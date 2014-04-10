@@ -12,6 +12,9 @@
 #import "PwUuid.h"
 
 @interface PwGroup : NSObject
+
+@property (nonatomic) NSUUID* Uuid;
+
 - (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership;
 @end

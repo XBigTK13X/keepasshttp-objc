@@ -21,6 +21,7 @@
 		B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B618F6D29A00536333 /* KPHServer.m */; };
 		B6C3C0BA18F6DD1400536333 /* KPHGlobalVars.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */; };
 		B6C3C0C618F6F16C00536333 /* KPHKeePassClientMock.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */; };
+		B6C3C0C918F6F45D00536333 /* KPHCore.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0C818F6F45D00536333 /* KPHCore.m */; };
 		B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */; };
 		B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757A18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m */; };
 		B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757D18F0AF5900AA0EFC /* KPHHandlers.m */; };
@@ -117,6 +118,8 @@
 		B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHGlobalVars.m; sourceTree = "<group>"; };
 		B6C3C0C418F6F16C00536333 /* KPHKeePassClientMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClientMock.h; sourceTree = "<group>"; };
 		B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHKeePassClientMock.m; sourceTree = "<group>"; };
+		B6C3C0C718F6F45D00536333 /* KPHCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHCore.h; sourceTree = "<group>"; };
+		B6C3C0C818F6F45D00536333 /* KPHCore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHCore.m; sourceTree = "<group>"; };
 		B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHTestAssociateHandler.h; sourceTree = "<group>"; };
 		B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHTestAssociateHandler.m; sourceTree = "<group>"; };
 		B6E2757918F0AEE000AA0EFC /* KPHGetLoginsCountHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGetLoginsCountHandler.h; sourceTree = "<group>"; };
@@ -504,19 +507,21 @@
 			isa = PBXGroup;
 			children = (
 				B6FD319A18ECA93800214787 /* Handlers */,
+				B6C3C0C718F6F45D00536333 /* KPHCore.h */,
+				B6C3C0C818F6F45D00536333 /* KPHCore.m */,
+				B6C3C0B818F6DD1400536333 /* KPHGlobalVars.h */,
+				B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */,
 				B6E2757C18F0AF5900AA0EFC /* KPHHandlers.h */,
 				B6E2757D18F0AF5900AA0EFC /* KPHHandlers.m */,
 				B6FD319D18ECA93800214787 /* KPHHttpConnection.h */,
 				B6FD319E18ECA93800214787 /* KPHHttpConnection.m */,
+				B6C3C0B218F6D0EB00536333 /* KPHKeePassClient.h */,
 				B6FD319F18ECA93800214787 /* KPHProtocol.h */,
 				B6FD31A018ECA93800214787 /* KPHProtocol.m */,
-				B6FD31A118ECA93800214787 /* KPHUtil.h */,
-				B6FD31A218ECA93800214787 /* KPHUtil.m */,
-				B6C3C0B218F6D0EB00536333 /* KPHKeePassClient.h */,
 				B6C3C0B518F6D29A00536333 /* KPHServer.h */,
 				B6C3C0B618F6D29A00536333 /* KPHServer.m */,
-				B6C3C0B818F6DD1400536333 /* KPHGlobalVars.h */,
-				B6C3C0B918F6DD1400536333 /* KPHGlobalVars.m */,
+				B6FD31A118ECA93800214787 /* KPHUtil.h */,
+				B6FD31A218ECA93800214787 /* KPHUtil.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -728,6 +733,7 @@
 				B6FD31D918ECA93800214787 /* ContextFilterLogFormatter.m in Sources */,
 				B6FD31C618ECA93800214787 /* HTTPMessage.m in Sources */,
 				B6FD31EA18ECA93800214787 /* AssemblyInfo.m in Sources */,
+				B6C3C0C918F6F45D00536333 /* KPHCore.m in Sources */,
 				B6FD31D218ECA93800214787 /* GCDAsyncSocket.m in Sources */,
 				B6FD31F018ECA93800214787 /* Request.m in Sources */,
 				B6FD31EE18ECA93800214787 /* PwUuid.m in Sources */,

@@ -20,10 +20,10 @@
     }
     [KPHUtil setClient:keePassClient];
     
-    [self setHttpServer:[[HTTPServer alloc] init]];
-    [self.httpServer setPort:port];
-    [self.httpServer setDocumentRoot:nil];
-    [self.httpServer setConnectionClass:[KPHHttpConnection class]];
+    self.httpServer = [[HTTPServer alloc] init];
+    self.httpServer.port = port;
+    self.httpServer.documentRoot = nil;
+    self.httpServer.connectionClass = [KPHHttpConnection class];
     
     NSError *error = nil;
     if(![self.httpServer start:&error])

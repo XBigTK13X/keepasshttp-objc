@@ -14,23 +14,23 @@
     self = [super init];
     if (self)
     {
-        [self setError: nil];
-        [self setSuccess: false];
-        [self setCount:0];
-        [self setRequestType:requestType];
+        self.Error = nil;
+        self.Success = false;
+        self.Count = 0;
+        self.RequestType = requestType;
 
         if ([Request requiresEntriesInResponse:requestType])
         {
-            [self setEntries:[NSMutableArray init]];
+            self.Entries = [NSMutableArray init];
         }
         else
         {
-            [self setEntries:nil];
+            self.Entries = nil;
         }
         
-        [self setVersion:[AssemblyInfo AssemblyFileVersion]];
+        self.Version = [AssemblyInfo AssemblyFileVersion];
         
-        [self setHash: hash];
+        self.Hash = hash;
     }
     return self;
 }

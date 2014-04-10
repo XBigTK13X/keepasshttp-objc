@@ -10,8 +10,7 @@
 #import "KeePassTypes.h"
 
 @protocol KPHKeePassClient
-- (PwGroup *) getRootGroup;
-- (NSString *) getRecycleGroupUUID;
-- (NSString *) getRootGroupUUID;
-- (void) UpdateUI;
+- (PwGroup *) rootGroup;
+- (PwGroup *) recycleGroup;
+- (void) updateUI;
 @end
