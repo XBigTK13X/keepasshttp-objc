@@ -19,7 +19,7 @@
 
 @interface KPHHandlers : NSObject
 
-@property (nonatomic) NSMutableDictionary* handlers;
+@property (nonatomic) NSDictionary* handlers;
 
 - (NSObject<KPHRequestHandler>*) forRequest:(NSString*) requestType;
 @end
