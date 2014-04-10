@@ -13,4 +13,6 @@
 - (PwGroup *) rootGroup;
 - (PwGroup *) recycleGroup;
 - (void) updateUI;
+- (BOOL) showOverwriteKeyConfirmation;
+- (BOOL) showAssociationConfirmation;
 @end

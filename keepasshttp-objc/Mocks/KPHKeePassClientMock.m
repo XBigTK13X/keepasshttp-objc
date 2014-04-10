@@ -30,4 +30,12 @@
 {
     
 }
+- (BOOL) showOverwriteKeyConfirmation
+{
+    return true;
+}
+- (BOOL) showAssociationConfirmation
+{
+    return true;
+}
 @end

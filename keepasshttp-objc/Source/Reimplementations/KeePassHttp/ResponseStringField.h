@@ -13,4 +13,6 @@
 @property (nonatomic) NSString* Key;
 @property (nonatomic) NSString* Value;
 
+-(id) init: (NSString*) key value:(NSString*) value;
+
 @end

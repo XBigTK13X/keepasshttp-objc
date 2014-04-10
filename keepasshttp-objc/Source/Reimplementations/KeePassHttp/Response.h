@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Request.h"
+#import "ResponseEntry.h"
 #import "AssemblyInfo.h"
 #import "CJSONSerializer.h"
 #import "SystemConvert.h"
