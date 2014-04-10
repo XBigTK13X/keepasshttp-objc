@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KPHProtocol.h"
 #import "KPHRequestHandler.h"
 
 @interface KPHTestAssociateHandler : NSObject

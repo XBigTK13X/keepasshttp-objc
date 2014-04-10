@@ -10,6 +10,10 @@
 
 
 @implementation KPHHttpConnection
++ (int) defaultPort
+{
+    return 19455;
+}
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
     return YES;
@@ -31,7 +35,7 @@
     NSLog(@"===========================================\nReceived request: %@",requestBody);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     
-    NSString* hash = [[NSString stringWithFormat:@"%@%@", [[MacPass instance] getRootGroupUUID], [[MacPass instance] getRecycleGroupUUID]] sha1];
+    NSString* hash = [[NSString stringWithFormat:@"%@%@", [[KPHUtil client] getRootGroupUUID], [[KPHUtil client] getRecycleGroupUUID]] sha1];
     Response* handlerResponse = [[Response alloc] init:pluginRequest->RequestType hash:hash];
     
     NSObject<KPHRequestHandler> *handler = [handlers forRequest:pluginRequest->RequestType];

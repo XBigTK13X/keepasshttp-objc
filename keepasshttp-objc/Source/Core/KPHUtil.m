@@ -16,6 +16,27 @@ NSString* KPH_HTTP_PREFIX = @"http://localhost:";
 const unsigned char KPH_KEEPASSHTTP_UUID[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x5b, 0x41, 0xc0,0x9f, 0x36, 0x89, 0x7d, 0x62, 0x3e, 0xcb, 0x31};
 
 @implementation KPHUtil
+
+static NSObject<KPHKeePassClient> *singleton;
+
++ (NSObject<KPHKeePassClient>*) client
+{
+    @synchronized(self)
+    {
+        if(singleton == nil){
+            [NSException raise:@"Uninitialized KPHKeePassClient" format:@"[KPHUtil setClient] has not been called."];
+        }
+        return singleton;
+    }
+}
++ (void) setClient: (NSObject<KPHKeePassClient>*)client
+{
+    @synchronized(self)
+    {
+        singleton = client;
+    }
+}
+
 + (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt
 {
     NSData* inBytes;
@@ -48,7 +69,7 @@ const unsigned char KPH_KEEPASSHTTP_UUID[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x
 }
 + (PwEntry *) GetConfigEntry: (BOOL) create
 {
-    PwGroup* root = [[MacPass instance] getRootGroup];
+    PwGroup* root = [[KPHUtil client] getRootGroup];
     PwUuid* uuid = [[PwUuid alloc] initWithUUID:[KPHUtil getUuid]];
     PwEntry* entry = [root findEntry:uuid searchRecursive:false];
     if (entry == nil && create)
@@ -57,7 +78,7 @@ const unsigned char KPH_KEEPASSHTTP_UUID[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x
         entry->Uuid = uuid;
         [entry->Strings setObject:KPH_KEEPASSHTTP_NAME forKey:[PwDefs TitleField]];
         [root addEntry:entry takeOwnership:true];
-        [[MacPass instance] UpdateUI];
+        [[KPHUtil client] UpdateUI];
     }
     return entry;
     return nil;

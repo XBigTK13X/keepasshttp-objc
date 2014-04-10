@@ -18,6 +18,7 @@
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
 		B6820BEB18F5F77B008B612C /* PwGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B6820BEA18F5F77B008B612C /* PwGroup.m */; };
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
+		B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0B618F6D29A00536333 /* KPHServer.m */; };
 		B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */; };
 		B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757A18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m */; };
 		B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2757D18F0AF5900AA0EFC /* KPHHandlers.m */; };
@@ -108,6 +109,9 @@
 		B6820BED18F5F84B008B612C /* KeePassTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeePassTypes.h; sourceTree = "<group>"; };
 		B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
+		B6C3C0B218F6D0EB00536333 /* KPHKeePassClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClient.h; sourceTree = "<group>"; };
+		B6C3C0B518F6D29A00536333 /* KPHServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHServer.h; sourceTree = "<group>"; };
+		B6C3C0B618F6D29A00536333 /* KPHServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHServer.m; sourceTree = "<group>"; };
 		B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHTestAssociateHandler.h; sourceTree = "<group>"; };
 		B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHTestAssociateHandler.m; sourceTree = "<group>"; };
 		B6E2757918F0AEE000AA0EFC /* KPHGetLoginsCountHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGetLoginsCountHandler.h; sourceTree = "<group>"; };
@@ -496,6 +500,9 @@
 				B6FD31A018ECA93800214787 /* KPHProtocol.m */,
 				B6FD31A118ECA93800214787 /* KPHUtil.h */,
 				B6FD31A218ECA93800214787 /* KPHUtil.m */,
+				B6C3C0B218F6D0EB00536333 /* KPHKeePassClient.h */,
+				B6C3C0B518F6D29A00536333 /* KPHServer.h */,
+				B6C3C0B618F6D29A00536333 /* KPHServer.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -503,9 +510,9 @@
 		B6FD319A18ECA93800214787 /* Handlers */ = {
 			isa = PBXGroup;
 			children = (
+				B6F12CE118EDDF7C00BC50EB /* KPHRequestHandler.h */,
 				B6FD319B18ECA93800214787 /* KPHAssociateHandler.h */,
 				B6FD319C18ECA93800214787 /* KPHAssociateHandler.m */,
-				B6F12CE118EDDF7C00BC50EB /* KPHRequestHandler.h */,
 				B6E2757618F0ADFB00AA0EFC /* KPHTestAssociateHandler.h */,
 				B6E2757718F0ADFB00AA0EFC /* KPHTestAssociateHandler.m */,
 				B6E2757918F0AEE000AA0EFC /* KPHGetLoginsCountHandler.h */,
@@ -710,6 +717,7 @@
 				B6FD31E918ECA93800214787 /* Aes.m in Sources */,
 				B6FD31E418ECA93800214787 /* KPHAssociateHandler.m in Sources */,
 				B6FD31E818ECA93800214787 /* MacPass.m in Sources */,
+				B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */,
 				B6FD31DA18ECA93800214787 /* DispatchQueueLogFormatter.m in Sources */,
 				B6FD31E718ECA93800214787 /* KPHUtil.m in Sources */,
 				B6FD31C318ECA93800214787 /* DDRange.m in Sources */,

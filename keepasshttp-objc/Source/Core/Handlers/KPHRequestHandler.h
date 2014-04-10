@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KPHProtocol.h"
 #import "Request.h"
 #import "Response.h"
 #import "Aes.h"

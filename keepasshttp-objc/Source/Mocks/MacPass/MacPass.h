@@ -7,12 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KeePassTypes.h"
+#import "KPHKeePassClient.h"
 
-@interface MacPass : NSObject
-+ (MacPass *)instance;
-- (PwGroup *) getRootGroup;
-- (NSString *) getRecycleGroupUUID;
-- (NSString *) getRootGroupUUID;
-- (void) UpdateUI;
+@interface MacPass : NSObject<KPHKeePassClient>
+
 @end

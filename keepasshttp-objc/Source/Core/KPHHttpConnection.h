@@ -11,7 +11,7 @@
 #import "CJSONDeserializer.h"
 #import "NSDictionary_JSONExtensions.h"
 
-#import "MacPass.h"
+#import "KPHKeePassClient.h"
 #import "KPHHandlers.h"
 
 #import "SystemConvert.h"
@@ -23,4 +23,5 @@
 {
     KPHHandlers* handlers;
 }
++ (int) defaultPort;
 @end

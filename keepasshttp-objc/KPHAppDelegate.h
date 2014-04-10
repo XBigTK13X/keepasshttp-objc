@@ -7,12 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "HttpServer.h"
-#import "KPHHttpConnection.h"
+
+#import "KPHServer.h"
+#import "MacPass.h"
 
 @interface KPHAppDelegate : NSObject <NSApplicationDelegate>
 {
-    HTTPServer *httpServer;
+    KPHServer* kphServer;
 }
 @property (assign) IBOutlet NSWindow *window;
 

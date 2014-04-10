@@ -16,6 +16,8 @@
     int port;
     BOOL stopped;
 }
++ (NSObject<KPHKeePassClient>*) client;
++ (void) setClient: (NSObject<KPHKeePassClient>*)client;
 + (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt;
 + (PwEntry *) GetConfigEntry : (BOOL) access;
 + (NSString*) KPH_ASSOCIATE_KEY_PREFIX;
