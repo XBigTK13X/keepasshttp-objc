@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "PwDefs.h"
 @interface KPHGlobalVars : NSObject
 
 @property (nonatomic) NSString* ASSOCIATE_KEY_PREFIX;
@@ -17,5 +17,6 @@
 @property (nonatomic) int DEFAULT_PORT;
 @property (nonatomic) NSString* HTTP_PREFIX;
 @property (nonatomic) NSData* KEEPASSHTTP_UUID;
+@property (nonatomic) PwDefs* PwDefs;
 
 @end

@@ -18,12 +18,12 @@
     self = [super init];
     if (self)
     {
-        self.Key = [requestDictionary valueForKey:@"Key"];
-        self.Id = [requestDictionary valueForKey:@"Id"];
-        self.RequestType = [requestDictionary valueForKey:@"RequestType"];
-        self.Verifier = [requestDictionary valueForKey:@"Verifier"];
-        self.Nonce = [requestDictionary valueForKey:@"Nonce"];
-        self.TriggerUnlock = [requestDictionary valueForKey:@"TriggerUnlock"];
+        self.Key = requestDictionary[@"Key"];
+        self.Id = requestDictionary[@"Id"];
+        self.RequestType = requestDictionary[@"RequestType"];
+        self.Verifier = requestDictionary[@"Verifier"];
+        self.Nonce = requestDictionary[@"Nonce"];
+        self.TriggerUnlock = requestDictionary[@"TriggerUnlock"];
     }
     return self;
 }

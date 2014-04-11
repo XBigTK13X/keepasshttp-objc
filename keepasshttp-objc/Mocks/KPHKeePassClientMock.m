@@ -36,6 +36,14 @@
 }
 - (NSString*) promptUserForKeyName
 {
-    return @"keepasshttp-objcmock";
+    return @"keepasshttp-objc mock";
+}
+- (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm
+{
+    return 1;
+}
+- (NSArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes
+{
+    return nil;
 }
 @end

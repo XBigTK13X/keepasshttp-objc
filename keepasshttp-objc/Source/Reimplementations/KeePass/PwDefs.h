@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface PwDefs : NSObject
-
-+ (NSString*) TitleField;
-
+@property (nonatomic) NSString* TitleField;
+@property (nonatomic) NSString* UrlField;
 @end

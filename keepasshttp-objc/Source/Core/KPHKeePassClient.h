@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "KeePassTypes.h"
+#import "Aes.h"
+#import "Request.h"
 
 @protocol KPHKeePassClient
 - (PwGroup *) rootGroup;
@@ -16,4 +18,6 @@
 - (BOOL) promptUserForOverwrite;
 //Return nil if user declines
 - (NSString*) promptUserForKeyName;
+- (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
+- (NSArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes;
 @end

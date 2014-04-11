@@ -9,8 +9,13 @@
 #import "PwDefs.h"
 
 @implementation PwDefs
-+ (NSString*) TitleField
+- (id)init
 {
-    return @"Title";
+    self = [super init];
+    if(self){
+        self.TitleField = @"Title";
+        self.UrlField = @"URL";
+    }
+    return self;
 }
 @end

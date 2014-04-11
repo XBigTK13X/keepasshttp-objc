@@ -40,4 +40,17 @@ static KPHGlobalVars *globalVarsSingleton;
 {
     return [NSString stringWithFormat:@"%@%@",[KPHUtil globalVars].ASSOCIATE_KEY_PREFIX,key];
 }
++ (NSString*) getHost:(NSString *)uri
+{
+    NSString* host = uri;
+    NSURL *url = [[NSURL alloc] initWithString:host];
+    if(url != nil){
+        host = url.host;
+        if (url.port != nil)
+        {
+            host = [NSString stringWithFormat:@"%@:%@",host,url.port];
+        }
+    }
+    return host;
+}
 @end

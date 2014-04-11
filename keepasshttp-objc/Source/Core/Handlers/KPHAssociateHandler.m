@@ -12,6 +12,9 @@
 
 - (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
+    if(![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
+        return;
+    
     NSString* keyId = [[KPHUtil client] promptUserForKeyName];
     if(keyId != nil)
     {
@@ -36,7 +39,6 @@
         [entry Touch:true];
         response.Id = keyId;
         response.Success = true;
-        [KPHProtocol SetResponseVerifier:response aes:aes];
         [[KPHUtil client] updateUI];
     }
 }
