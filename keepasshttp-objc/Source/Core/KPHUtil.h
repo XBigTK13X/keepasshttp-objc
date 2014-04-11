@@ -14,4 +14,5 @@
 + (KPHGlobalVars*) globalVars;
 + (NSObject<KPHKeePassClient>*) client;
 + (void) setClient: (NSObject<KPHKeePassClient>*)client;
++ (NSString*) associateKeyId:(NSString*)key;
 @end

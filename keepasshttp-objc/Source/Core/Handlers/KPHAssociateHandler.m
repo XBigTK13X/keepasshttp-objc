@@ -12,19 +12,16 @@
 
 - (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
 {
-    if (![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
-        return;
-    
     NSString* keyId = [[KPHUtil client] promptUserForKeyName];
     if(keyId != nil)
     {
-        NSString* keyConfigId = [NSString stringWithFormat:@"%@%@",[KPHUtil globalVars].ASSOCIATE_KEY_PREFIX,keyId];
+        NSString* keyConfigId = [KPHUtil associateKeyId:keyId];
         PwEntry* entry = [KPHCore GetConfigEntry:true];
         BOOL keyNameExists = true;
         while(keyNameExists){
             BOOL overwriteConfirmed = true;
-            for(id key in entry.Strings){
-                if([key isEqual:keyConfigId]){
+            for(id existingKey in entry.Strings){
+                if([existingKey isEqual:keyConfigId]){
                     overwriteConfirmed = [[KPHUtil client] promptUserForOverwrite];
                 }
             }
@@ -32,10 +29,11 @@
                 keyNameExists = false;
             }
             else{
-                //TODO Might need to call something like [client closeNotification]
+                //TODO Might need to call something like [client tryAgain]
             }
         }
         entry.Strings[keyConfigId] = request.Key;
+        [entry Touch:true];
         response.Id = keyId;
         response.Success = true;
         [KPHProtocol SetResponseVerifier:response aes:aes];

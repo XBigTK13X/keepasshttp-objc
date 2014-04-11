@@ -16,12 +16,12 @@
     if (entry == nil){
         return false;
     }
-    NSString* connectionId = [NSString stringWithFormat:@"%@/%@",[[KPHUtil globalVars] ASSOCIATE_KEY_PREFIX],request.Id];
-    NSString* connectionPassword = [entry getString:connectionId];
-    if (connectionPassword == nil)
+    NSString* connectionId = [KPHUtil associateKeyId:request.Id];
+    NSString* pluginCryptoKey = [entry getString:connectionId];
+    if (pluginCryptoKey == nil)
         return false;
     
-    return [KPHProtocol TestRequestVerifier:request aes:aes key:connectionPassword];
+    return [KPHProtocol TestRequestVerifier:request aes:aes key:pluginCryptoKey];
 }
 
 + (BOOL) TestRequestVerifier: (Request *) request aes:(Aes*)aes key:(NSString *) key

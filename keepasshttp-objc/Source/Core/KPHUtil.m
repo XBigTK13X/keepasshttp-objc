@@ -36,4 +36,8 @@ static KPHGlobalVars *globalVarsSingleton;
         clientSingleton = client;
     }
 }
++ (NSString*) associateKeyId:(NSString*)key
+{
+    return [NSString stringWithFormat:@"%@%@",[KPHUtil globalVars].ASSOCIATE_KEY_PREFIX,key];
+}
 @end

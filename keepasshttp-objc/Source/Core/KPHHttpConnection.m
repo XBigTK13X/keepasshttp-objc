@@ -47,7 +47,18 @@
     else{
         NSLog(@"Handling request type: %@",pluginRequest.RequestType);
         Aes* aes = [Aes new];
-        [handler handle:pluginRequest response:handlerResponse aes:aes];
+        BOOL requestIsValid = ([pluginRequest.RequestType isEqual:@"associate"] && [KPHProtocol TestRequestVerifier:pluginRequest aes:aes key:pluginRequest.Key])
+        || (![pluginRequest.RequestType isEqual:@"associate"] && [KPHProtocol VerifyRequest:pluginRequest aes:aes]);
+        
+        if (requestIsValid)
+        {
+            [handler handle:pluginRequest response:handlerResponse aes:aes];
+            [KPHProtocol SetResponseVerifier:handlerResponse aes:aes];
+        }
+        else
+        {
+            NSLog(@"Unable to verify request. No handler called");
+        }
     }
     
     NSString* responseBody = [handlerResponse toJson];
