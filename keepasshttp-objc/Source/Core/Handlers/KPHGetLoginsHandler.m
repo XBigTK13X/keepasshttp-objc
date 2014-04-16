@@ -29,27 +29,35 @@
     {
         return (![title isEqual:host] && ![entryUrl isEqual:host] && ![c.Allow containsObject:host]) || ( submithost != nil && ![c.Allow containsObject:submithost] && [submithost isEqual:title] && ![submithost isEqual: entryUrl]);
     }
-    return ![title isEqual:host] && ![entryUrl isEqual:host] || (submithost != null && ![title isEqual:submithost] && ![entryUrl isEqual:submithost]);
+    return (![title isEqual:host] && ![entryUrl isEqual:host]) || (submithost != nil && ![title isEqual:submithost] && ![entryUrl isEqual:submithost]);
 }
 
 - (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
 {
+    NSObject<KPHKeePassClient>* client = [KPHUtil client];
     NSString* submithost;
     NSString* host = [KPHUtil getHost: [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false]];
     if (request.SubmitUrl != nil)
         submithost = [KPHUtil getHost: [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false]];
     
-    NSArray* items = [[KPHUtil client] findMatchingEntries:request aes:aes];
+    NSArray* items = [client findMatchingEntries:request aes:aes];
     if (items.count > 0)
     {
-        var configOpt = new ConfigOpt(this.host.CustomConfig);
-        var config = GetConfigEntry(true);
-        var autoAllowS = config.Strings.ReadSafe("Auto Allow");
-        var autoAllow = autoAllowS != null && autoAllowS.Trim() != "";
-        autoAllow = autoAllow || configOpt.AlwaysAllowAccess;
-        var needPrompting = from e in items where filter(e.entry) select e;
+        KPHConfigOpt* configOpt = [KPHConfigOpt new];
+        PwEntry* config = [KPHCore GetConfigEntry:true];
+        NSString* autoAllowS = config.Strings[@"Auto Allow"];
+        BOOL autoAllow = autoAllowS != nil && [KPHUtil trim:autoAllowS] != nil;
+        autoAllow = autoAllow || [client getConfigBool:configOpt.AlwaysAllowAccess];
+        NSMutableArray* needPrompting = [NSMutableArray new];
+        for ( id item in items)
+        {
+            if([self filter:item host:host submithost:submithost]){
+                [needPrompting addObject:item];
+            }
+         
+        }
         
-        if (needPrompting.ToList().Count > 0 && !autoAllow)
+        if (needPrompting.count > 0 && !autoAllow)
         {
             var win = this.host.MainWindow;
             

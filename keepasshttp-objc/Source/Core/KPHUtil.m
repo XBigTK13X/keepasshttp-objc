@@ -53,4 +53,13 @@ static KPHGlobalVars *globalVarsSingleton;
     }
     return host;
 }
++ (NSString*) trim:(NSString *)string
+{
+    NSString* trimmed = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if([trimmed length] == 0)
+    {
+        return nil;
+    }
+    return trimmed;
+}
 @end

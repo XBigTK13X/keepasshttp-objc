@@ -16,4 +16,5 @@
 + (void) setClient: (NSObject<KPHKeePassClient>*)client;
 + (NSString*) associateKeyId:(NSString*)key;
 + (NSString*) getHost:(NSString*)url;
++ (NSString*) trim:(NSString*)string;
 @end

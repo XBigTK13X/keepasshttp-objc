@@ -20,4 +20,6 @@
 - (NSString*) promptUserForKeyName;
 - (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
 - (NSArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes;
+- (BOOL) getConfigBool:(NSString*)key;
+- (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
 @end
