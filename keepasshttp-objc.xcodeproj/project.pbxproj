@@ -33,6 +33,7 @@
 		B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */; };
 		B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */; };
 		B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */; };
+		B6FB54CE18FF586900FE6B2B /* KPHGetLoginsUserResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FB54CD18FF586900FE6B2B /* KPHGetLoginsUserResponse.m */; };
 		B6FD31C118ECA93800214787 /* DDData.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD314B18ECA93800214787 /* DDData.m */; };
 		B6FD31C218ECA93800214787 /* DDNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD314D18ECA93800214787 /* DDNumber.m */; };
 		B6FD31C318ECA93800214787 /* DDRange.m in Sources */ = {isa = PBXBuildFile; fileRef = B6FD314F18ECA93800214787 /* DDRange.m */; };
@@ -145,6 +146,8 @@
 		B6F12CDC18EDDAE100BC50EB /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
 		B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
 		B6F12CE118EDDF7C00BC50EB /* KPHRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHRequestHandler.h; sourceTree = "<group>"; };
+		B6FB54CC18FF586900FE6B2B /* KPHGetLoginsUserResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGetLoginsUserResponse.h; sourceTree = "<group>"; };
+		B6FB54CD18FF586900FE6B2B /* KPHGetLoginsUserResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHGetLoginsUserResponse.m; sourceTree = "<group>"; };
 		B6FD314A18ECA93800214787 /* DDData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDData.h; sourceTree = "<group>"; };
 		B6FD314B18ECA93800214787 /* DDData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDData.m; sourceTree = "<group>"; };
 		B6FD314C18ECA93800214787 /* DDNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDNumber.h; sourceTree = "<group>"; };
@@ -527,6 +530,8 @@
 				B6FD31A218ECA93800214787 /* KPHUtil.m */,
 				B65462B518FE1F090054E7AC /* KPHConfigOpt.h */,
 				B65462B618FE1F090054E7AC /* KPHConfigOpt.m */,
+				B6FB54CC18FF586900FE6B2B /* KPHGetLoginsUserResponse.h */,
+				B6FB54CD18FF586900FE6B2B /* KPHGetLoginsUserResponse.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -710,6 +715,7 @@
 			files = (
 				B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */,
 				B6FD31F518ECA99200214787 /* main.m in Sources */,
+				B6FB54CE18FF586900FE6B2B /* KPHGetLoginsUserResponse.m in Sources */,
 				B6FD31F418ECA98000214787 /* KPHAppDelegate.m in Sources */,
 				B6FD31D718ECA93800214787 /* DDLog.m in Sources */,
 				B6E2757818F0ADFB00AA0EFC /* KPHTestAssociateHandler.m in Sources */,

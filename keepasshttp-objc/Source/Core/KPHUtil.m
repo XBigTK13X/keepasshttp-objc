@@ -62,4 +62,7 @@ static KPHGlobalVars *globalVarsSingleton;
     }
     return trimmed;
 }
++(BOOL)stringIsNilOrEmpty:(NSString*)value {
+    return !(value && value.length);
+}
 @end

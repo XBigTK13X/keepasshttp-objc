@@ -19,7 +19,8 @@
 //Return nil if user declines
 - (NSString*) promptUserForKeyName;
 - (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
-- (NSArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes;
+- (NSMutableArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes;
 - (BOOL) getConfigBool:(NSString*)key;
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
+- (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries;
 @end

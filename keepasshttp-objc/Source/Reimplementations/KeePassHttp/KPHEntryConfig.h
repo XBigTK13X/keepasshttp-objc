@@ -10,9 +10,9 @@
 
 @interface KPHEntryConfig : NSObject
 //Set of strings
-@property (nonatomic) NSSet* Allow;
+@property (nonatomic) NSMutableSet* Allow;
 //Set of string
-@property (nonatomic) NSSet* Deny;
+@property (nonatomic) NSMutableSet* Deny;
 @property (nonatomic) NSString* Realm;
 
 - (id) initWithJson:(NSString*)json;

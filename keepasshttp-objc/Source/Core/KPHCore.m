@@ -7,6 +7,7 @@
 //
 
 #import "KPHCore.h"
+#import "KPHEntryConfig.h"
 
 @implementation KPHCore
 + (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt
@@ -54,5 +55,17 @@
     }
     return entry;
 }
-
++ (KPHEntryConfig*) GetEntryConfig: (PwEntry*) entry
+{
+    return nil;
+}
++ (void) SetEntryConfig:(PwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
+{
+    var serializer = NewJsonSerializer();
+    var writer = new StringWriter();
+    serializer.Serialize(writer, c);
+    e.Strings.Set(KEEPASSHTTP_NAME, new ProtectedString(false, writer.ToString()));
+    e.Touch(true);
+    UpdateUI(e.ParentGroup);
+}
 @end

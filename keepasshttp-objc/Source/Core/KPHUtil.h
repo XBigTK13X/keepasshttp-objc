@@ -17,4 +17,5 @@
 + (NSString*) associateKeyId:(NSString*)key;
 + (NSString*) getHost:(NSString*)url;
 + (NSString*) trim:(NSString*)string;
++(BOOL)stringIsNilOrEmpty:(NSString*)value;
 @end

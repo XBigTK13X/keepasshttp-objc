@@ -8,6 +8,8 @@
 
 #import "KPHGetLoginsHandler.h"
 #import "KPHEntryConfig.h"
+#import "KPHUtil.h"
+
 @implementation KPHGetLoginsHandler
 - (KPHEntryConfig*) getEntryConfig:(PwEntry*) e
 {
@@ -32,6 +34,18 @@
     return (![title isEqual:host] && ![entryUrl isEqual:host]) || (submithost != nil && ![title isEqual:submithost] && ![entryUrl isEqual:submithost]);
 }
 
+- (NSMutableArray*) getEntriesThatNeedPrompting:(NSArray*)items host:(NSString*)host submithost:(NSString*)submithost
+{
+    NSMutableArray* needPrompting = [NSMutableArray new];
+    for ( id item in items)
+    {
+        if([self filter:item host:host submithost:submithost]){
+            [needPrompting addObject:item];
+        }
+    }
+    return needPrompting;
+}
+
 - (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
 {
     NSObject<KPHKeePassClient>* client = [KPHUtil client];
@@ -40,7 +54,7 @@
     if (request.SubmitUrl != nil)
         submithost = [KPHUtil getHost: [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false]];
     
-    NSArray* items = [client findMatchingEntries:request aes:aes];
+    NSMutableArray* items = [client findMatchingEntries:request aes:aes];
     if (items.count > 0)
     {
         KPHConfigOpt* configOpt = [KPHConfigOpt new];
@@ -48,60 +62,52 @@
         NSString* autoAllowS = config.Strings[@"Auto Allow"];
         BOOL autoAllow = autoAllowS != nil && [KPHUtil trim:autoAllowS] != nil;
         autoAllow = autoAllow || [client getConfigBool:configOpt.AlwaysAllowAccess];
-        NSMutableArray* needPrompting = [NSMutableArray new];
-        for ( id item in items)
-        {
-            if([self filter:item host:host submithost:submithost]){
-                [needPrompting addObject:item];
-            }
-         
-        }
+        
+        NSMutableArray* needPrompting = [self getEntriesThatNeedPrompting:items host:host submithost:submithost];
         
         if (needPrompting.count > 0 && !autoAllow)
         {
-            var win = this.host.MainWindow;
-            
-            using (var f = new AccessControlForm())
+            KPHGetLoginsUserResponse* userResponse = [[KPHUtil client] promptUserForAccess:host submithost:submithost entries:needPrompting];
+            if(userResponse != nil)
             {
-                win.Invoke((MethodInvoker)delegate
-                           {
-                               f.Icon = win.Icon;
-                               f.Plugin = this;
-                               f.Entries = (from e in items where filter(e.entry) select e.entry).ToList();
-                               //f.Entries = needPrompting.ToList();
-                               f.Host = submithost != null ? submithost : host;
-                               f.Load += delegate { f.Activate(); };
-                               f.ShowDialog(win);
-                               if (f.Remember && (f.Allowed || f.Denied))
-                               {
-                                   foreach (var e in needPrompting)
-                                   {
-                                       var c = GetEntryConfig(e.entry);
-                                       if (c == null)
-                                           c = new KeePassHttpEntryConfig();
-                                       var set = f.Allowed ? c.Allow : c.Deny;
-                                       set.Add(host);
-                                       if (submithost != null && submithost != host)
-                                           set.Add(submithost);
-                                       SetEntryConfig(e.entry, c);
-                                       
-                                   }
-                               }
-                               if (!f.Allowed)
-                               {
-                                   items = items.Except(needPrompting);
-                               }
-                           });
+                if (userResponse.Remember)
+                {
+                    for (id e in needPrompting)
+                    {
+                        KPHEntryConfig* c = [KPHCore GetEntryConfig:e];
+                        if (c == nil)
+                        {
+                            c =[KPHEntryConfig new];
+                        }
+                        NSMutableSet* set = userResponse.Accept ? c.Allow : c.Deny;
+                        [set addObject:host];
+                        if (submithost != nil && ![submithost isEqual: host])
+                        {
+                            [set addObject:submithost];
+                        }
+                        
+                        [KPHCore SetEntryConfig:e entryConfig:c];
+                        
+                    }
+                }
+                if (!userResponse.Accept)
+                {
+                    for(id item in needPrompting){
+                        [items removeObject:item];
+                    }
+                }
             }
         }
-        
-        string compareToUrl = null;
-        if (r.SubmitUrl != null)
+
+        NSString* compareToUrl = nil;
+        if (request.SubmitUrl != nil)
         {
-            compareToUrl = CryptoTransform(r.SubmitUrl, true, false, aes, CMode.DECRYPT);
+            compareToUrl = [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
         }
-        if(String.IsNullOrEmpty(compareToUrl))
-            compareToUrl = CryptoTransform(r.Url, true, false, aes, CMode.DECRYPT);
+        if([KPHUtil stringIsNilOrEmpty:compareToUrl])
+        {
+            compareToUrl = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
+        }
         
         compareToUrl = compareToUrl.ToLower();
         

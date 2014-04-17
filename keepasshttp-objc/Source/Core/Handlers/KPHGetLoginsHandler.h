@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KPHRequestHandler.h"
+#import "KPHGetLoginsUserResponse.h"
 
 @interface KPHGetLoginsHandler : NSObject<KPHRequestHandler>
 
