@@ -18,4 +18,5 @@
 + (NSString*) getHost:(NSString*)url;
 + (NSString*) trim:(NSString*)string;
 +(BOOL)stringIsNilOrEmpty:(NSString*)value;
++ (NSUInteger) min:(NSUInteger)first second:(NSUInteger)second;
 @end

@@ -121,7 +121,7 @@
             
             entryUrl = [entryUrl lowercaseString];
             
-            entry.UsageCount = (u_long)LevenshteinDistance(compareToUrl, entryUrl);
+            entry.UsageCount = [self LevenshteinDistance:compareToUrl target:entryUrl];
             
         }
         NSArray* itemsList = [items copy];
@@ -221,5 +221,43 @@
     response.Success = true;
     response.Id = request.Id;
     [KPHProtocol SetResponseVerifier:response aes:aes];
+}
+- (NSUInteger) LevenshteinDistance:(NSString*) source target:(NSString*) target
+{
+    if ([KPHUtil stringIsNilOrEmpty:source])
+    {
+        if ([KPHUtil stringIsNilOrEmpty:target]) return 0;
+        return target.length;
+    }
+    if ([KPHUtil stringIsNilOrEmpty:target]) return source.length;
+    
+    if (source.length > target.length)
+    {
+        NSString* temp = target;
+        target = source;
+        source = temp;
+    }
+    
+    NSUInteger m = target.length;
+    NSUInteger n = source.length;
+    NSUInteger distance[2][m + 1];
+    // Initialize the distance 'matrix'
+    for (int j = 1; j <= m; j++) distance[0][j] = j;
+    
+    int currentRow = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+        currentRow = i & 1;
+        distance[currentRow][0] = i;
+        int previousRow = currentRow ^ 1;
+        for (int j = 1; j <= m; j++)
+        {
+            NSUInteger cost = ([target characterAtIndex:(j - 1)] == [source characterAtIndex:(i - 1)]) ? 0 : 1;
+            
+            NSUInteger firstDistStep = [KPHUtil min:(distance[previousRow][j] + 1) second:(distance[currentRow][j - 1] + 1)];
+            distance[currentRow][j] = [KPHUtil min:firstDistStep second:(distance[previousRow][j - 1] + cost)];
+        }
+    }
+    return distance[currentRow][m];
 }
 @end

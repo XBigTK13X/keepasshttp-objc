@@ -65,4 +65,11 @@ static KPHGlobalVars *globalVarsSingleton;
 +(BOOL)stringIsNilOrEmpty:(NSString*)value {
     return !(value && value.length);
 }
++ (NSUInteger) min:(NSUInteger)first second:(NSUInteger)second
+{
+    if(first <= second){
+        return first;
+    }
+    return second;
+}
 @end

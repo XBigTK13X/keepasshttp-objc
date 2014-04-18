@@ -72,7 +72,7 @@
 {
     return nil;
 }
-+ (ResponseEntry*) PrepareElementForResponseEntries:(ConfigOpt*) configOpt entry:(PwEntry*) entry
++ (ResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(PwEntry*) entry
 {
     var name = entryDatabase.entry.Strings.ReadSafe(PwDefs.TitleField);
     var loginpass = GetUserPass(entryDatabase);
