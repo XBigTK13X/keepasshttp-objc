@@ -10,6 +10,7 @@
 
 #import "PwEntry.h"
 #import "PwUuid.h"
+#import "SearchParameters.h"
 
 @interface PwGroup : NSObject
 
@@ -17,4 +18,5 @@
 
 - (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership;
+- (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries;
 @end

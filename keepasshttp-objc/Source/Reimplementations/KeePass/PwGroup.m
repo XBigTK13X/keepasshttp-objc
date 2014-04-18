@@ -29,4 +29,8 @@
 {
     
 }
+- (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries
+{
+    
+}
 @end

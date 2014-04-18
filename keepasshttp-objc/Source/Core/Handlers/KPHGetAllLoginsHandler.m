@@ -11,31 +11,32 @@
 @implementation KPHGetAllLoginsHandler
 - (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
 {
-    var list = new PwObjectList<PwEntry>();
+    NSMutableArray* list = [NSMutableArray new];
+    PwGroup *root = [[KPHUtil client] rootGroup];
+    SearchParameters* parms = [SearchParameters new];
     
-    var root = host.Database.RootGroup;
+    parms.SearchString = @"^[A-Za-z0-9:/-]+\\.[A-Za-z0-9:/-]+$"; // match anything looking like a domain or url
     
-    var parms = MakeSearchParameters();
-    
-    parms.SearchString = @"^[A-Za-z0-9:/-]+\.[A-Za-z0-9:/-]+$"; // match anything looking like a domain or url
-    
-    root.SearchEntries(parms, list);
-    foreach (var entry in list)
+    [root searchEntries:parms entries:list];
+    for (PwEntry* entry in list)
     {
-        var name = entry.Strings.ReadSafe(PwDefs.TitleField);
-        var login = GetUserPass(entry)[0];
-        var uuid = entry.Uuid.ToHexString();
-        var e = new ResponseEntry(name, login, null, uuid, null);
-        resp.Entries.Add(e);
+        NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+        NSString* login = [KPHCore GetUserPass:entry][0];
+        NSString* uuid = [[entry.Uuid Uuid] UUIDString];
+        ResponseEntry* e = [ResponseEntry new];
+        e.Name = name;
+        e.Login = login;
+        e.Uuid = uuid;
+        [response.Entries addObject:e];
     }
-    resp.Success = true;
-    resp.Id = r.Id;
-    SetResponseVerifier(resp, aes);
-    foreach (var entry in resp.Entries)
+    response.Success = true;
+    response.Id = request.Id;
+    [KPHProtocol SetResponseVerifier:response aes:aes];
+    for(ResponseEntry* entry in response.Entries)
     {
-        entry.Name = CryptoTransform(entry.Name, false, true, aes, CMode.ENCRYPT);
-        entry.Login = CryptoTransform(entry.Login, false, true, aes, CMode.ENCRYPT);
-        entry.Uuid = CryptoTransform(entry.Uuid, false, true, aes, CMode.ENCRYPT);
+        entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
+        entry.Login = [KPHCore CryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
+        entry.Uuid = [KPHCore CryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
     }
 }
 @end
