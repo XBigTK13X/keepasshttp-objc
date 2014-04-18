@@ -10,6 +10,7 @@
 #import "KeePassTypes.h"
 #import "Aes.h"
 #import "Request.h"
+#import "KPHGetLoginsUserResponse.h"
 
 @protocol KPHKeePassClient
 - (PwGroup *) rootGroup;
@@ -23,4 +24,5 @@
 - (BOOL) getConfigBool:(NSString*)key;
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
 - (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries;
+- (void) showNotification:(NSString*)message;
 @end

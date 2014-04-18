@@ -68,4 +68,42 @@
     e.Touch(true);
     UpdateUI(e.ParentGroup);
 }
++ (NSArray*) GetUserPass:(PwEntry *)entry
+{
+    return nil;
+}
++ (ResponseEntry*) PrepareElementForResponseEntries:(ConfigOpt*) configOpt entry:(PwEntry*) entry
+{
+    var name = entryDatabase.entry.Strings.ReadSafe(PwDefs.TitleField);
+    var loginpass = GetUserPass(entryDatabase);
+    var login = loginpass[0];
+    var passwd = loginpass[1];
+    var uuid = entryDatabase.entry.Uuid.ToHexString();
+    
+    List<ResponseStringField> fields = null;
+    if (configOpt.ReturnStringFields)
+    {
+        fields = new List<ResponseStringField>();
+        foreach (var sf in entryDatabase.entry.Strings)
+        {
+            if (sf.Key.StartsWith("KPH: "))
+            {
+                var sfValue = entryDatabase.entry.Strings.ReadSafe(sf.Key);
+                fields.Add(new ResponseStringField(sf.Key.Substring(5), sfValue));
+            }
+        }
+        
+        if (fields.Count > 0)
+        {
+            var fields2 = from e2 in fields orderby e2.Key ascending select e2;
+            fields = fields2.ToList<ResponseStringField>();
+        }
+        else
+        {
+            fields = null;
+        }
+    }
+    
+    return new ResponseEntry(name, login, passwd, uuid, fields);
+}
 @end

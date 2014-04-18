@@ -109,91 +109,117 @@
             compareToUrl = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
         }
         
-        compareToUrl = compareToUrl.ToLower();
         
-        foreach (var entryDatabase in items)
+        compareToUrl = [compareToUrl lowercaseString];
+        for(PwEntry* entry in items)
         {
-            string entryUrl = String.Copy(entryDatabase.entry.Strings.ReadSafe(PwDefs.UrlField));
-            if (String.IsNullOrEmpty(entryUrl))
-                entryUrl = entryDatabase.entry.Strings.ReadSafe(PwDefs.TitleField);
+            NSString* entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.UrlField];
+            if ([KPHUtil stringIsNilOrEmpty:entryUrl])
+            {
+                entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+            }
             
-            entryUrl = entryUrl.ToLower();
+            entryUrl = [entryUrl lowercaseString];
             
-            entryDatabase.entry.UsageCount = (ulong)LevenshteinDistance(compareToUrl, entryUrl);
+            entry.UsageCount = (u_long)LevenshteinDistance(compareToUrl, entryUrl);
             
         }
-        
-        var itemsList = items.ToList();
-        
+        NSArray* itemsList = [items copy];
         if (configOpt.SpecificMatchingOnly)
         {
-            itemsList = (from e in itemsList
-                         orderby e.entry.UsageCount ascending
-                         select e).ToList();
+            PwEntry* lowestScoring;
+            for(PwEntry* item in items){
+                if(lowestScoring == nil || item.UsageCount < lowestScoring.UsageCount){
+                    lowestScoring = item;
+                }
+            }
             
-            ulong lowestDistance = itemsList[0].entry.UsageCount;
-            
-            itemsList = (from e in itemsList
-                         where e.entry.UsageCount == lowestDistance
-                         orderby e.entry.UsageCount
-                         select e).ToList();
+            itemsList = [NSArray arrayWithObject:lowestScoring];
             
         }
         
         if (configOpt.SortResultByUsername)
         {
-            var items2 = from e in itemsList orderby e.entry.UsageCount ascending, GetUserPass(e)[0] ascending select e;
-            itemsList = items2.ToList();
+            itemsList = [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                PwEntry *first = (PwEntry*)a;
+                PwEntry *second = (PwEntry*)b;
+                NSComparisonResult usageCountOrder = NSOrderedSame;
+                if(first.UsageCount < second.UsageCount){
+                    usageCountOrder = NSOrderedAscending;
+                }
+                else if(first.UsageCount > second.UsageCount){
+                    usageCountOrder = NSOrderedDescending;
+                }
+                if(usageCountOrder == NSOrderedSame){
+                    NSString* firstUserName = [[KPHCore GetUserPass:first] objectAtIndex:0];
+                    NSString* secondUserName =[[KPHCore GetUserPass:second] objectAtIndex:0];
+                    return [firstUserName compare:secondUserName];
+                }
+                return usageCountOrder;
+            }];
+
         }
         else
         {
-            var items2 = from e in itemsList orderby e.entry.UsageCount ascending, e.entry.Strings.ReadSafe(PwDefs.TitleField) ascending select e;
-            itemsList = items2.ToList();
+            itemsList = [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                PwEntry *first = (PwEntry*)a;
+                PwEntry *second = (PwEntry*)b;
+                NSComparisonResult usageCountOrder = NSOrderedSame;
+                if(first.UsageCount < second.UsageCount){
+                    usageCountOrder = NSOrderedAscending;
+                }
+                else if(first.UsageCount > second.UsageCount){
+                    usageCountOrder = NSOrderedDescending;
+                }
+                if(usageCountOrder == NSOrderedSame){
+                    NSString* firstTitle = first.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+                    NSString* secondTitle = second.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+                    return [firstTitle compare:secondTitle];
+                }
+                return usageCountOrder;
+            }];
         }
         
-        foreach (var entryDatabase in itemsList)
+        for (PwEntry* entry in itemsList)
         {
-            var e = PrepareElementForResponseEntries(configOpt, entryDatabase);
-            resp.Entries.Add(e);
+            ResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
+            [response.Entries addObject:e];
         }
         
-        if (itemsList.Count > 0)
+        if (itemsList.count > 0)
         {
-            var names = (from e in resp.Entries select e.Name).Distinct<string>();
-            var n = String.Join("\n    ", names.ToArray<string>());
+            NSMutableSet* distinctNames = [NSMutableSet new];
+            for(ResponseEntry* e in response.Entries){
+                [distinctNames addObject:e.Name];
+            }
+            NSString* n = [[distinctNames allObjects] componentsJoinedByString:@"\n    "];
             
-            if (configOpt.ReceiveCredentialNotification)
-                ShowNotification(String.Format("{0}: {1} is receiving credentials for:\n    {2}", r.Id, host, n));
+            if (configOpt.ReceiveCredentialNotification){
+                [[KPHUtil client] showNotification:[NSString stringWithFormat:@"%@:%@ is receiving credentials for:\n    %@", request.Id, host, n]];
+            }
         }
         
-        resp.Success = true;
-        resp.Id = r.Id;
-        SetResponseVerifier(resp, aes);
-        
-        foreach (var entry in resp.Entries)
+        for (ResponseEntry* entry in response.Entries)
         {
-            entry.Name = CryptoTransform(entry.Name, false, true, aes, CMode.ENCRYPT);
-            entry.Login = CryptoTransform(entry.Login, false, true, aes, CMode.ENCRYPT);
-            entry.Uuid = CryptoTransform(entry.Uuid, false, true, aes, CMode.ENCRYPT);
-            entry.Password = CryptoTransform(entry.Password, false, true, aes, CMode.ENCRYPT);
+            entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
+            entry.Login = [KPHCore CryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
+            entry.Uuid = [KPHCore CryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
+            entry.Password = [KPHCore CryptoTransform:entry.Password base64in:false base64out:true aes:aes encrypt:true];
             
-            if (entry.StringFields != null)
+            if (entry.StringFields != nil)
             {
-                foreach (var sf in entry.StringFields)
+                for (ResponseStringField* sf in entry.StringFields)
                 {
-                    sf.Key = CryptoTransform(sf.Key, false, true, aes, CMode.ENCRYPT);
-                    sf.Value = CryptoTransform(sf.Value, false, true, aes, CMode.ENCRYPT);
+                    sf.Key = [KPHCore CryptoTransform:sf.Key base64in:false base64out:true aes:aes encrypt:true];
+                    sf.Value = [KPHCore CryptoTransform:sf.Value base64in:false base64out:true aes:aes encrypt:true];
                 }
             }
         }
         
-        resp.Count = resp.Entries.Count;
+        response.Count = response.Entries.count;
     }
-    else
-    {
-        resp.Success = true;
-        resp.Id = r.Id;
-        SetResponseVerifier(resp, aes);
-    }
+    response.Success = true;
+    response.Id = request.Id;
+    [KPHProtocol SetResponseVerifier:response aes:aes];
 }
 @end

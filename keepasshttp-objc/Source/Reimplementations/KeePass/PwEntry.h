@@ -12,6 +12,7 @@
 
 @property (nonatomic) PwUuid* Uuid;
 @property (nonatomic) NSMutableDictionary* Strings;
+@property (nonatomic) u_int UsageCount;
 @property (nonatomic) NSDate* m_tCreation;
 @property (nonatomic) NSDate* m_tLastMod;
 @property (nonatomic) NSDate* m_tLastAccess;

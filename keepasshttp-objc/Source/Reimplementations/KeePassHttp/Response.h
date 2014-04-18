@@ -19,10 +19,10 @@
 @property (nonatomic) NSString* Error;
 @property (nonatomic) BOOL Success;
 @property (nonatomic) NSString* Id;
-@property (nonatomic) int Count;
+@property (nonatomic) NSUInteger Count;
 @property (nonatomic) NSString* Version;
 @property (nonatomic) NSString* Hash;
-@property (nonatomic) NSArray* Entries;
+@property (nonatomic) NSMutableArray* Entries;
 @property (nonatomic) NSString* Nonce;
 @property (nonatomic) NSString* Verifier;
 
