@@ -14,8 +14,8 @@
 {
     if(![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
         return;
-    
-    NSString* keyId = [[KPHUtil client] promptUserForKeyName];
+    NSString* keyMessage = [[NSString alloc] initWithFormat:@"You have received an association request for the key \"%@\". If you would like to allow it access to your KeePass database give it a unique name to identify and accept it.",request.Key];
+    NSString* keyId = [[KPHUtil client] promptUserForKeyName: keyMessage];
     if(keyId != nil)
     {
         NSString* keyConfigId = [KPHUtil associateKeyId:keyId];
@@ -25,7 +25,8 @@
             BOOL overwriteConfirmed = true;
             for(id existingKey in entry.Strings){
                 if([existingKey isEqual:keyConfigId]){
-                    overwriteConfirmed = [[KPHUtil client] promptUserForOverwrite];
+                    NSString* overwriteMessage = [[NSString alloc] initWithFormat: @"A shared encryption-key with the name \"%@\" already exists.\nDo you want to overwrite it?",keyId];
+                    overwriteConfirmed = [[KPHUtil client] promptUserForOverwrite:overwriteMessage title:@"Overwrite existing key?"];
                 }
             }
             if(overwriteConfirmed){

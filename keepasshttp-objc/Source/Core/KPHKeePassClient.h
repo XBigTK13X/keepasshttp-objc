@@ -16,13 +16,16 @@
 - (PwGroup *) rootGroup;
 - (PwGroup *) recycleGroup;
 - (void) updateUI;
-- (BOOL) promptUserForOverwrite;
-//Return nil if user declines
-- (NSString*) promptUserForKeyName;
 - (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
 - (NSMutableArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes;
 - (BOOL) getConfigBool:(NSString*)key;
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
-- (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries;
 - (void) showNotification:(NSString*)message;
+- (NSDictionary*) getCustomConfig;
+
+- (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title;
+//Return nil if user declines
+- (NSString*) promptUserForKeyName: (NSString*)keyMessage;
+- (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*) message title:(NSString*)title host:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries;
+- (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title;
 @end

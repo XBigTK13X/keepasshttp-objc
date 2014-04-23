@@ -67,7 +67,9 @@
         
         if (needPrompting.count > 0 && !autoAllow)
         {
-            KPHGetLoginsUserResponse* userResponse = [[KPHUtil client] promptUserForAccess:host submithost:submithost entries:needPrompting];
+            NSUInteger c = needPrompting.count;
+            NSString* message = [[NSString alloc] initWithFormat:@"%@ has requested access to passwords for the above %@.%@ Please select whether you want to allow access%@.",host,(c==1)?@"item" : @"items",(c==1)? @"" : @"\nYou can only grant access to all items.", (c==1)?@"" : @" to all of them"];
+            KPHGetLoginsUserResponse* userResponse = [[KPHUtil client] promptUserForAccess:message title:@"" host:host submithost:submithost entries:needPrompting];
             if(userResponse != nil)
             {
                 if (userResponse.Remember)

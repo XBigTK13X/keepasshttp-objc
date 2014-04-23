@@ -34,14 +34,14 @@
     response.Id = request.Id;
     [KPHProtocol SetResponseVerifier:response aes:aes];
 }
-private bool UpdateEntry(PwUuid uuid, string username, string password, string formHost, string requestId)
+- (BOOL) UpdateEntry:(PwUuid*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
 {
-    PwEntry entry = null;
+    PwEntry* entry = nil;
     
-    var configOpt = new ConfigOpt(this.host.CustomConfig);
+    KPHConfigOpt* configOpt = [[KPHConfigOpt alloc] initWithCustomConfig:[[KPHUtil client] getCustomConfig]];
     if (configOpt.SearchInAllOpenedDatabases)
     {
-        foreach (PwDocument doc in host.MainWindow.DocumentManager.Documents)
+        for (PwDocument* doc in host.MainWindow.DocumentManager.Documents)
         {
             if (doc.Database.IsOpen)
             {
@@ -58,45 +58,23 @@ private bool UpdateEntry(PwUuid uuid, string username, string password, string f
         entry = host.Database.RootGroup.FindEntry(uuid, true);
     }
     
-    if (entry == null)
+    if (entry == nil)
     {
         return false;
     }
     
-    string[] up = GetUserPass(entry);
-    var u = up[0];
-    var p = up[1];
+    NSArray* up = [KPHCore GetUserPass:entry];
+    NSString* u = [up objectAtIndex:0];
+    NSString* p = [up objectAtIndex:1];
     
-    if (u != username || p != password)
+    if (![u isEqual: username] || ![p isEqual:password])
     {
         bool allowUpdate = configOpt.AlwaysAllowUpdates;
         
         if (!allowUpdate)
         {
-            host.MainWindow.Activate();
-            
-            DialogResult result;
-            if (host.MainWindow.IsTrayed())
-            {
-                result = MessageBox.Show(
-                                         String.Format("Do you want to update the information in {0} - {1}?", formHost, u),
-                                         "Update Entry", MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.None, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            }
-            else
-            {
-                result = MessageBox.Show(
-                                         host.MainWindow,
-                                         String.Format("Do you want to update the information in {0} - {1}?", formHost, u),
-                                         "Update Entry", MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-            }
-            
-            
-            if (result == DialogResult.Yes)
-            {
-                allowUpdate = true;
-            }
+            NSString* message = [[NSString alloc] initWithFormat:@"Do you want to update the information in %@ - %@?", formHost, u ];
+            allowUpdate = [[KPHUtil client] promptUserForEntryUpdate:message title:@"Update Entry"];
         }
         
         if (allowUpdate)
@@ -117,7 +95,7 @@ private bool UpdateEntry(PwUuid uuid, string username, string password, string f
     return false;
 }
 
-private bool CreateEntry(string username, string password, string urlHost, string url, Request r, Aes aes)
+- (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(Request*) request aes:(Aes*) aes
 {
     string realm = null;
     if (r.Realm != null)

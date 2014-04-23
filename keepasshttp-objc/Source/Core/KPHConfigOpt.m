@@ -10,6 +10,10 @@
 #import "KPHUtil.h"
 
 @implementation KPHConfigOpt
+- (id) initWithCustomConfig:(NSDictionary*)customConfig
+{
+    return [self init];
+}
 - (id)init
 {
     self = [super init];

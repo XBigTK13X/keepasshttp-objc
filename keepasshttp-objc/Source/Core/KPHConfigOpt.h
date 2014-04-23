@@ -21,6 +21,7 @@
 @property (nonatomic) NSString* SortResultByUsername;
 @property (nonatomic) NSString* ListenerPort;
 
+- (id) initWithCustomConfig:(NSDictionary*)customConfig;
 - (BOOL) get:(NSString*)key;
 - (void) set:(NSString*) key enabled:(NSString*)enabled;
 @end
