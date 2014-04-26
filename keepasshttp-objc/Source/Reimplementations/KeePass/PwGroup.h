@@ -16,7 +16,10 @@
 
 @property (nonatomic) NSUUID* Uuid;
 
+- (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon;
 - (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership;
 - (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries;
+- (PwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound;
+- (void) AddGroup:(PwGroup*)group takeOwnership:(BOOL)takeOwnership;
 @end

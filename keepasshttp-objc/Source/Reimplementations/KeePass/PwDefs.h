@@ -11,4 +11,6 @@
 @interface PwDefs : NSObject
 @property (nonatomic) NSString* TitleField;
 @property (nonatomic) NSString* UrlField;
+@property (nonatomic) NSString* UserNameField;
+@property (nonatomic) NSString* PasswordField;
 @end

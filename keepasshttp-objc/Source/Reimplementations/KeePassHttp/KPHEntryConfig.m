@@ -18,4 +18,8 @@
     }
     return self;
 }
+- (NSString*) toJson
+{
+    return nil;
+}
 @end

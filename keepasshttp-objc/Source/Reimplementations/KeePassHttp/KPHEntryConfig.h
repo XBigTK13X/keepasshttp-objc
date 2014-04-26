@@ -16,4 +16,5 @@
 @property (nonatomic) NSString* Realm;
 
 - (id) initWithJson:(NSString*)json;
+- (NSString*) toJson;
 @end

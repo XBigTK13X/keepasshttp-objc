@@ -10,5 +10,4 @@
 #import "KPHRequestHandler.h"
 
 @interface KPHSetLoginHandler : NSObject<KPHRequestHandler>
-
 @end

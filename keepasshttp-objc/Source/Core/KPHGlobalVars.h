@@ -18,5 +18,6 @@
 @property (nonatomic) NSString* HTTP_PREFIX;
 @property (nonatomic) NSData* KEEPASSHTTP_UUID;
 @property (nonatomic) PwDefs* PwDefs;
+@property (nonatomic) NSString* KEEPASSHTTP_GROUP_ICON;
 
 @end

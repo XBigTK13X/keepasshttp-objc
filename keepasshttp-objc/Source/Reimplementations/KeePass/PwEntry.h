@@ -20,5 +20,6 @@
 
 - (id) init:(BOOL) createNewUuid setTimes:(BOOL) setTimes;
 - (NSString* ) getString: (NSString * )lookup;
-- (void) Touch:(BOOL)updateParents;
+- (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents;
+- (void) Touch:(BOOL)modifed;
 @end

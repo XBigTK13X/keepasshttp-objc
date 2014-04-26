@@ -31,7 +31,11 @@
 - (NSString* ) getString: (NSString * )lookup{
     return nil;
 }
-- (void) Touch:(BOOL)updateParents
+- (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents
+{
+    
+}
+- (void) Touch:(BOOL)modifed
 {
     
 }

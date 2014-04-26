@@ -23,11 +23,11 @@
         NSString* decryptedUuid = [KPHCore CryptoTransform:request.Uuid base64in:true base64out:false aes:aes encrypt:false];
         NSData* uuidData = [SystemConvert FromUTF8String:decryptedUuid];
         PwUuid* uuid = [[PwUuid alloc] initWithUUID:uuidData];
-        UpdateEntry(uuid, username, password, urlHost, r.Id);
+        [self UpdateEntry:uuid username:username password:password formHost:urlHost requestId:request.Id];
     }
     else
     {
-        CreateEntry(username, password, urlHost, url, request, aes);
+        [self CreateEntry:username password:password urlHost:urlHost url:url request:request aes:aes];
     }
     
     response.Success = true;
@@ -41,21 +41,11 @@
     KPHConfigOpt* configOpt = [[KPHConfigOpt alloc] initWithCustomConfig:[[KPHUtil client] getCustomConfig]];
     if (configOpt.SearchInAllOpenedDatabases)
     {
-        for (PwDocument* doc in host.MainWindow.DocumentManager.Documents)
-        {
-            if (doc.Database.IsOpen)
-            {
-                entry = doc.Database.RootGroup.FindEntry(uuid, true);
-                if (entry != null)
-                {
-                    break;
-                }
-            }
-        }
+        entry = [[KPHUtil client] findEntryInAnyDatabase:uuid searchRecursive:true];
     }
     else
     {
-        entry = host.Database.RootGroup.FindEntry(uuid, true);
+        entry = [[[KPHUtil client] rootGroup] findEntry:uuid searchRecursive:true];
     }
     
     if (entry == nil)
@@ -79,14 +69,14 @@
         
         if (allowUpdate)
         {
-            PwObjectList<PwEntry> m_vHistory = entry.History.CloneDeep();
-            entry.History = m_vHistory;
-            entry.CreateBackup(null);
+            //PwObjectList<PwEntry> m_vHistory = entry.History.CloneDeep();
+            //entry.History = m_vHistory;
+            //entry.CreateBackup(null);
             
-            entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(false, username));
-            entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(true, password));
-            entry.Touch(true, false);
-            UpdateUI(entry.ParentGroup);
+            entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = username;
+            entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = password;
+            [entry Touch:true touchParents:false];
+            [[KPHUtil client] updateUI];
             
             return true;
         }
@@ -97,52 +87,53 @@
 
 - (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(Request*) request aes:(Aes*) aes
 {
-    string realm = null;
-    if (r.Realm != null)
-        realm = CryptoTransform(r.Realm, true, false, aes, CMode.DECRYPT);
-    
-    var root = host.Database.RootGroup;
-    var group = root.FindCreateGroup(KEEPASSHTTP_GROUP_NAME, false);
-    if (group == null)
+    NSString* realm = nil;
+    if (request.Realm != nil)
     {
-        group = new PwGroup(true, true, KEEPASSHTTP_GROUP_NAME, PwIcon.WorldComputer);
-        root.AddGroup(group, true);
-        UpdateUI(null);
+        realm = [KPHCore CryptoTransform:request.Realm base64in:true base64out:false aes:aes encrypt:false];
     }
     
-    string submithost = null;
-    if (r.SubmitUrl != null)
-        submithost = GetHost(CryptoTransform(r.SubmitUrl, true, false, aes, CMode.DECRYPT));
+    PwGroup* root = [[KPHUtil client] rootGroup];
+    PwGroup* group = [root findCreateGroup:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME createIfNotFound:false];
+    if (group == nil)
+    {
+        group = [[PwGroup alloc] initWithParams:true setTimes:true name:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME pwIcon:[KPHUtil globalVars].KEEPASSHTTP_GROUP_ICON];
+        [root AddGroup:group takeOwnership:true];
+        [[KPHUtil client] updateUI];
+    }
     
-    string baseUrl = url;
+    NSString* submithost = nil;
+    if (request.SubmitUrl != nil)
+    {
+        submithost = [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
+    }
+    NSString* baseUrl = url;
     // index bigger than https:// <-- this slash
-    if (baseUrl.LastIndexOf("/") > 9)
+    NSUInteger lastSlashLocation = [baseUrl rangeOfString:@"/" options:NSBackwardsSearch].location;
+    if (lastSlashLocation > 9)
     {
-        baseUrl = baseUrl.Substring(0, baseUrl.LastIndexOf("/") + 1);
+        baseUrl = [baseUrl substringWithRange:NSMakeRange(0, lastSlashLocation+1)];
     }
     
-    PwEntry entry = new PwEntry(true, true);
-    entry.Strings.Set(PwDefs.TitleField, new ProtectedString(false, urlHost));
-    entry.Strings.Set(PwDefs.UserNameField, new ProtectedString(false, username));
-    entry.Strings.Set(PwDefs.PasswordField, new ProtectedString(true, password));
-    entry.Strings.Set(PwDefs.UrlField, new ProtectedString(true, baseUrl));
+    PwEntry* entry = [[PwEntry alloc] init:true setTimes:true];
+    entry.Strings[[KPHUtil globalVars].PwDefs.TitleField] = urlHost;
+    entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = username;
+    entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = password;
+    entry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = baseUrl;
     
-    if ((submithost != null && urlHost != submithost) || realm != null)
+    if ((submithost != nil && ![urlHost isEqual:submithost]) || realm != nil)
     {
-        var config = new KeePassHttpEntryConfig();
-        if (submithost != null)
-            config.Allow.Add(submithost);
-        if (realm != null)
+        KPHEntryConfig* config = [KPHEntryConfig new];
+        if (submithost != nil)
+            [config.Allow addObject:submithost];
+        if (realm != nil)
             config.Realm = realm;
         
-        var serializer = NewJsonSerializer();
-        var writer = new StringWriter();
-        serializer.Serialize(writer, config);
-        entry.Strings.Set(KEEPASSHTTP_NAME, new ProtectedString(false, writer.ToString()));
+        entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] = [config toJson];
     }
     
-    group.AddEntry(entry, true);
-    UpdateUI(group);
+    [group addEntry:entry takeOwnership:true];
+    [[KPHUtil client] updateUI];
     
     return true;
 }

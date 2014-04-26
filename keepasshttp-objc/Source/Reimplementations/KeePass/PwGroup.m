@@ -9,6 +9,14 @@
 #import "PwGroup.h"
 
 @implementation PwGroup
+- (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon
+{
+    self = [super init];
+    if(self){
+        
+    }
+    return self;
+}
 - (id) init
 {
     return [self initWithUuid:[[NSUUID UUID] UUIDString]];
@@ -30,6 +38,14 @@
     
 }
 - (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries
+{
+    
+}
+- (PwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound
+{
+    return nil;
+}
+- (void) AddGroup:(PwGroup*)group takeOwnership:(BOOL)takeOwnership
 {
     
 }

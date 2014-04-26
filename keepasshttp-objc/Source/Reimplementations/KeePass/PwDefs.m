@@ -15,6 +15,8 @@
     if(self){
         self.TitleField = @"Title";
         self.UrlField = @"URL";
+        self.PasswordField = @"Password";
+        self.UserNameField = @"UserName";
     }
     return self;
 }
