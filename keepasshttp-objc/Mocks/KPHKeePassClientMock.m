@@ -15,6 +15,7 @@
     if(self){
         [self setRoot:[PwGroup new]];
         [self setRecycle:[PwGroup new]];
+        NSLog(@"Running the kph-objc mock server");
     }
     return self;
 }
@@ -30,12 +31,14 @@
 {
     
 }
-- (BOOL) promptUserForOverwrite
+- (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title
 {
+    NSLog(@"Asking user if its okay to overwrite: %@ - %@",message,title);
     return true;
 }
-- (NSString*) promptUserForKeyName
+- (NSString*) promptUserForKeyName: (NSString*)keyMessage
 {
+    NSLog(@"Prompting for key name: %@:",keyMessage);
     return @"keepasshttp-objc mock";
 }
 - (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm
@@ -44,11 +47,13 @@
 }
 - (NSArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes
 {
-    return nil;
+    NSMutableArray* entries = [NSMutableArray new];
+    return entries;
 }
 
 - (BOOL) getConfigBool:(NSString*)key
 {
+    NSLog(@"Grabbing config for %@",key);
     return false;
 }
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled
@@ -57,36 +62,33 @@
 }
 - (void) showNotification:(NSString*)message
 {
-    
+    NSLog(@"Notification displayed: %@",message);
 }
 - (NSDictionary*) getCustomConfig
 {
-    return nil;
+    NSDictionary* config = [NSMutableDictionary new];
+    return config;
 }
 - (PwEntry*) findEntryInAnyDatabase:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive
 {
-    return nil;
+    PwEntry* entry = [PwEntry new];
+    return entry;
 }
 - (KPHGeneratedPassword*) generatePassword
 {
-    return nil;
+    KPHGeneratedPassword* generated = [KPHGeneratedPassword new];
+    return generated;
 }
 
-- (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title
-{
-    return true;
-}
-//Return nil if user declines
-- (NSString*) promptUserForKeyName: (NSString*)keyMessage
-{
-    return @"KPH Mock Client";
-}
 - (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*) message title:(NSString*)title host:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries
 {
-    return nil;
+    NSLog(@"Prompting for access: %@ - %@",title,message);
+    KPHGetLoginsUserResponse* response = [KPHGetLoginsUserResponse new];
+    return response;
 }
 - (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title
 {
+    NSLog(@"Prompting for entry update: %@ - %@",title,message);
     return true;
 }
 @end
