@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "KPHRequestHandler.h"
+#import "KPHGeneratedPassword.h"
 
 @interface KPHGeneratePasswordHandler : NSObject<KPHRequestHandler>
 

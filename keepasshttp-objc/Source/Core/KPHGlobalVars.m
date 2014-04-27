@@ -23,6 +23,7 @@
         const unsigned char uuidBase[16] = {0x34, 0x69, 0x7a, 0x40, 0x8a, 0x5b, 0x41, 0xc0,0x9f, 0x36, 0x89, 0x7d, 0x62, 0x3e, 0xcb, 0x31};
         self.KEEPASSHTTP_UUID = [[NSData alloc] initWithBytes:uuidBase length:16];
         self.PwDefs = [PwDefs new];
+        self.RequestIds = [RequestIds new];
     }
     return self;
 }

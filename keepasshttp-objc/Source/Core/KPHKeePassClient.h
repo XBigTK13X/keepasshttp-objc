@@ -11,6 +11,7 @@
 #import "Aes.h"
 #import "Request.h"
 #import "KPHGetLoginsUserResponse.h"
+#import "KPHGeneratedPassword.h"
 
 @protocol KPHKeePassClient
 - (PwGroup *) rootGroup;
@@ -23,6 +24,7 @@
 - (void) showNotification:(NSString*)message;
 - (NSDictionary*) getCustomConfig;
 - (PwEntry*) findEntryInAnyDatabase:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
+- (KPHGeneratedPassword*) generatePassword;
 
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title;
 //Return nil if user declines

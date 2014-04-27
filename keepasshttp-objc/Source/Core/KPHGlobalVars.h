@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "PwDefs.h"
+#import "RequestIds.h"
+
 @interface KPHGlobalVars : NSObject
 
 @property (nonatomic) NSString* ASSOCIATE_KEY_PREFIX;
@@ -18,6 +20,7 @@
 @property (nonatomic) NSString* HTTP_PREFIX;
 @property (nonatomic) NSData* KEEPASSHTTP_UUID;
 @property (nonatomic) PwDefs* PwDefs;
+@property (nonatomic) RequestIds* RequestIds;
 @property (nonatomic) NSString* KEEPASSHTTP_GROUP_ICON;
 
 @end

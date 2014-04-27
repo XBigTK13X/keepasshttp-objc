@@ -7,7 +7,7 @@
 //
 
 #import "KPHHandlers.h"
-
+#import "KPHUtil.h"
 @implementation KPHHandlers
 - (id)init
 {
@@ -15,14 +15,13 @@
     if(self){
         self.handlers =
          @{
-             @"associate":[KPHAssociateHandler new],
-             @"test-associate":[KPHTestAssociateHandler new],
-             @"get-logins-count":[KPHGetLoginsCountHandler new],
-             @"get-all-logins":[KPHGetAllLoginsHandler new],
-             @"get-logins":[KPHGetLoginsHandler new],
-             @"set-login":[KPHSetLoginHandler new],
-             @"generate-password":[KPHGeneratePasswordHandler new]
-             
+             [KPHUtil globalVars].RequestIds.ASSOCIATE:[KPHAssociateHandler new],
+             [KPHUtil globalVars].RequestIds.TEST_ASSOCIATE:[KPHTestAssociateHandler new],
+             [KPHUtil globalVars].RequestIds.GET_LOGINS_COUNT:[KPHGetLoginsCountHandler new],
+             [KPHUtil globalVars].RequestIds.GET_ALL_LOGINS:[KPHGetAllLoginsHandler new],
+             [KPHUtil globalVars].RequestIds.GET_LOGINS:[KPHGetLoginsHandler new],
+             [KPHUtil globalVars].RequestIds.SET_LOGIN:[KPHSetLoginHandler new],
+             [KPHUtil globalVars].RequestIds.GENERATE_PASSWORD:[KPHGeneratePasswordHandler new]
          };
     }
     return self;

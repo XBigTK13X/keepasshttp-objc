@@ -30,6 +30,8 @@
 		B6E2758418F0AFA900AA0EFC /* KPHGetAllLoginsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2758318F0AFA900AA0EFC /* KPHGetAllLoginsHandler.m */; };
 		B6E2758718F0AFCC00AA0EFC /* KPHSetLoginHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2758618F0AFCC00AA0EFC /* KPHSetLoginHandler.m */; };
 		B6E2758A18F0AFF400AA0EFC /* KPHGeneratePasswordHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E2758918F0AFF400AA0EFC /* KPHGeneratePasswordHandler.m */; };
+		B6EFF498190D3CCD00B1400E /* KPHGeneratedPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EFF497190D3CCD00B1400E /* KPHGeneratedPassword.m */; };
+		B6EFF49B190D3F4700B1400E /* RequestIds.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EFF49A190D3F4700B1400E /* RequestIds.m */; };
 		B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */; };
 		B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */; };
 		B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */; };
@@ -139,6 +141,10 @@
 		B6E2758618F0AFCC00AA0EFC /* KPHSetLoginHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHSetLoginHandler.m; sourceTree = "<group>"; };
 		B6E2758818F0AFF400AA0EFC /* KPHGeneratePasswordHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGeneratePasswordHandler.h; sourceTree = "<group>"; };
 		B6E2758918F0AFF400AA0EFC /* KPHGeneratePasswordHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHGeneratePasswordHandler.m; sourceTree = "<group>"; };
+		B6EFF496190D3CCD00B1400E /* KPHGeneratedPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHGeneratedPassword.h; sourceTree = "<group>"; };
+		B6EFF497190D3CCD00B1400E /* KPHGeneratedPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHGeneratedPassword.m; sourceTree = "<group>"; };
+		B6EFF499190D3F4700B1400E /* RequestIds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestIds.h; sourceTree = "<group>"; };
+		B6EFF49A190D3F4700B1400E /* RequestIds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestIds.m; sourceTree = "<group>"; };
 		B6F12CD718EDDAE100BC50EB /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		B6F12CD918EDDAE100BC50EB /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
@@ -535,6 +541,8 @@
 				B65462B618FE1F090054E7AC /* KPHConfigOpt.m */,
 				B6FB54CC18FF586900FE6B2B /* KPHGetLoginsUserResponse.h */,
 				B6FB54CD18FF586900FE6B2B /* KPHGetLoginsUserResponse.m */,
+				B6EFF496190D3CCD00B1400E /* KPHGeneratedPassword.h */,
+				B6EFF497190D3CCD00B1400E /* KPHGeneratedPassword.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -615,6 +623,8 @@
 				B6FD31BE18ECA93800214787 /* ResponseEntry.m */,
 				B6FD31BF18ECA93800214787 /* ResponseStringField.h */,
 				B6FD31C018ECA93800214787 /* ResponseStringField.m */,
+				B6EFF499190D3F4700B1400E /* RequestIds.h */,
+				B6EFF49A190D3F4700B1400E /* RequestIds.m */,
 			);
 			path = KeePassHttp;
 			sourceTree = "<group>";
@@ -737,6 +747,7 @@
 				B6FD31E418ECA93800214787 /* KPHAssociateHandler.m in Sources */,
 				B6C3C0B718F6D29A00536333 /* KPHServer.m in Sources */,
 				B6FD31DA18ECA93800214787 /* DispatchQueueLogFormatter.m in Sources */,
+				B6EFF498190D3CCD00B1400E /* KPHGeneratedPassword.m in Sources */,
 				B6FD31E718ECA93800214787 /* KPHUtil.m in Sources */,
 				B6FD31C318ECA93800214787 /* DDRange.m in Sources */,
 				B6FD31C818ECA93800214787 /* MultipartFormDataParser.m in Sources */,
@@ -762,6 +773,7 @@
 				B6FD31C418ECA93800214787 /* HTTPAuthenticationRequest.m in Sources */,
 				B6E2757B18F0AEE000AA0EFC /* KPHGetLoginsCountHandler.m in Sources */,
 				B6E2758418F0AFA900AA0EFC /* KPHGetAllLoginsHandler.m in Sources */,
+				B6EFF49B190D3F4700B1400E /* RequestIds.m in Sources */,
 				B6FD31CB18ECA93800214787 /* HTTPAsyncFileResponse.m in Sources */,
 				B6E2757E18F0AF5900AA0EFC /* KPHHandlers.m in Sources */,
 				B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */,

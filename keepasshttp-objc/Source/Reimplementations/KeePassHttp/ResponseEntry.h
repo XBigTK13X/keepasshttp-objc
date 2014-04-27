@@ -18,4 +18,6 @@
 //Array of ResponseStringField
 @property (nonatomic) NSArray* StringFields;
 
+-(id) init:(NSString *) name login:(NSString *) login password:(NSString *) password uuid:(NSString *) uuid stringFields:(NSArray *) stringFields;
+
 @end
