@@ -27,15 +27,8 @@
         MemUtil.ZeroByteArray(pbNew);
     }
     
-    resp.Id = r.Id;
-    SetResponseVerifier(resp, aes);
-    
-    foreach (var entry in resp.Entries)
-    {
-        entry.Name = CryptoTransform(entry.Name, false, true, aes, CMode.ENCRYPT);
-        entry.Login = CryptoTransform(entry.Login, false, true, aes, CMode.ENCRYPT);
-        entry.Uuid = CryptoTransform(entry.Uuid, false, true, aes, CMode.ENCRYPT);
-        entry.Password = CryptoTransform(entry.Password, false, true, aes, CMode.ENCRYPT);
-    }
+    resp.Id = request.Id;
+    [KPHProtocol SetResponseVerifier:response aes:aes];
+    [KPHProtocol encryptResponse:response aes:aes];
 }
 @end

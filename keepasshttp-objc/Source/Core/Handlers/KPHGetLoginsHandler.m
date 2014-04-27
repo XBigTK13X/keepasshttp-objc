@@ -201,23 +201,7 @@
             }
         }
         
-        for (ResponseEntry* entry in response.Entries)
-        {
-            entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
-            entry.Login = [KPHCore CryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
-            entry.Uuid = [KPHCore CryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
-            entry.Password = [KPHCore CryptoTransform:entry.Password base64in:false base64out:true aes:aes encrypt:true];
-            
-            if (entry.StringFields != nil)
-            {
-                for (ResponseStringField* sf in entry.StringFields)
-                {
-                    sf.Key = [KPHCore CryptoTransform:sf.Key base64in:false base64out:true aes:aes encrypt:true];
-                    sf.Value = [KPHCore CryptoTransform:sf.Value base64in:false base64out:true aes:aes encrypt:true];
-                }
-            }
-        }
-        
+        [KPHProtocol encryptResponse:response aes:aes];        
         response.Count = response.Entries.count;
     }
     response.Success = true;

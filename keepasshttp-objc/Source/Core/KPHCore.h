@@ -21,4 +21,5 @@
 + (void) SetEntryConfig:(PwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig;
 + (NSArray*) GetUserPass:(PwEntry*)entry;
 + (ResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(PwEntry*) entry;
++ (void) encryptResponse:
 @end

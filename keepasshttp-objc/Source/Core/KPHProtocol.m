@@ -45,5 +45,31 @@
     response.Verifier = [KPHCore CryptoTransform:response.Nonce base64in:false base64out:true aes:aes encrypt:true];
     
 }
-
++ (void) encryptResponse:(Response*)response aes:(Aes*)aes
+{
+    for (ResponseEntry* entry in response.Entries)
+    {
+        if(entry.Name != nil){
+            entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
+        }
+        if(entry.Login != nil){
+            entry.Login = [KPHCore CryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
+        }
+        if(entry.Uuid != nil){
+            entry.Uuid = [KPHCore CryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
+        }
+        if(entry.Password != nil){
+            entry.Password = [KPHCore CryptoTransform:entry.Password base64in:false base64out:true aes:aes encrypt:true];
+        }
+        
+        if (entry.StringFields != nil)
+        {
+            for (ResponseStringField* sf in entry.StringFields)
+            {
+                sf.Key = [KPHCore CryptoTransform:sf.Key base64in:false base64out:true aes:aes encrypt:true];
+                sf.Value = [KPHCore CryptoTransform:sf.Value base64in:false base64out:true aes:aes encrypt:true];
+            }
+        }
+    }
+}
 @end

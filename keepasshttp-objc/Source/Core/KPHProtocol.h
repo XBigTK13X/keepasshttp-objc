@@ -18,4 +18,5 @@
 + (BOOL) VerifyRequest:(Request *) request aes:(Aes*)aes;
 + (BOOL) TestRequestVerifier: (Request *) request aes:(Aes*)aes key:(NSString *) key;
 + (void) SetResponseVerifier: (Response *) response aes:(Aes*) aes;
++ (void) encryptResponse:(Response*)response aes:(Aes*)aes;
 @end

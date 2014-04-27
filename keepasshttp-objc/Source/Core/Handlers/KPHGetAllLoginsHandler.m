@@ -32,11 +32,6 @@
     response.Success = true;
     response.Id = request.Id;
     [KPHProtocol SetResponseVerifier:response aes:aes];
-    for(ResponseEntry* entry in response.Entries)
-    {
-        entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
-        entry.Login = [KPHCore CryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
-        entry.Uuid = [KPHCore CryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
-    }
+    [KPHProtocol encryptResponse:response aes:aes];
 }
 @end
