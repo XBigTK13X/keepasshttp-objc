@@ -46,4 +46,47 @@
 {
     return nil;
 }
+
+- (BOOL) getConfigBool:(NSString*)key
+{
+    return false;
+}
+- (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled
+{
+    
+}
+- (void) showNotification:(NSString*)message
+{
+    
+}
+- (NSDictionary*) getCustomConfig
+{
+    return nil;
+}
+- (PwEntry*) findEntryInAnyDatabase:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive
+{
+    return nil;
+}
+- (KPHGeneratedPassword*) generatePassword
+{
+    return nil;
+}
+
+- (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title
+{
+    return true;
+}
+//Return nil if user declines
+- (NSString*) promptUserForKeyName: (NSString*)keyMessage
+{
+    return @"KPH Mock Client";
+}
+- (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*) message title:(NSString*)title host:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries
+{
+    return nil;
+}
+- (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title
+{
+    return true;
+}
 @end
