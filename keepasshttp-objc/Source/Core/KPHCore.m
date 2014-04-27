@@ -49,7 +49,7 @@
     {
         entry = [[PwEntry alloc] init:false setTimes:true];
         entry.Uuid = uuid;
-        [entry.Strings setObject:[[KPHUtil globalVars] KEEPASSHTTP_NAME] forKey:[PwDefs TitleField]];
+        [entry.Strings setObject:[KPHUtil globalVars].KEEPASSHTTP_NAME forKey:[KPHUtil globalVars].PwDefs.TitleField];
         [root addEntry:entry takeOwnership:true];
         [[KPHUtil client] updateUI];
     }
@@ -61,12 +61,9 @@
 }
 + (void) SetEntryConfig:(PwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
 {
-    var serializer = NewJsonSerializer();
-    var writer = new StringWriter();
-    serializer.Serialize(writer, c);
-    e.Strings.Set(KEEPASSHTTP_NAME, new ProtectedString(false, writer.ToString()));
-    e.Touch(true);
-    UpdateUI(e.ParentGroup);
+    entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] = [entryConfig toJson];
+    [entry Touch:true];
+    [[KPHUtil client] updateUI];
 }
 + (NSArray*) GetUserPass:(PwEntry *)entry
 {
@@ -74,36 +71,36 @@
 }
 + (ResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(PwEntry*) entry
 {
-    var name = entryDatabase.entry.Strings.ReadSafe(PwDefs.TitleField);
-    var loginpass = GetUserPass(entryDatabase);
-    var login = loginpass[0];
-    var passwd = loginpass[1];
-    var uuid = entryDatabase.entry.Uuid.ToHexString();
+    NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+    NSArray* loginpass = [KPHCore GetUserPass:entry];
+    NSString* login = loginpass[0];
+    NSString* passwd = loginpass[1];
+    NSString* uuid = [entry.Uuid.Uuid UUIDString];
     
-    List<ResponseStringField> fields = null;
+    NSMutableArray *fields = nil;
     if (configOpt.ReturnStringFields)
     {
-        fields = new List<ResponseStringField>();
-        foreach (var sf in entryDatabase.entry.Strings)
+        fields = [NSMutableArray new];
+        for(NSString* sf in entry.Strings)
         {
-            if (sf.Key.StartsWith("KPH: "))
+            if ([sf hasPrefix:@"KPH: "])
             {
-                var sfValue = entryDatabase.entry.Strings.ReadSafe(sf.Key);
-                fields.Add(new ResponseStringField(sf.Key.Substring(5), sfValue));
+                NSString* sfValue = entry.Strings[sf];
+                [fields addObject:[[ResponseStringField alloc] init:[sf substringFromIndex:5] value:sfValue]];
             }
         }
         
-        if (fields.Count > 0)
+        if (fields.count > 0)
         {
-            var fields2 = from e2 in fields orderby e2.Key ascending select e2;
-            fields = fields2.ToList<ResponseStringField>();
+            //var fields2 = from e2 in fields orderby e2.Key ascending select e2;
+            //fields = fields2.ToList<ResponseStringField>();
         }
         else
         {
-            fields = null;
+            fields = nil;
         }
     }
     
-    return new ResponseEntry(name, login, passwd, uuid, fields);
+    return [[ResponseEntry alloc] init:name login:login password:passwd uuid:uuid stringFields:fields];
 }
 @end
