@@ -7,14 +7,18 @@
 //
 
 #import "KPHKeePassClientMock.h"
+#import "KPHUtil.h"
 
 @implementation KPHKeePassClientMock
 -(id)init
 {
     self = [super init];
     if(self){
-        [self setRoot:[PwGroup new]];
-        [self setRecycle:[PwGroup new]];
+        self.root = [PwGroup new];
+        PwEntry* configEntry = [[PwEntry alloc]initWithUuid:[KPHUtil globalVars].KEEPASSHTTP_UUID];
+        configEntry.Strings[@""] = @"";
+        [self.root addEntry:configEntry takeOwnership:true];
+        self.recycle = [PwGroup new];
         NSLog(@"Running the kph-objc mock server");
     }
     return self;

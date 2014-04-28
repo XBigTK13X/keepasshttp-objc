@@ -9,6 +9,15 @@
 #import "PwEntry.h"
 
 @implementation PwEntry
+- (id) initWithUuid:(NSUUID*)uuid
+{
+    self = [super init];
+    if(self){
+        self.Uuid = [[PwUuid alloc]initWithUUID:uuid];
+        self.Strings = [NSMutableDictionary new];
+    }
+    return self;
+}
 - (id) init:(BOOL) createNewUuid setTimes:(BOOL) setTimes
 {
     self = [super init];
@@ -25,11 +34,12 @@
             
             self.m_tCreation = self.m_tLastMod = self.m_tLastAccess = self.m_tParentGroupLastMod = currentTime;
         }
+        self.Strings = [NSMutableDictionary new];
     }
     return self;
 }
 - (NSString* ) getString: (NSString * )lookup{
-    return nil;
+    return self.Strings[lookup];
 }
 - (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents
 {

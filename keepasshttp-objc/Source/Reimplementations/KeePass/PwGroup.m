@@ -13,7 +13,7 @@
 {
     self = [super init];
     if(self){
-        
+        self.Entries = [NSMutableDictionary new];
     }
     return self;
 }
@@ -26,16 +26,18 @@
     self = [super init];
     if(self){
         self.Uuid = [[NSUUID alloc] initWithUUIDString:uuid];
+        self.Entries = [NSMutableDictionary new];
     }
     return self;
 }
 - (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive
 {
-    return nil;
+    return self.Entries[[uuid.Uuid UUIDString]];
 }
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership
 {
-    
+    NSLog(@"%@,%@,%@",entry,entry.Uuid,entry.Uuid.Uuid);
+    self.Entries[entry.Uuid.Uuid] = entry;
 }
 - (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries
 {

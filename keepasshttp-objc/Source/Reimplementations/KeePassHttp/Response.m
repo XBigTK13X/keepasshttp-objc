@@ -21,7 +21,7 @@
 
         if ([Request requiresEntriesInResponse:requestType])
         {
-            self.Entries = [NSMutableArray init];
+            self.Entries = [NSMutableArray new];
         }
         else
         {

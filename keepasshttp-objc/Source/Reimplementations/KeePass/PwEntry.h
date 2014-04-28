@@ -18,6 +18,7 @@
 @property (nonatomic) NSDate* m_tLastAccess;
 @property (nonatomic) NSDate* m_tParentGroupLastMod;
 
+- (id) initWithUuid:(NSUUID*)uuid;
 - (id) init:(BOOL) createNewUuid setTimes:(BOOL) setTimes;
 - (NSString* ) getString: (NSString * )lookup;
 - (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents;

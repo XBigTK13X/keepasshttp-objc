@@ -13,5 +13,5 @@
 @property (nonatomic) NSUUID* Uuid;
 
 - (id) initAndCreate:(BOOL)createNew;
-- (id) initWithUUID:(NSData*)uuid;
+- (id) initWithUUID:(NSUUID*)uuid;
 @end

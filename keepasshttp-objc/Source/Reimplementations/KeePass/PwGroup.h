@@ -15,6 +15,7 @@
 @interface PwGroup : NSObject
 
 @property (nonatomic) NSUUID* Uuid;
+@property (nonatomic) NSMutableDictionary* Entries;
 
 - (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon;
 - (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
