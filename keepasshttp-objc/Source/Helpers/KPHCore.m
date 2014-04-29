@@ -43,7 +43,7 @@
 + (PwEntry *) GetConfigEntry: (BOOL) create
 {
     PwGroup* root = [[KPHUtil client] rootGroup];
-    NSUUID* uuid = [[KPHUtil globalVars] KEEPASSHTTP_UUID];
+    NSUUID* uuid = [KPHUtil globalVars].KEEPASSHTTP_UUID;
     PwEntry* entry = [root findEntry:uuid searchRecursive:false];
     if (entry == nil && create)
     {

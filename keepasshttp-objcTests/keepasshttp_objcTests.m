@@ -29,7 +29,7 @@
     [super tearDown];
 }
 
-- (void)test1TestAssociateHandlerWithoutAnyAssociation
+- (void)testTestAssociateHandlerWithoutAnyAssociation
 {
     NSString* request = @"{\"RequestType\":\"test-associate\",\"TriggerUnlock\":false}";
     Response* response = [self.engine respond:request];
@@ -37,7 +37,7 @@
     
 }
 
-- (void)test2AssociateHandler
+- (void)testAssociateHandler
 {
     NSString* request = @"{\"RequestType\":\"associate\",\"Key\":\"ru3VlJvLRrE088Fk1u84F+PI4UGQX/WB1Qfpoi1CL3g=\",\"Nonce\":\"JJQlLpByiAf22te96V3Fbw==\",\"Verifier\":\"3etH4Bg489wGZjCCBFA6SOq7tQQfukcw1l9O7BMP6jQ=\"}";
     Response* response = [self.engine respond:request];
