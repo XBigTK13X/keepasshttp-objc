@@ -7,10 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PwUuid.h"
 @interface PwEntry : NSObject
 
-@property (nonatomic) PwUuid* Uuid;
+@property (nonatomic) NSUUID* Uuid;
 @property (nonatomic) NSMutableDictionary* Strings;
 @property (nonatomic) u_int UsageCount;
 @property (nonatomic) NSDate* m_tCreation;

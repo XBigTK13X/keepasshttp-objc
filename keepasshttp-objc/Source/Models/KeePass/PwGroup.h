@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "PwEntry.h"
-#import "PwUuid.h"
 #import "SearchParameters.h"
 
 @interface PwGroup : NSObject
@@ -18,7 +17,7 @@
 @property (nonatomic) NSMutableDictionary* Entries;
 
 - (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon;
-- (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
+- (PwEntry *) findEntry:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership;
 - (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries;
 - (PwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound;

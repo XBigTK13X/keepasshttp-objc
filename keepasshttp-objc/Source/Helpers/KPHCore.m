@@ -43,7 +43,7 @@
 + (PwEntry *) GetConfigEntry: (BOOL) create
 {
     PwGroup* root = [[KPHUtil client] rootGroup];
-    PwUuid* uuid = [[PwUuid alloc] initWithUUID:[[KPHUtil globalVars] KEEPASSHTTP_UUID]];
+    NSUUID* uuid = [[KPHUtil globalVars] KEEPASSHTTP_UUID];
     PwEntry* entry = [root findEntry:uuid searchRecursive:false];
     if (entry == nil && create)
     {
@@ -75,7 +75,7 @@
     NSArray* loginpass = [KPHCore GetUserPass:entry];
     NSString* login = loginpass[0];
     NSString* passwd = loginpass[1];
-    NSString* uuid = [entry.Uuid.Uuid UUIDString];
+    NSString* uuid = [entry.Uuid UUIDString];
     
     NSMutableArray *fields = nil;
     if (configOpt.ReturnStringFields)

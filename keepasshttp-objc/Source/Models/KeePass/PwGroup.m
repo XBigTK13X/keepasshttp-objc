@@ -30,14 +30,16 @@
     }
     return self;
 }
-- (PwEntry *) findEntry:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive
+- (PwEntry *) findEntry:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
 {
-    return self.Entries[[uuid.Uuid UUIDString]];
+    return self.Entries[[uuid UUIDString]];
 }
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership
 {
-    NSLog(@"%@,%@,%@",entry,entry.Uuid,entry.Uuid.Uuid);
-    self.Entries[entry.Uuid.Uuid] = entry;
+    if(entry.Uuid == nil){
+        NSLog(@"%@,%@",entry,entry.Uuid);
+        self.Entries[entry.Uuid] = entry;
+    }
 }
 - (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries
 {

@@ -7,6 +7,5 @@
 //
 
 #import "PwGroup.h"
-#import "PwUuid.h"
 #import "PwEntry.h"
 #import "PwDefs.h"

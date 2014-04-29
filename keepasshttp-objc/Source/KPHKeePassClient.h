@@ -23,7 +23,7 @@
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
 - (void) showNotification:(NSString*)message;
 - (NSDictionary*) getCustomConfig;
-- (PwEntry*) findEntryInAnyDatabase:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive;
+- (PwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (KPHGeneratedPassword*) generatePassword;
 
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title;

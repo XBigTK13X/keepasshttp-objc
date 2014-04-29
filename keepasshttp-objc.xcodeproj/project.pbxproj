@@ -30,7 +30,6 @@
 		B6175219190DD81C00B332AC /* PwDefs.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751EF190DD81C00B332AC /* PwDefs.m */; };
 		B617521A190DD81C00B332AC /* PwEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751F1190DD81C00B332AC /* PwEntry.m */; };
 		B617521B190DD81C00B332AC /* PwGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751F3190DD81C00B332AC /* PwGroup.m */; };
-		B617521C190DD81C00B332AC /* PwUuid.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751F5190DD81C00B332AC /* PwUuid.m */; };
 		B617521D190DD81C00B332AC /* SearchParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751F7190DD81C00B332AC /* SearchParameters.m */; };
 		B617521E190DD81C00B332AC /* KPHEntryConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751FA190DD81C00B332AC /* KPHEntryConfig.m */; };
 		B617521F190DD81C00B332AC /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = B61751FC190DD81C00B332AC /* Request.m */; };
@@ -49,6 +48,7 @@
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
 		B6C3C0C618F6F16C00536333 /* KPHKeePassClientMock.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */; };
+		B6EFF49E190F620600B1400E /* KPHDialogueEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EFF49D190F620600B1400E /* KPHDialogueEngine.m */; };
 		B6F12CDE18EDDAE100BC50EB /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */; };
 		B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDA18EDDAE100BC50EB /* CJSONSerializer.m */; };
 		B6F12CE018EDDAE100BC50EB /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6F12CDD18EDDAE100BC50EB /* NSDictionary_JSONExtensions.m */; };
@@ -140,8 +140,6 @@
 		B61751F1190DD81C00B332AC /* PwEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwEntry.m; sourceTree = "<group>"; };
 		B61751F2190DD81C00B332AC /* PwGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwGroup.h; sourceTree = "<group>"; };
 		B61751F3190DD81C00B332AC /* PwGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwGroup.m; sourceTree = "<group>"; };
-		B61751F4190DD81C00B332AC /* PwUuid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PwUuid.h; sourceTree = "<group>"; };
-		B61751F5190DD81C00B332AC /* PwUuid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PwUuid.m; sourceTree = "<group>"; };
 		B61751F6190DD81C00B332AC /* SearchParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchParameters.h; sourceTree = "<group>"; };
 		B61751F7190DD81C00B332AC /* SearchParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchParameters.m; sourceTree = "<group>"; };
 		B61751F9190DD81C00B332AC /* KPHEntryConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHEntryConfig.h; sourceTree = "<group>"; };
@@ -180,6 +178,8 @@
 		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		B6C3C0C418F6F16C00536333 /* KPHKeePassClientMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClientMock.h; sourceTree = "<group>"; };
 		B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHKeePassClientMock.m; sourceTree = "<group>"; };
+		B6EFF49C190F620600B1400E /* KPHDialogueEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHDialogueEngine.h; sourceTree = "<group>"; };
+		B6EFF49D190F620600B1400E /* KPHDialogueEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHDialogueEngine.m; sourceTree = "<group>"; };
 		B6F12CD718EDDAE100BC50EB /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		B6F12CD818EDDAE100BC50EB /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		B6F12CD918EDDAE100BC50EB /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
@@ -280,6 +280,8 @@
 				B61751C7190DD81C00B332AC /* KPHProtocol.m */,
 				B61751C8190DD81C00B332AC /* KPHServer.h */,
 				B61751C9190DD81C00B332AC /* KPHServer.m */,
+				B6EFF49C190F620600B1400E /* KPHDialogueEngine.h */,
+				B6EFF49D190F620600B1400E /* KPHDialogueEngine.m */,
 			);
 			path = Communication;
 			sourceTree = "<group>";
@@ -354,8 +356,6 @@
 				B61751F1190DD81C00B332AC /* PwEntry.m */,
 				B61751F2190DD81C00B332AC /* PwGroup.h */,
 				B61751F3190DD81C00B332AC /* PwGroup.m */,
-				B61751F4190DD81C00B332AC /* PwUuid.h */,
-				B61751F5190DD81C00B332AC /* PwUuid.m */,
 				B61751F6190DD81C00B332AC /* SearchParameters.h */,
 				B61751F7190DD81C00B332AC /* SearchParameters.m */,
 			);
@@ -742,6 +742,7 @@
 				B6175207190DD81C00B332AC /* KPHHandlers.m in Sources */,
 				B617520D190DD81C00B332AC /* KPHGetAllLoginsHandler.m in Sources */,
 				B6175213190DD81C00B332AC /* AssemblyInfo.m in Sources */,
+				B6EFF49E190F620600B1400E /* KPHDialogueEngine.m in Sources */,
 				B6FD31F518ECA99200214787 /* main.m in Sources */,
 				B6FD31F418ECA98000214787 /* KPHAppDelegate.m in Sources */,
 				B6FD31D718ECA93800214787 /* DDLog.m in Sources */,
@@ -754,7 +755,6 @@
 				B6FD31D018ECA93800214787 /* HTTPRedirectResponse.m in Sources */,
 				B6175214190DD81C00B332AC /* SystemConvert.m in Sources */,
 				B6175222190DD81C00B332AC /* ResponseEntry.m in Sources */,
-				B617521C190DD81C00B332AC /* PwUuid.m in Sources */,
 				B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */,
 				B6FD31CC18ECA93800214787 /* HTTPDataResponse.m in Sources */,
 				B6175209190DD81C00B332AC /* KPHProtocol.m in Sources */,

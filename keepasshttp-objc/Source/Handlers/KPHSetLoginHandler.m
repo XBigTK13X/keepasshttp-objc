@@ -22,7 +22,7 @@
     {
         NSString* decryptedUuid = [KPHCore CryptoTransform:request.Uuid base64in:true base64out:false aes:aes encrypt:false];
         NSData* uuidData = [SystemConvert FromUTF8String:decryptedUuid];
-        PwUuid* uuid = [[PwUuid alloc] initWithUUID:uuidData];
+        NSUUID* uuid = [[NSUUID alloc] initWithUUIDBytes:uuidData.bytes];
         [self UpdateEntry:uuid username:username password:password formHost:urlHost requestId:request.Id];
     }
     else
@@ -34,7 +34,7 @@
     response.Id = request.Id;
     [KPHProtocol SetResponseVerifier:response aes:aes];
 }
-- (BOOL) UpdateEntry:(PwUuid*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
+- (BOOL) UpdateEntry:(NSUUID*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
 {
     PwEntry* entry = nil;
     

@@ -15,9 +15,6 @@
     self = [super init];
     if(self){
         self.root = [PwGroup new];
-        PwEntry* configEntry = [[PwEntry alloc]initWithUuid:[KPHUtil globalVars].KEEPASSHTTP_UUID];
-        configEntry.Strings[@""] = @"";
-        [self.root addEntry:configEntry takeOwnership:true];
         self.recycle = [PwGroup new];
         NSLog(@"Running the kph-objc mock server");
     }
@@ -73,7 +70,7 @@
     NSDictionary* config = [NSMutableDictionary new];
     return config;
 }
-- (PwEntry*) findEntryInAnyDatabase:(PwUuid*)uuid searchRecursive:(BOOL)searchRecursive
+- (PwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
 {
     PwEntry* entry = [PwEntry new];
     return entry;

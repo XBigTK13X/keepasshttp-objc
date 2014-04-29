@@ -8,20 +8,11 @@
 
 #import "HTTPConnection.h"
 #import "HTTPDataResponse.h"
-#import "CJSONDeserializer.h"
-#import "NSDictionary_JSONExtensions.h"
-
-#import "KPHKeePassClient.h"
-#import "KPHHandlers.h"
-
-#import "SystemConvert.h"
-#import "NSString+Hashes.h"
-
-#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+#import "KPHDialogueEngine.h"
 
 @interface KPHHttpConnection : HTTPConnection
 
-@property (nonatomic) KPHHandlers* handlers;
+@property (nonatomic) KPHDialogueEngine* engine;
 
 + (int) defaultPort;
 @end

@@ -22,7 +22,7 @@
     {
         NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
         NSString* login = [KPHCore GetUserPass:entry][0];
-        NSString* uuid = [[entry.Uuid Uuid] UUIDString];
+        NSString* uuid = [entry.Uuid UUIDString];
         ResponseEntry* e = [ResponseEntry new];
         e.Name = name;
         e.Login = login;

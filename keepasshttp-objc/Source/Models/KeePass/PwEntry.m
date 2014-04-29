@@ -13,7 +13,7 @@
 {
     self = [super init];
     if(self){
-        self.Uuid = [[PwUuid alloc]initWithUUID:uuid];
+        self.Uuid = uuid;
         self.Strings = [NSMutableDictionary new];
     }
     return self;
@@ -25,7 +25,7 @@
     {
         if(createNewUuid)
         {
-            self.Uuid = [[PwUuid alloc] initAndCreate:true];
+            self.Uuid = [NSUUID UUID];
         }
         
         if(setTimes)
