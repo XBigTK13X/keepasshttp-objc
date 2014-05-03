@@ -72,6 +72,7 @@ static KPHDialogueEngine *engineSingleton;
 {
     KPHResponse* response = [[singletons engine] respond:getLoginsRequest];
     XCTAssertEqual(response.Success,YES, @"Should have marked as associated.");
+    XCTAssertEqual(response.)
 }
 
 @end

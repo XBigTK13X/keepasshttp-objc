@@ -57,6 +57,9 @@
     [json appendString: [SystemConvert ToJSON:@"Version" value:self.Version]];
     [json appendString: [SystemConvert ToJSON:@"Hash" value:self.Hash]];
     [json appendString: [SystemConvert ToJSON:@"Success" value:(self.Success)?@"true":@"false"]];
+    
+    //TODO Convert entries to JSON array
+    
     [json deleteCharactersInRange:NSMakeRange([json length]-1, 1)];
     [json appendString:@"}"];
     return json;
