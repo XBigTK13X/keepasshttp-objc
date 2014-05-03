@@ -187,6 +187,9 @@
             for (KPHPwEntry* entry in items)
             {
                 KPHResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
+                if(e.Name == nil){
+                    e.Name = host;
+                }
                 [response.Entries addObject:e];
             }
             

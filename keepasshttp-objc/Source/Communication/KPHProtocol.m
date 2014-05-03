@@ -42,13 +42,22 @@
 
 + (void) SetResponseVerifier: (KPHResponse *) response aes:(Aes*) aes
 {
-    aes.IV = [Aes randomIV:16];
-    response.Nonce = [SystemConvert ToBase64String:aes.IV];
+    if(response.Nonce == nil){
+        [KPHProtocol randomizeIV:response aes:aes];
+    }
     response.Verifier = [KPHCore CryptoTransform:response.Nonce base64in:false base64out:true aes:aes encrypt:true];
     
 }
+
++ (void) randomizeIV: (KPHResponse *) response aes:(Aes*) aes
+{
+    aes.IV = [Aes randomIV:16];
+    response.Nonce = [SystemConvert ToBase64String:aes.IV];
+}
+
 + (void) encryptResponse:(KPHResponse*)response aes:(Aes*)aes
 {
+    [KPHProtocol randomizeIV:response aes:aes];
     for (KPHResponseEntry* entry in response.Entries)
     {
         if(entry.Name != nil){

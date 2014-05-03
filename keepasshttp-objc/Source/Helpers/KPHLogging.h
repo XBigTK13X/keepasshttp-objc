@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "DDLog.h"
-#import "DDASLLogger.h"
-#import "DDTTYLogger.h"
 
 extern int const ddLogLevel;
 

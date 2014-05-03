@@ -121,6 +121,7 @@ keepass.retrieveCredentials = function (callback, tab, url, submiturl, forceCall
 		if (keepass.verifyResponse(r, key, id)) {
 			var rIv = r.Nonce;
 			for (var i = 0; i < r.Entries.length; i++) {
+				console.log(r.Entries[i]);
 				keepass.decryptEntry(r.Entries[i], key, rIv);
 			}
 			entries = r.Entries;
@@ -619,9 +620,13 @@ keepass.decrypt = function(input, key, iv, toStr) {
 
 keepass.decryptEntry = function (e, key, iv) {
 	e.Uuid = keepass.decrypt(e.Uuid, key, iv, true);
+	console.log(e.Uuid);
 	e.Name = UTF8.decode(keepass.decrypt(e.Name, key, iv, true));
+	console.log(e.Name);
 	e.Login = UTF8.decode(keepass.decrypt(e.Login, key, iv, true));
+	console.log(e.Login);
 	e.Password = UTF8.decode(keepass.decrypt(e.Password, key, iv, true));
+	console.log(e.Password);
 
 	if(e.StringFields) {
 		for(var i = 0; i < e.StringFields.length; i++) {

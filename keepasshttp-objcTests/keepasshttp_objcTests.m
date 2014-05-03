@@ -13,7 +13,6 @@
 #import "SystemConvert.h"
 
 NSString* aesKey = @"hMGok15pLI1l68ZmqK0T7l9Kmj3EM3I6GfkD2wycy9o=";
-NSString* aesIV = @"07Wlik0Sf+HJWjNTdWylCA==";
 
 NSString* associateRequest = @"{\"RequestType\":\"associate\",\"Key\":\"hMGok15pLI1l68ZmqK0T7l9Kmj3EM3I6GfkD2wycy9o=\",\"Nonce\":\"5ltuteOjkftYlRttagwpkA==\",\"Verifier\":\"7urIefzx5l/dBiOnqE84Zp7J/GJyNbgfzs/e921IKQo=\"}";
 
@@ -78,7 +77,7 @@ static KPHDialogueEngine *engineSingleton;
     NSString* encryptedPassword = ((KPHResponseEntry*)[response.Entries objectAtIndex:0]).Password;
     Aes* aes = [Aes new];
     aes.Key = [SystemConvert FromBase64String:aesKey];
-    aes.IV = [SystemConvert FromBase64String:aesIV];
+    aes.IV = [SystemConvert FromBase64String:response.Nonce];
     NSString* decryptedPassword = [KPHCore CryptoTransform:encryptedPassword base64in:true base64out:false aes:aes encrypt:false];
     XCTAssertEqualObjects(decryptedPassword, @"KeePass1",@"Decrypted password should match");
 }

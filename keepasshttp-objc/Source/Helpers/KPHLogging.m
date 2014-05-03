@@ -8,6 +8,9 @@
 
 #import "KPHLogging.h"
 
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+
 int const ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation KPHLogging
