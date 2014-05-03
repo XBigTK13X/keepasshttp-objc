@@ -28,10 +28,10 @@
     NSError *error = nil;
     if(![self.httpServer start:&error])
     {
-        NSLog(@"Error starting keepasshttp-objc server: %@", error);
+        LogError(@"Error starting keepasshttp-objc server: %@", error);
     }
     else{
-        NSLog(@"keypasshttp-objc server now running on port %i",port);
+        LogInfo(@"keypasshttp-objc server now running on port %i",port);
     }
 }
 @end

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Logging.h"
 #import "KPHKeePassClient.h"
 #import "HTTPServer.h"
 #import "KPHHttpConnection.h"
+
 
 @interface KPHServer : NSObject
 

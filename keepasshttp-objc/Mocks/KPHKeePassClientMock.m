@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
+#import "Logging.h"
 #import "KPHKeePassClientMock.h"
 #import "KPHUtil.h"
 
@@ -16,7 +17,7 @@
     if(self){
         self.root = [PwGroup new];
         self.recycle = [PwGroup new];
-        NSLog(@"Running the kph-objc mock server");
+        LogInfo(@"Running the kph-objc mock server");
     }
     return self;
 }
@@ -34,12 +35,12 @@
 }
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title
 {
-    NSLog(@"Asking user if its okay to overwrite: %@ - %@",message,title);
+    LogTrace(@"Asking user if its okay to overwrite: %@ - %@",message,title);
     return true;
 }
 - (NSString*) promptUserForKeyName: (NSString*)keyMessage
 {
-    NSLog(@"Prompting for key name: %@:",keyMessage);
+    LogTrace(@"Prompting for key name: %@:",keyMessage);
     return @"keepasshttp-objc mock";
 }
 - (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm
@@ -54,7 +55,7 @@
 
 - (BOOL) getConfigBool:(NSString*)key
 {
-    NSLog(@"Grabbing config for %@",key);
+    LogTrace(@"Grabbing config for %@",key);
     return false;
 }
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled
@@ -63,7 +64,7 @@
 }
 - (void) showNotification:(NSString*)message
 {
-    NSLog(@"Notification displayed: %@",message);
+    LogTrace(@"Notification displayed: %@",message);
 }
 - (NSDictionary*) getCustomConfig
 {
@@ -83,13 +84,13 @@
 
 - (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*) message title:(NSString*)title host:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries
 {
-    NSLog(@"Prompting for access: %@ - %@",title,message);
+    LogTrace(@"Prompting for access: %@ - %@",title,message);
     KPHGetLoginsUserResponse* response = [KPHGetLoginsUserResponse new];
     return response;
 }
 - (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title
 {
-    NSLog(@"Prompting for entry update: %@ - %@",title,message);
+    LogTrace(@"Prompting for entry update: %@ - %@",title,message);
     return true;
 }
 @end

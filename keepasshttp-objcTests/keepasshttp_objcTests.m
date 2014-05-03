@@ -8,6 +8,11 @@
 
 #import <XCTest/XCTest.h>
 #import "KPHDialogueEngine.h"
+
+#define LOGGING_LEVEL_TRACE 0;
+#define LOGGING_LEVEL_INFO 0;
+#define LOGGING_LEVEL_ERROR 0;
+#define LOGGING_LEVEL_DEBUG 0;
 @interface keepasshttp_objcTests : XCTestCase
 
 @property (nonatomic) KPHDialogueEngine* engine;
@@ -20,12 +25,10 @@
 {
     [super setUp];
     self.engine = [KPHDialogueEngine new];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 

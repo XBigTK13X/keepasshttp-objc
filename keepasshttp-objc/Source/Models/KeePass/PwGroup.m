@@ -37,7 +37,6 @@
 - (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership
 {
     if(entry.Uuid == nil){
-        NSLog(@"%@,%@",entry,entry.Uuid);
         self.Entries[entry.Uuid] = entry;
     }
 }

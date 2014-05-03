@@ -174,6 +174,7 @@
 		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
 		B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
+		B6A70B7E19152E1B00B4F703 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
 		B6C3C0C418F6F16C00536333 /* KPHKeePassClientMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClientMock.h; sourceTree = "<group>"; };
 		B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHKeePassClientMock.m; sourceTree = "<group>"; };
 		B6EFF49C190F620600B1400E /* KPHDialogueEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHDialogueEngine.h; sourceTree = "<group>"; };
@@ -472,6 +473,14 @@
 			path = Hash;
 			sourceTree = "<group>";
 		};
+		B6A70B7D19152E1B00B4F703 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				B6A70B7E19152E1B00B4F703 /* Logging.h */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
 		B6C3C0C318F6F16C00536333 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,6 +507,7 @@
 		B6FD314718ECA93800214787 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B6A70B7D19152E1B00B4F703 /* Logging */,
 				B69D59BD18F317BA00BC57CA /* Hash */,
 				B6F12CD618EDDAE100BC50EB /* TouchJSON */,
 				B6FD314818ECA93800214787 /* CocoaHttpServer */,

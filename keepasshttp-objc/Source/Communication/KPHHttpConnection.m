@@ -20,14 +20,14 @@
 
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
 {
-    NSLog(@"Sending reply: %@",httpResponse);
+    LogTrace(@"Sending reply: %@",httpResponse);
     return httpResponse;
 }
 - (void)processBodyData:(NSData *)postDataChunk
 {    
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
     NSString* responseBody = [self.engine respondAsJSON:requestBody];
-    NSLog(@"Responding with: %@",responseBody);
+    LogTrace(@"Responding with: %@",responseBody);
     NSData* response = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
     httpResponse =  [[HTTPDataResponse alloc] initWithData:response];
 }

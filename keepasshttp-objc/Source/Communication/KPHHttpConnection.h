@@ -10,6 +10,8 @@
 #import "HTTPDataResponse.h"
 #import "KPHDialogueEngine.h"
 
+#import "Logging.h"
+
 @interface KPHHttpConnection : HTTPConnection
 
 @property (nonatomic) KPHDialogueEngine* engine;

@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import "Logging.h"
 #import "CJSONDeserializer.h"
 #import "NSDictionary_JSONExtensions.h"
 #import "NSString+Hashes.h"
-
 #import "KPHHandlers.h"
 #import "SystemConvert.h"
 
-//#define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
 @interface KPHDialogueEngine : NSObject
 
