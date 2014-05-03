@@ -9,11 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "KPHDialogueEngine.h"
 #import "KPHKeePassClientMock.h"
+#import "KPHLogging.h"
 
-#define LOGGING_LEVEL_TRACE 0;
-#define LOGGING_LEVEL_INFO 0;
-#define LOGGING_LEVEL_ERROR 0;
-#define LOGGING_LEVEL_DEBUG 0;
 @interface keepasshttp_objcTests : XCTestCase
 
 @property (nonatomic) KPHDialogueEngine* engine;

@@ -24,6 +24,9 @@
 }
 - (void)processBodyData:(NSData *)postDataChunk
 {
+    if(self.engine == nil){
+        self.engine = [KPHDialogueEngine new];
+    }
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
     DDLogVerbose(@"Received a request: %@",requestBody);
     NSString* responseBody = [self.engine respondAsJSON:requestBody];

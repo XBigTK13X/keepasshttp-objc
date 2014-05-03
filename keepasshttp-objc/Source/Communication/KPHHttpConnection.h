@@ -8,9 +8,9 @@
 
 #import "HTTPConnection.h"
 #import "HTTPDataResponse.h"
-#import "KPHDialogueEngine.h"
-
+#import "KPHUtil.h"
 #import "KPHLogging.h"
+#import "KPHDialogueEngine.h"
 
 @interface KPHHttpConnection : HTTPConnection
 

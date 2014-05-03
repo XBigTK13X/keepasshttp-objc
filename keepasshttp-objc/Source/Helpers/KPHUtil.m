@@ -12,6 +12,7 @@
 
 static NSObject<KPHKeePassClient> *clientSingleton;
 static KPHGlobalVars *globalVarsSingleton;
+
 + (KPHGlobalVars*) globalVars
 {
     @synchronized(self)
