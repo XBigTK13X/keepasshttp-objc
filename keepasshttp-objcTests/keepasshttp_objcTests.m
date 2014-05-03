@@ -11,6 +11,13 @@
 #import "KPHKeePassClientMock.h"
 #import "KPHLogging.h"
 
+NSString* associateRequest = @"{\"RequestType\":\"associate\",\"Key\":\"3JMvMQtLw+9cbKKEt2bc/lijFZNsWV8P0BCQWVel+kU=\",\"Nonce\":\"OBvRHwUURbSMhVKUHqb1Tg==\",\"Verifier\":\"a1zLpr9GRXWMmj0THOPs01wFi3KOKc9oG/1JWiI1Gds=\"}";
+
+NSString* testAssociateRequest = @"{\"RequestType\":\"test-associate\",\"TriggerUnlock\":false}";
+
+NSString* getLoginsRequest = @"{\"RequestType\":\"get-logins\",\"SortSelection\":\"true\",\"TriggerUnlock\":\"false\",\"Id\":\"keepasshttp-objc mock\",\"Nonce\":\"2+6bul01/8X4pXswHNAo5g==\",\"Verifier\":\"9V+HAzkCAwWvlGTHtpbh5dtv9UlP4+RieKbMHUhijZE=\",\"Url\":\"DouPmLBouARHNluTg1/pKWempj2Iu7bH9/Jtr7D2c24=\",\"SubmitUrl\":\"DouPmLBouARHNluTg1/pKZjSrvloA9UfA21s9M9XgRSZNbE9WV7SGZzzVRZk4Vpq\"}";
+
+
 @interface keepasshttp_objcTests : XCTestCase
 
 @property (nonatomic) KPHDialogueEngine* engine;
@@ -18,6 +25,7 @@
 @end
 
 @implementation keepasshttp_objcTests
+NSString* h = @"";
 
 - (void)setUp
 {
@@ -33,16 +41,14 @@
 
 - (void)testTestAssociateHandlerWithoutAnyAssociation
 {
-    NSString* request = @"{\"RequestType\":\"test-associate\",\"TriggerUnlock\":false}";
-    Response* response = [self.engine respond:request];
+    Response* response = [self.engine respond:testAssociateRequest];
     XCTAssertEqual(response.Success,NO, @"Should have failed.");
     
 }
 
 - (void)testAssociateHandler
 {
-    NSString* request = @"{\"RequestType\":\"associate\",\"Key\":\"ru3VlJvLRrE088Fk1u84F+PI4UGQX/WB1Qfpoi1CL3g=\",\"Nonce\":\"JJQlLpByiAf22te96V3Fbw==\",\"Verifier\":\"3etH4Bg489wGZjCCBFA6SOq7tQQfukcw1l9O7BMP6jQ=\"}";
-    Response* response = [self.engine respond:request];
+    Response* response = [self.engine respond:associateRequest];
     XCTAssertEqual(response.Success,YES,@"Should have decrypted and stored key");
 }
 
