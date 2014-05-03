@@ -222,16 +222,13 @@ keepass.copyPassword = function(callback, tab, password) {
 }
 
 keepass.associate = function(callback, tab) {
-	console.log("Attempting to associate")
 	if(keepass.isAssociated()) {
-		console.log("We have already associated")
 		return;
 	}
 
 	keepass.getDatabaseHash(tab);
 
 	if(keepass.isDatabaseClosed || !keepass.isKeePassHttpAvailable) {
-		console.log("DB is closed or no KeePassHTTP")
 		return;
 	}
 
@@ -246,11 +243,10 @@ keepass.associate = function(callback, tab) {
 	};
 
 	keepass.setVerifier(request, key);
-	console.log("Sending assoicate request")
+
 	var result = keepass.send(request);
 
 	if(keepass.checkStatus(result[0], tab)) {
-		console.log("Association response received")
 		var r = JSON.parse(result[1]);
 
 		if(r.Version) {
@@ -262,21 +258,15 @@ keepass.associate = function(callback, tab) {
 
 		var id = r.Id;
 		if(!keepass.verifyResponse(r, key)) {
-			console.log("Unable to associate, failed verification")
 			page.tabs[tab.id].errorMessage = "KeePass association failed, try again.";
 		}
 		else {
-			console.log("Association accepted")
 			keepass.setCryptoKey(id, key);
 			keepass.associated.value = true;
 			keepass.associated.hash = r.Hash || 0;
 		}
 
 		browserAction.show(callback, tab);
-	}
-	else
-	{
-		console.log("Not attempting to verify association")
 	}
 }
 
@@ -444,16 +434,13 @@ keepass.checkForNewKeePassHttpVersion = function() {
 }
 
 keepass.testAssociation = function (tab, triggerUnlock) {
-	console.log("Attempting to test-associate");
 	keepass.getDatabaseHash(tab, triggerUnlock);
 
 	if(keepass.isDatabaseClosed || !keepass.isKeePassHttpAvailable) {
-		console.log("DB is closed or no HTTP available")
 		return false;
 	}
 
 	if(keepass.isAssociated()) {
-		console.log("Already assoiciated")
 		return true;
 	}
 
@@ -462,21 +449,18 @@ keepass.testAssociation = function (tab, triggerUnlock) {
 		"TriggerUnlock": (triggerUnlock === true) ? "true" : false
 	};
 	var verifier = keepass.setVerifier(request);
-	console.log("Prepping a verifier")
+
 	if(!verifier) {
 		keepass.associated.value = false;
 		keepass.associated.hash = null;
-		console.log("No associate")
 		return false;
 	}
 
-	console.log("Sending test-associate request")
 	var result = keepass.send(request);
 	var status = result[0];
 	var response = result[1];
-	console.log("Response received: " +result);
+
 	if(keepass.checkStatus(status, tab)) {
-		console.log("Parsing response")
 		var r = JSON.parse(response);
 		var id = verifier[0];
 		var key = verifier[1];
@@ -488,7 +472,6 @@ keepass.testAssociation = function (tab, triggerUnlock) {
 			};
 		}
 
-	console.log("Checking encryption method")
 	keepass.isEncryptionKeyUnrecognized = false;
 		if(!keepass.verifyResponse(r, key, id)) {
 			var hash = r.Hash || 0;
@@ -504,7 +487,7 @@ keepass.testAssociation = function (tab, triggerUnlock) {
 			page.tabs[tab.id].errorMessage = "Association was not successful.";
 		}
 	}
-	console.log("Did we assoicate? "+keepass.isAssociated);
+
 	return keepass.isAssociated();
 }
 
@@ -562,11 +545,8 @@ keepass.setVerifier = function(request, inputKey) {
 }
 
 keepass.verifyResponse = function(response, key, id) {
-	console.log("Attempting to verify response");
-	console.log(response);
 	keepass.associated.value = response.Success;
 	if (!response.Success) {
-		console.log("Response reports a failure")
 		keepass.associated.hash = null;
 		return false;
 	}
@@ -575,16 +555,10 @@ keepass.verifyResponse = function(response, key, id) {
 
 	var iv = response.Nonce;
 	var value = keepass.decrypt(response.Verifier, key, iv, true);
-	console.log("Verifying response:")
-	console.log(response);
-	console.log("Encrypted verifier : " +response.Verifier);
-	console.log("Decrypted verifier to : " +value);
-	console.log("Expected IV: " +iv);
-	console.log("Using key: " +key);
+
 	keepass.associated.value = (value == iv);
 
 	if(id) {
-		console.log("No ID provided for verifier");
 		keepass.associated.value = (keepass.associated.value && id == response.Id);
 	}
 
