@@ -46,6 +46,7 @@
 		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
 		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
+		B6A70B811915468700B4F703 /* KPHLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A70B801915468700B4F703 /* KPHLogging.m */; };
 		B6C3C0C618F6F16C00536333 /* KPHKeePassClientMock.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */; };
 		B6EFF49E190F620600B1400E /* KPHDialogueEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EFF49D190F620600B1400E /* KPHDialogueEngine.m */; };
 		B6EFF4A1190F6BF100B1400E /* KPHServer.m in Sources */ = {isa = PBXBuildFile; fileRef = B6EFF4A0190F6BF100B1400E /* KPHServer.m */; };
@@ -174,7 +175,8 @@
 		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
 		B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
-		B6A70B7E19152E1B00B4F703 /* Logging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logging.h; sourceTree = "<group>"; };
+		B6A70B7F1915468700B4F703 /* KPHLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHLogging.h; sourceTree = "<group>"; };
+		B6A70B801915468700B4F703 /* KPHLogging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHLogging.m; sourceTree = "<group>"; };
 		B6C3C0C418F6F16C00536333 /* KPHKeePassClientMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHKeePassClientMock.h; sourceTree = "<group>"; };
 		B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPHKeePassClientMock.m; sourceTree = "<group>"; };
 		B6EFF49C190F620600B1400E /* KPHDialogueEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHDialogueEngine.h; sourceTree = "<group>"; };
@@ -319,6 +321,8 @@
 				B61751E7190DD81C00B332AC /* KPHGlobalVars.m */,
 				B61751E9190DD81C00B332AC /* KPHUtil.h */,
 				B61751EA190DD81C00B332AC /* KPHUtil.m */,
+				B6A70B7F1915468700B4F703 /* KPHLogging.h */,
+				B6A70B801915468700B4F703 /* KPHLogging.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -473,14 +477,6 @@
 			path = Hash;
 			sourceTree = "<group>";
 		};
-		B6A70B7D19152E1B00B4F703 /* Logging */ = {
-			isa = PBXGroup;
-			children = (
-				B6A70B7E19152E1B00B4F703 /* Logging.h */,
-			);
-			path = Logging;
-			sourceTree = "<group>";
-		};
 		B6C3C0C318F6F16C00536333 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,7 +503,6 @@
 		B6FD314718ECA93800214787 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
-				B6A70B7D19152E1B00B4F703 /* Logging */,
 				B69D59BD18F317BA00BC57CA /* Hash */,
 				B6F12CD618EDDAE100BC50EB /* TouchJSON */,
 				B6FD314818ECA93800214787 /* CocoaHttpServer */,
@@ -763,6 +758,7 @@
 				B6FD31C318ECA93800214787 /* DDRange.m in Sources */,
 				B6FD31C818ECA93800214787 /* MultipartFormDataParser.m in Sources */,
 				B6FD31D018ECA93800214787 /* HTTPRedirectResponse.m in Sources */,
+				B6A70B811915468700B4F703 /* KPHLogging.m in Sources */,
 				B6175214190DD81C00B332AC /* SystemConvert.m in Sources */,
 				B6175222190DD81C00B332AC /* ResponseEntry.m in Sources */,
 				B6F12CDF18EDDAE100BC50EB /* CJSONSerializer.m in Sources */,

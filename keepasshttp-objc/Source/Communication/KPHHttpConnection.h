@@ -10,7 +10,7 @@
 #import "HTTPDataResponse.h"
 #import "KPHDialogueEngine.h"
 
-#import "Logging.h"
+#import "KPHLogging.h"
 
 @interface KPHHttpConnection : HTTPConnection
 

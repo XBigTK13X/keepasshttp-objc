@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "Logging.h"
+#import "KPHLogging.h"
 #import "KPHKeePassClientMock.h"
 #import "KPHUtil.h"
 
@@ -23,7 +23,7 @@
         validEntry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = @"KeePass1";
         validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"google.com";
         
-        LogInfo(@"Running the kph-objc mock server");
+        DDLogInfo(@"Running the kph-objc mock server");
     }
     return self;
 }
@@ -41,12 +41,12 @@
 }
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title
 {
-    LogTrace(@"Asking user if its okay to overwrite: %@ - %@",message,title);
+    DDLogVerbose(@"Asking user if its okay to overwrite: %@ - %@",message,title);
     return true;
 }
 - (NSString*) promptUserForKeyName: (NSString*)keyMessage
 {
-    LogTrace(@"Prompting for key name: %@:",keyMessage);
+    DDLogVerbose(@"Prompting for key name: %@:",keyMessage);
     return @"keepasshttp-objc mock";
 }
 - (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm
@@ -61,7 +61,7 @@
 
 - (BOOL) getConfigBool:(NSString*)key
 {
-    LogTrace(@"Grabbing config for %@",key);
+    DDLogVerbose(@"Grabbing config for %@",key);
     return false;
 }
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled
@@ -70,7 +70,7 @@
 }
 - (void) showNotification:(NSString*)message
 {
-    LogTrace(@"Notification displayed: %@",message);
+    DDLogVerbose(@"Notification displayed: %@",message);
 }
 - (NSDictionary*) getCustomConfig
 {
@@ -90,13 +90,13 @@
 
 - (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*) message title:(NSString*)title host:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries
 {
-    LogTrace(@"Prompting for access: %@ - %@",title,message);
+    DDLogVerbose(@"Prompting for access: %@ - %@",title,message);
     KPHGetLoginsUserResponse* response = [KPHGetLoginsUserResponse new];
     return response;
 }
 - (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title
 {
-    LogTrace(@"Prompting for entry update: %@ - %@",title,message);
+    DDLogVerbose(@"Prompting for entry update: %@ - %@",title,message);
     return true;
 }
 @end

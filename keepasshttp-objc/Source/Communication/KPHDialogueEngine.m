@@ -21,7 +21,7 @@
 {
     NSError *error = NULL;
     NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestJSON error:&error];
-    LogTrace(@"===========================================\nReceived request: %@",requestJSON);
+    DDLogVerbose(@"===========================================\nReceived request: %@",requestJSON);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     
     NSString* rootUuid =[[[KPHUtil client] rootGroup].Uuid UUIDString];
@@ -31,10 +31,10 @@
     
     NSObject<KPHRequestHandler> *handler = [self.handlers forRequest:pluginRequest.RequestType];
     if(handler == nil){
-        LogError(@"No handler is registered for request: [%@]",pluginRequest.RequestType);
+        DDLogError(@"No handler is registered for request: [%@]",pluginRequest.RequestType);
     }
     else{
-        LogTrace(@"Handling request type: %@",pluginRequest.RequestType);
+        DDLogVerbose(@"Handling request type: %@",pluginRequest.RequestType);
         Aes* aes = [Aes new];
         BOOL requestIsValid = [pluginRequest.RequestType isEqual:@"associate"] || [KPHProtocol VerifyRequest:pluginRequest aes:aes];
         if (requestIsValid)
@@ -44,7 +44,7 @@
         }
         else
         {
-            LogError(@"Unable to verify request. No handler called");
+            DDLogError(@"Unable to verify request. No handler called");
         }
     }
     return handlerResponse;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "Logging.h"
+#import "KPHLogging.h"
 #import "CJSONDeserializer.h"
 #import "NSDictionary_JSONExtensions.h"
 #import "NSString+Hashes.h"

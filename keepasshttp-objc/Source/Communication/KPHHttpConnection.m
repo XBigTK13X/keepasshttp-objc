@@ -20,14 +20,18 @@
 
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path
 {
-    LogTrace(@"Sending reply: %@",httpResponse);
     return httpResponse;
 }
 - (void)processBodyData:(NSData *)postDataChunk
-{    
+{
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
+    DDLogVerbose(@"Received a request: %@",requestBody);
     NSString* responseBody = [self.engine respondAsJSON:requestBody];
-    LogTrace(@"Responding with: %@",responseBody);
+    if(responseBody == nil){
+        DDLogError(@"No response was provided: %@",responseBody);
+        return;
+    }
+    DDLogVerbose(@"Responding with: %@",responseBody);
     NSData* response = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
     httpResponse =  [[HTTPDataResponse alloc] initWithData:response];
 }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Logging.h"
+#import "KPHLogging.h"
 #import "KPHKeePassClient.h"
 #import "HTTPServer.h"
 #import "KPHHttpConnection.h"
