@@ -20,7 +20,6 @@
     NSString* connectionId = [KPHUtil associateKeyId:request.Id];
     NSString* pluginCryptoKey = entry.Strings[connectionId];
     if (pluginCryptoKey == nil){
-        DDLogError(@"No crypto key found");
         return false;
     }
     

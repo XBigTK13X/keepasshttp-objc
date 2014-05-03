@@ -43,12 +43,14 @@
 }
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title
 {
-    DDLogVerbose(@"Asking user if its okay to overwrite: %@ - %@",message,title);
+    DDLogVerbose(@"%@ - %@",message,title);
+    DDLogVerbose(@"Replying: true");
     return true;
 }
 - (NSString*) promptUserForKeyName: (NSString*)keyMessage
 {
-    DDLogVerbose(@"Prompting for key name: %@:",keyMessage);
+    DDLogVerbose(@"%@:",keyMessage);
+    DDLogVerbose(@"Replying: keepasshttp-objc mock");
     return @"keepasshttp-objc mock";
 }
 - (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm

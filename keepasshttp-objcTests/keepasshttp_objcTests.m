@@ -52,7 +52,10 @@ static KPHDialogueEngine *engineSingleton;
     [super tearDown];
 }
 
-- (void)test000TestAssociateHandlerWithoutAnyAssociation
+
+//Associate handler always fails for chromeipass
+//Even after association
+- (void)test000TestAssociateHandlerW
 {
     KPHResponse* response = [[singletons engine] respond:testAssociateRequest];
     XCTAssertEqual(response.Success,NO, @"Should have failed.");
@@ -64,13 +67,8 @@ static KPHDialogueEngine *engineSingleton;
     XCTAssertEqual(response.Success,YES,@"Should have decrypted and stored key");
 }
 
-- (void)test002TestAssociateHandlerAfterAssociation
-{
-    KPHResponse* response = [[singletons engine] respond:testAssociateRequest];
-    XCTAssertEqual(response.Success,YES, @"Should have marked as associated.");
-}
 
-- (void)test003GetLoginsHandler
+- (void)test002GetLoginsHandler
 {
     KPHResponse* response = [[singletons engine] respond:getLoginsRequest];
     XCTAssertEqual(response.Success,YES, @"Should have marked as associated.");
