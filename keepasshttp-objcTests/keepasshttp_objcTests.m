@@ -10,12 +10,16 @@
 #import "KPHDialogueEngine.h"
 #import "KPHKeePassClientMock.h"
 #import "KPHLogging.h"
+#import "SystemConvert.h"
 
-NSString* associateRequest = @"{\"RequestType\":\"associate\",\"Key\":\"3JMvMQtLw+9cbKKEt2bc/lijFZNsWV8P0BCQWVel+kU=\",\"Nonce\":\"OBvRHwUURbSMhVKUHqb1Tg==\",\"Verifier\":\"a1zLpr9GRXWMmj0THOPs01wFi3KOKc9oG/1JWiI1Gds=\"}";
+NSString* aesKey = @"hMGok15pLI1l68ZmqK0T7l9Kmj3EM3I6GfkD2wycy9o=";
+NSString* aesIV = @"07Wlik0Sf+HJWjNTdWylCA==";
+
+NSString* associateRequest = @"{\"RequestType\":\"associate\",\"Key\":\"hMGok15pLI1l68ZmqK0T7l9Kmj3EM3I6GfkD2wycy9o=\",\"Nonce\":\"5ltuteOjkftYlRttagwpkA==\",\"Verifier\":\"7urIefzx5l/dBiOnqE84Zp7J/GJyNbgfzs/e921IKQo=\"}";
 
 NSString* testAssociateRequest = @"{\"RequestType\":\"test-associate\",\"TriggerUnlock\":false}";
 
-NSString* getLoginsRequest = @"{\"RequestType\":\"get-logins\",\"SortSelection\":\"true\",\"TriggerUnlock\":\"false\",\"Id\":\"keepasshttp-objc mock\",\"Nonce\":\"2+6bul01/8X4pXswHNAo5g==\",\"Verifier\":\"9V+HAzkCAwWvlGTHtpbh5dtv9UlP4+RieKbMHUhijZE=\",\"Url\":\"DouPmLBouARHNluTg1/pKWempj2Iu7bH9/Jtr7D2c24=\",\"SubmitUrl\":\"DouPmLBouARHNluTg1/pKZjSrvloA9UfA21s9M9XgRSZNbE9WV7SGZzzVRZk4Vpq\"}";
+NSString* getLoginsRequest = @"{\"RequestType\":\"get-logins\",\"SortSelection\":\"true\",\"TriggerUnlock\":\"false\",\"Id\":\"keepasshttp-objc mock\",\"Nonce\":\"07Wlik0Sf+HJWjNTdWylCA==\",\"Verifier\":\"ajf0Z389PUNdeNKS3sfMCH5DDstbZ1DZ2h43VR8B6GY=\",\"Url\":\"SfxuZYEFqiwW8xvGKusTGpN0DRoJdevLIMMQ3BX0kdM=\",\"SubmitUrl\":\"VGE19VGQNVNCb30mCSCfrlA+6snzEanexDGjdzgc9FbQDpcz0/pw2c1kTs0zt2Lv\"}";
 
 @interface singletons: NSObject
 + (KPHDialogueEngine*) engine;
@@ -71,8 +75,12 @@ static KPHDialogueEngine *engineSingleton;
 - (void)test002GetLoginsHandler
 {
     KPHResponse* response = [[singletons engine] respond:getLoginsRequest];
-    XCTAssertEqual(response.Success,YES, @"Should have marked as associated.");
-    XCTAssertEqual(response.)
+    NSString* encryptedPassword = ((KPHResponseEntry*)[response.Entries objectAtIndex:0]).Password;
+    Aes* aes = [Aes new];
+    aes.Key = [SystemConvert FromBase64String:aesKey];
+    aes.IV = [SystemConvert FromBase64String:aesIV];
+    NSString* decryptedPassword = [KPHCore CryptoTransform:encryptedPassword base64in:true base64out:false aes:aes encrypt:false];
+    XCTAssertEqualObjects(decryptedPassword, @"KeePass1",@"Decrypted password should match");
 }
 
 @end

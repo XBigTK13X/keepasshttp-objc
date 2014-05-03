@@ -28,13 +28,11 @@
         self.engine = [KPHDialogueEngine new];
     }
     NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
-    DDLogVerbose(@"Received a request: %@",requestBody);
     NSString* responseBody = [self.engine respondAsJSON:requestBody];
     if(responseBody == nil){
         DDLogError(@"No response was provided: %@",responseBody);
         return;
     }
-    DDLogVerbose(@"Responding with: %@",responseBody);
     NSData* response = [responseBody dataUsingEncoding:NSUTF8StringEncoding];
     httpResponse =  [[HTTPDataResponse alloc] initWithData:response];
 }

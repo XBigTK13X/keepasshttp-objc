@@ -54,7 +54,7 @@
     if (request.SubmitUrl != nil)
         submithost = [KPHUtil getHost: [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false]];
     
-    NSMutableArray* items = [client findMatchingEntries:request aes:aes];
+    NSMutableArray* items = [client findMatchingEntries:host submithost:submithost];
     if (items.count > 0)
     {
         KPHConfigOpt* configOpt = [KPHConfigOpt new];
@@ -100,109 +100,125 @@
                 }
             }
         }
-
-        NSString* compareToUrl = nil;
-        if (request.SubmitUrl != nil)
-        {
-            compareToUrl = [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
-        }
-        if([KPHUtil stringIsNilOrEmpty:compareToUrl])
-        {
-            compareToUrl = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
-        }
         
-        
-        compareToUrl = [compareToUrl lowercaseString];
-        for(KPHPwEntry* entry in items)
-        {
-            NSString* entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.UrlField];
-            if ([KPHUtil stringIsNilOrEmpty:entryUrl])
+        if(items.count > 0){
+            NSString* compareToUrl = nil;
+            if (request.SubmitUrl != nil)
             {
-                entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+                compareToUrl = [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
+            }
+            if([KPHUtil stringIsNilOrEmpty:compareToUrl])
+            {
+                compareToUrl = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
             }
             
-            entryUrl = [entryUrl lowercaseString];
             
-            entry.UsageCount = [self LevenshteinDistance:compareToUrl target:entryUrl];
-            
-        }
-        NSArray* itemsList = [items copy];
-        if (configOpt.SpecificMatchingOnly)
-        {
-            KPHPwEntry* lowestScoring;
-            for(KPHPwEntry* item in items){
-                if(lowestScoring == nil || item.UsageCount < lowestScoring.UsageCount){
-                    lowestScoring = item;
+            compareToUrl = [compareToUrl lowercaseString];
+            for(KPHPwEntry* entry in items)
+            {
+                NSString* entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.UrlField];
+                if ([KPHUtil stringIsNilOrEmpty:entryUrl])
+                {
+                    entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
                 }
+                
+                entryUrl = [entryUrl lowercaseString];
+                
+                entry.UsageCount = [self LevenshteinDistance:compareToUrl target:entryUrl];
+                
             }
-            
-            itemsList = [NSArray arrayWithObject:lowestScoring];
-            
-        }
-        
-        if (configOpt.SortResultByUsername)
-        {
-            itemsList = [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                KPHPwEntry *first = (KPHPwEntry*)a;
-                KPHPwEntry *second = (KPHPwEntry*)b;
-                NSComparisonResult usageCountOrder = NSOrderedSame;
-                if(first.UsageCount < second.UsageCount){
-                    usageCountOrder = NSOrderedAscending;
+            if (configOpt.SpecificMatchingOnly)
+            {
+                KPHPwEntry* lowestScoring;
+                for(KPHPwEntry* item in items){
+                    if(lowestScoring == nil || item.UsageCount < lowestScoring.UsageCount){
+                        lowestScoring = item;
+                    }
                 }
-                else if(first.UsageCount > second.UsageCount){
-                    usageCountOrder = NSOrderedDescending;
-                }
-                if(usageCountOrder == NSOrderedSame){
-                    NSString* firstUserName = [[KPHCore GetUserPass:first] objectAtIndex:0];
-                    NSString* secondUserName =[[KPHCore GetUserPass:second] objectAtIndex:0];
-                    return [firstUserName compare:secondUserName];
-                }
-                return usageCountOrder;
-            }];
+                
+                items = [NSMutableArray arrayWithObject:lowestScoring];
+                
+            }
+            else
+            {
+                if (configOpt.SortResultByUsername)
+                {
+                    items = [[NSMutableArray alloc] initWithArray: [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                        KPHPwEntry *first = (KPHPwEntry*)a;
+                        KPHPwEntry *second = (KPHPwEntry*)b;
+                        NSComparisonResult usageCountOrder = NSOrderedSame;
+                        if(first.UsageCount < second.UsageCount){
+                            usageCountOrder = NSOrderedAscending;
+                        }
+                        else if(first.UsageCount > second.UsageCount){
+                            usageCountOrder = NSOrderedDescending;
+                        }
+                        if(usageCountOrder == NSOrderedSame){
+                            NSString* firstUserName = [[KPHCore GetUserPass:first] objectAtIndex:0];
+                            NSString* secondUserName =[[KPHCore GetUserPass:second] objectAtIndex:0];
+                            return [firstUserName compare:secondUserName];
+                        }
+                        return usageCountOrder;
+                    }]];
 
-        }
-        else
-        {
-            itemsList = [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                KPHPwEntry *first = (KPHPwEntry*)a;
-                KPHPwEntry *second = (KPHPwEntry*)b;
-                NSComparisonResult usageCountOrder = NSOrderedSame;
-                if(first.UsageCount < second.UsageCount){
-                    usageCountOrder = NSOrderedAscending;
                 }
-                else if(first.UsageCount > second.UsageCount){
-                    usageCountOrder = NSOrderedDescending;
+                else
+                {
+                    items = [[NSMutableArray alloc] initWithArray:[items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                        KPHPwEntry *first = (KPHPwEntry*)a;
+                        KPHPwEntry *second = (KPHPwEntry*)b;
+                        NSComparisonResult usageCountOrder = NSOrderedSame;
+                        if(first.UsageCount < second.UsageCount){
+                            usageCountOrder = NSOrderedAscending;
+                        }
+                        else if(first.UsageCount > second.UsageCount){
+                            usageCountOrder = NSOrderedDescending;
+                        }
+                        if(usageCountOrder == NSOrderedSame){
+                            NSString* firstTitle = first.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+                            NSString* secondTitle = second.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+                            return [firstTitle compare:secondTitle];
+                        }
+                        return usageCountOrder;
+                    }]];
                 }
-                if(usageCountOrder == NSOrderedSame){
-                    NSString* firstTitle = first.Strings[[KPHUtil globalVars].PwDefs.TitleField];
-                    NSString* secondTitle = second.Strings[[KPHUtil globalVars].PwDefs.TitleField];
-                    return [firstTitle compare:secondTitle];
-                }
-                return usageCountOrder;
-            }];
-        }
-        
-        for (KPHPwEntry* entry in itemsList)
-        {
-            KPHResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
-            [response.Entries addObject:e];
-        }
-        
-        if (itemsList.count > 0)
-        {
-            NSMutableSet* distinctNames = [NSMutableSet new];
-            for(KPHResponseEntry* e in response.Entries){
-                [distinctNames addObject:e.Name];
             }
-            NSString* n = [[distinctNames allObjects] componentsJoinedByString:@"\n    "];
             
-            if (configOpt.ReceiveCredentialNotification){
-                [[KPHUtil client] showNotification:[NSString stringWithFormat:@"%@:%@ is receiving credentials for:\n    %@", request.Id, host, n]];
+            for (KPHPwEntry* entry in items)
+            {
+                KPHResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
+                [response.Entries addObject:e];
             }
+            
+            if (items.count > 0)
+            {
+                NSMutableSet* distinctNames = [NSMutableSet new];
+                for(KPHResponseEntry* e in response.Entries){
+                    if(e.Name != nil){
+                        [distinctNames addObject:e.Name];
+                    }
+                    else
+                    {
+                        [distinctNames addObject:host];
+                    }
+                }
+                NSString* n = [[distinctNames allObjects] componentsJoinedByString:@"\n    "];
+                
+                if (configOpt.ReceiveCredentialNotification){
+                    [[KPHUtil client] showNotification:[NSString stringWithFormat:@"%@:%@ is receiving credentials for:\n    %@", request.Id, host, n]];
+                }
+            }
+            
+            [KPHProtocol encryptResponse:response aes:aes];        
+            response.Count = response.Entries.count;
         }
-        
-        [KPHProtocol encryptResponse:response aes:aes];        
-        response.Count = response.Entries.count;
+        else{
+            NSLog(@"User rejected all access requests");
+        }
+    }
+    else
+    {
+        NSLog(@"No matching entries found");
     }
     response.Success = true;
     response.Id = request.Id;

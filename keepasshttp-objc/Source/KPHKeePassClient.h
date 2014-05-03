@@ -18,7 +18,7 @@
 - (KPHPwGroup *) recycleGroup;
 - (void) updateUI;
 - (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
-- (NSMutableArray*) findMatchingEntries:(KPHRequest*) request aes:(Aes*)aes;
+- (NSMutableArray*) findMatchingEntries:(NSString*) host submithost:(NSString*)submithost;
 - (BOOL) getConfigBool:(NSString*)key;
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
 - (void) showNotification:(NSString*)message;

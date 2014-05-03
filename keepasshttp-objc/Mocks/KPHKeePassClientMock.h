@@ -13,5 +13,7 @@
 
 @property (nonatomic) KPHPwGroup* root;
 @property (nonatomic) KPHPwGroup* recycle;
+@property (nonatomic) KPHPwEntry* validEntry;
+@property (nonatomic) NSString* knownHost;
 
 @end

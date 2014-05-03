@@ -18,12 +18,13 @@
         self.root = [KPHPwGroup new];
         self.recycle = [KPHPwGroup new];
         
-        KPHPwEntry* validEntry = [KPHPwEntry new];
-        validEntry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = @"keepasshttpobjc";
-        validEntry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = @"KeePass1";
-        validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"reddit.com";
+        self.validEntry = [KPHPwEntry new];
+        self.validEntry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = @"keepasshttpobjc";
+        self.validEntry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = @"KeePass1";
+        self.validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"reddit.com";
+        self.knownHost = @"reddit";
         
-        [self.root addEntry:validEntry takeOwnership:true];
+        [self.root addEntry:self.validEntry takeOwnership:true];
         
     }
     DDLogInfo(@"Running the kph-objc mock server");
@@ -55,11 +56,20 @@
 }
 - (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm
 {
+    if([url rangeOfString:self.knownHost].location == NSNotFound)
+    {
+        return 0;
+    }
     return 1;
 }
-- (NSArray*) findMatchingEntries:(KPHRequest*) request aes:(Aes*)aes
+- (NSMutableArray*) findMatchingEntries:(NSString*) host submithost:(NSString*)submithost
 {
+    if([host rangeOfString:self.knownHost].location == NSNotFound && [host rangeOfString:self.knownHost].location == NSNotFound)
+    {
+        return nil;
+    }    
     NSMutableArray* entries = [NSMutableArray new];
+    [entries addObject:self.validEntry];
     return entries;
 }
 
@@ -83,8 +93,7 @@
 }
 - (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
 {
-    KPHPwEntry* entry = [KPHPwEntry new];
-    return entry;
+    return self.root.Entries[uuid];
 }
 - (KPHGeneratedPassword*) generatePassword
 {
@@ -96,6 +105,7 @@
 {
     DDLogVerbose(@"Prompting for access: %@ - %@",title,message);
     KPHGetLoginsUserResponse* response = [KPHGetLoginsUserResponse new];
+    response.Accept = true;
     return response;
 }
 - (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title

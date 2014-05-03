@@ -9,6 +9,14 @@
 #import "KPHPwEntry.h"
 
 @implementation KPHPwEntry
+- (id) init
+{
+    self = [super init];
+    if(self){
+        self = [self initWithUuid:[NSUUID UUID]];
+    }
+    return self;
+}
 - (id) initWithUuid:(NSUUID*)uuid
 {
     self = [super init];

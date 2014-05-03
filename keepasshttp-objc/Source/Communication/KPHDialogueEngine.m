@@ -48,6 +48,7 @@
             DDLogError(@"Unable to verify request. No handler called");
         }
     }
+    DDLogVerbose(@"Responding with: %@",[handlerResponse toJson]);
     return handlerResponse;
 }
 - (NSString*) respondAsJSON:(NSString*)requestJSON
