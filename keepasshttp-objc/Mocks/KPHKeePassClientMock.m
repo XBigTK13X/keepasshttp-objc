@@ -21,7 +21,7 @@
         PwEntry* validEntry = [PwEntry new];
         validEntry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = @"keepasshttpobjc";
         validEntry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = @"KeePass1";
-        validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"google.com";
+        validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"reddit.com";
         
         DDLogInfo(@"Running the kph-objc mock server");
     }

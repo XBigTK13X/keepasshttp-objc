@@ -21,7 +21,8 @@
 {
     NSError *error = NULL;
     NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestJSON error:&error];
-    DDLogVerbose(@"===========================================\nReceived request: %@",requestJSON);
+    DDLogVerbose(@"===========================================");
+    DDLogVerbose(@"Received request: %@",requestJSON);
     Request* pluginRequest = [[Request alloc] init :requestDictionary];
     
     NSString* rootUuid =[[[KPHUtil client] rootGroup].Uuid UUIDString];
