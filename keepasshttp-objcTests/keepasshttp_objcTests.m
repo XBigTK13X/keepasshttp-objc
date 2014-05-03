@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "KPHDialogueEngine.h"
+#import "KPHKeePassClientMock.h"
 
 #define LOGGING_LEVEL_TRACE 0;
 #define LOGGING_LEVEL_INFO 0;
@@ -24,6 +25,7 @@
 - (void)setUp
 {
     [super setUp];
+    [KPHUtil setClient:[KPHKeePassClientMock new]];
     self.engine = [KPHDialogueEngine new];
 }
 

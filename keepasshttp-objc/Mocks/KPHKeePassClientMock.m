@@ -17,6 +17,12 @@
     if(self){
         self.root = [PwGroup new];
         self.recycle = [PwGroup new];
+        
+        PwEntry* validEntry = [PwEntry new];
+        validEntry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = @"keepasshttpobjc";
+        validEntry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = @"KeePass1";
+        validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"google.com";
+        
         LogInfo(@"Running the kph-objc mock server");
     }
     return self;

@@ -38,9 +38,6 @@
     }
     return self;
 }
-- (NSString* ) getString: (NSString * )lookup{
-    return self.Strings[lookup];
-}
 - (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents
 {
     

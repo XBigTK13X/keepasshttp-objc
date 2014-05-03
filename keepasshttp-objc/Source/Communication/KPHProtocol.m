@@ -17,7 +17,7 @@
         return false;
     }
     NSString* connectionId = [KPHUtil associateKeyId:request.Id];
-    NSString* pluginCryptoKey = [entry getString:connectionId];
+    NSString* pluginCryptoKey = entry.Strings[connectionId];
     if (pluginCryptoKey == nil)
         return false;
     

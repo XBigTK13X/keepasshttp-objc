@@ -57,6 +57,11 @@
 }
 + (KPHEntryConfig*) GetEntryConfig: (PwEntry*) entry
 {
+    if (entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] != nil)
+    {
+        NSString* json = entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME];
+        return[[KPHEntryConfig alloc]initWithJson:json];
+    }
     return nil;
 }
 + (void) SetEntryConfig:(PwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
@@ -67,7 +72,9 @@
 }
 + (NSArray*) GetUserPass:(PwEntry *)entry
 {
-    return nil;
+    NSString* user = entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField];
+    NSString* pass = entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField];
+    return [[NSArray alloc]initWithObjects:user,pass, nil];
 }
 + (ResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(PwEntry*) entry
 {
