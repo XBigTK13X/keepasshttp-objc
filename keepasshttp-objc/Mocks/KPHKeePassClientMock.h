@@ -11,7 +11,7 @@
 
 @interface KPHKeePassClientMock : NSObject<KPHKeePassClient>
 
-@property (nonatomic) PwGroup* root;
-@property (nonatomic) PwGroup* recycle;
+@property (nonatomic) KPHPwGroup* root;
+@property (nonatomic) KPHPwGroup* recycle;
 
 @end

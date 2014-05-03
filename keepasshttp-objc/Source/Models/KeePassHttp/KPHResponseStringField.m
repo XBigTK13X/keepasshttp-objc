@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "ResponseStringField.h"
+#import "KPHResponseStringField.h"
 
-@implementation ResponseStringField
+@implementation KPHResponseStringField
 -(id) init: (NSString*) key value:(NSString*) value{
     self = [super init];
     if (self)

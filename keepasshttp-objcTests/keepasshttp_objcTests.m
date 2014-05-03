@@ -17,9 +17,26 @@ NSString* testAssociateRequest = @"{\"RequestType\":\"test-associate\",\"Trigger
 
 NSString* getLoginsRequest = @"{\"RequestType\":\"get-logins\",\"SortSelection\":\"true\",\"TriggerUnlock\":\"false\",\"Id\":\"keepasshttp-objc mock\",\"Nonce\":\"2+6bul01/8X4pXswHNAo5g==\",\"Verifier\":\"9V+HAzkCAwWvlGTHtpbh5dtv9UlP4+RieKbMHUhijZE=\",\"Url\":\"DouPmLBouARHNluTg1/pKWempj2Iu7bH9/Jtr7D2c24=\",\"SubmitUrl\":\"DouPmLBouARHNluTg1/pKZjSrvloA9UfA21s9M9XgRSZNbE9WV7SGZzzVRZk4Vpq\"}";
 
-@interface keepasshttp_objcTests : XCTestCase
+@interface singletons: NSObject
++ (KPHDialogueEngine*) engine;
+@end
+@implementation singletons
+static KPHDialogueEngine *engineSingleton;
 
-@property (nonatomic) KPHDialogueEngine* engine;
++ (KPHDialogueEngine*) engine
+{
+    @synchronized(self)
+    {
+        if(engineSingleton == nil){
+            engineSingleton = [KPHDialogueEngine new];
+            [KPHUtil setClient:[KPHKeePassClientMock new]];
+        }
+        return engineSingleton;
+    }
+}
+@end
+
+@interface keepasshttp_objcTests : XCTestCase
 
 @end
 
@@ -28,10 +45,6 @@ NSString* getLoginsRequest = @"{\"RequestType\":\"get-logins\",\"SortSelection\"
 - (void)setUp
 {
     [super setUp];
-    [KPHUtil setClient:[KPHKeePassClientMock new]];
-    if(self.engine == nil){
-        self.engine = [KPHDialogueEngine new];
-    }
 }
 
 - (void)tearDown
@@ -39,21 +52,27 @@ NSString* getLoginsRequest = @"{\"RequestType\":\"get-logins\",\"SortSelection\"
     [super tearDown];
 }
 
-- (void)testTestAssociateHandlerWithoutAnyAssociation
+- (void)test000TestAssociateHandlerWithoutAnyAssociation
 {
-    Response* response = [self.engine respond:testAssociateRequest];
+    KPHResponse* response = [[singletons engine] respond:testAssociateRequest];
     XCTAssertEqual(response.Success,NO, @"Should have failed.");
 }
 
-- (void)testAssociateHandler
+- (void)test001AssociateHandler
 {
-    Response* response = [self.engine respond:associateRequest];
+    KPHResponse* response = [[singletons engine] respond:associateRequest];
     XCTAssertEqual(response.Success,YES,@"Should have decrypted and stored key");
 }
 
-- (void)testTestAssociateHandlerAfterAssociation
+- (void)test002TestAssociateHandlerAfterAssociation
 {
-    Response* response = [self.engine respond:testAssociateRequest];
+    KPHResponse* response = [[singletons engine] respond:testAssociateRequest];
+    XCTAssertEqual(response.Success,YES, @"Should have marked as associated.");
+}
+
+- (void)test003GetLoginsHandler
+{
+    KPHResponse* response = [[singletons engine] respond:getLoginsRequest];
     XCTAssertEqual(response.Success,YES, @"Should have marked as associated.");
 }
 

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Request : NSObject
+@interface KPHRequest : NSObject
 
 @property (nonatomic) NSString * RequestType;
 @property (nonatomic) NSString * SortSelection;

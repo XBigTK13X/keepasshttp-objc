@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ResponseStringField.h"
+#import "KPHResponseStringField.h"
 
-@interface ResponseEntry : NSObject
+@interface KPHResponseEntry : NSObject
 
 @property (nonatomic) NSString* Login;
 @property (nonatomic) NSString* Password;

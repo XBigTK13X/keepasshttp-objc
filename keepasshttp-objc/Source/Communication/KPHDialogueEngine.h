@@ -21,6 +21,6 @@
 
 @property (nonatomic) KPHHandlers* handlers;
 
-- (Response*) respond:(NSString*)requestJSON;
+- (KPHResponse*) respond:(NSString*)requestJSON;
 - (NSString*) respondAsJSON:(NSString*)requestJSON;
 @end

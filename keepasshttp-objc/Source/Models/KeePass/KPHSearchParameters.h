@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SearchParameters : NSObject
+@interface KPHSearchParameters : NSObject
 @property (nonatomic) BOOL SearchInTitles;
 @property (nonatomic) BOOL RegularExpression;
 @property (nonatomic) BOOL SearchInGroupNames;

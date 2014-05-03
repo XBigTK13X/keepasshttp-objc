@@ -9,21 +9,21 @@
 #import "KPHGetAllLoginsHandler.h"
 
 @implementation KPHGetAllLoginsHandler
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
 {
     NSMutableArray* list = [NSMutableArray new];
-    PwGroup *root = [[KPHUtil client] rootGroup];
-    SearchParameters* parms = [SearchParameters new];
+    KPHPwGroup *root = [[KPHUtil client] rootGroup];
+    KPHSearchParameters* parms = [KPHSearchParameters new];
     
     parms.SearchString = @"^[A-Za-z0-9:/-]+\\.[A-Za-z0-9:/-]+$"; // match anything looking like a domain or url
     
     [root searchEntries:parms entries:list];
-    for (PwEntry* entry in list)
+    for (KPHPwEntry* entry in list)
     {
         NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
         NSString* login = [KPHCore GetUserPass:entry][0];
         NSString* uuid = [entry.Uuid UUIDString];
-        ResponseEntry* e = [ResponseEntry new];
+        KPHResponseEntry* e = [KPHResponseEntry new];
         e.Name = name;
         e.Login = login;
         e.Uuid = uuid;

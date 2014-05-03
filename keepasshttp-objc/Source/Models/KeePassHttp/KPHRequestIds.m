@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "RequestIds.h"
+#import "KPHRequestIds.h"
 
-@implementation RequestIds
+@implementation KPHRequestIds
 - (id) init
 {
     self = [super init];

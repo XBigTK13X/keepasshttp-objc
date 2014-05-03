@@ -7,24 +7,27 @@
 //
 
 #import "KPHProtocol.h"
+#import "KPHLogging.h"
 
 @implementation KPHProtocol
 
-+ (BOOL) VerifyRequest:(Request *) request aes:(Aes*)aes
++ (BOOL) VerifyRequest:(KPHRequest *) request aes:(Aes*)aes
 {
-    PwEntry* entry = [KPHCore GetConfigEntry:false];
+    KPHPwEntry* entry = [KPHCore GetConfigEntry:false];
     if (entry == nil){
         return false;
     }
     NSString* connectionId = [KPHUtil associateKeyId:request.Id];
     NSString* pluginCryptoKey = entry.Strings[connectionId];
-    if (pluginCryptoKey == nil)
+    if (pluginCryptoKey == nil){
+        DDLogError(@"No crypto key found");
         return false;
+    }
     
     return [KPHProtocol TestRequestVerifier:request aes:aes key:pluginCryptoKey];
 }
 
-+ (BOOL) TestRequestVerifier: (Request *) request aes:(Aes*)aes key:(NSString *) key
++ (BOOL) TestRequestVerifier: (KPHRequest *) request aes:(Aes*)aes key:(NSString *) key
 {
     NSData* cipherData = [SystemConvert FromBase64String:request.Verifier];
     aes.Key = [SystemConvert FromBase64String:key];
@@ -38,16 +41,16 @@
     return [verifier isEqual:request.Nonce];
 }
 
-+ (void) SetResponseVerifier: (Response *) response aes:(Aes*) aes
++ (void) SetResponseVerifier: (KPHResponse *) response aes:(Aes*) aes
 {
     aes.IV = [Aes randomIV:16];
     response.Nonce = [SystemConvert ToBase64String:aes.IV];
     response.Verifier = [KPHCore CryptoTransform:response.Nonce base64in:false base64out:true aes:aes encrypt:true];
     
 }
-+ (void) encryptResponse:(Response*)response aes:(Aes*)aes
++ (void) encryptResponse:(KPHResponse*)response aes:(Aes*)aes
 {
-    for (ResponseEntry* entry in response.Entries)
+    for (KPHResponseEntry* entry in response.Entries)
     {
         if(entry.Name != nil){
             entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
@@ -64,7 +67,7 @@
         
         if (entry.StringFields != nil)
         {
-            for (ResponseStringField* sf in entry.StringFields)
+            for (KPHResponseStringField* sf in entry.StringFields)
             {
                 sf.Key = [KPHCore CryptoTransform:sf.Key base64in:false base64out:true aes:aes encrypt:true];
                 sf.Value = [KPHCore CryptoTransform:sf.Value base64in:false base64out:true aes:aes encrypt:true];

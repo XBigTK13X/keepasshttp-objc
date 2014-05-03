@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "ResponseEntry.h"
+#import "KPHResponseEntry.h"
 
-@implementation ResponseEntry
+@implementation KPHResponseEntry
 -(id) init:(NSString *) name login:(NSString *) login password:(NSString *) password uuid:(NSString *) uuid stringFields:(NSArray *) stringFields
 {
     self = [super init];

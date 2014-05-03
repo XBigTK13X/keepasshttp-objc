@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PwDefs.h"
-#import "RequestIds.h"
+#import "KPHPwDefs.h"
+#import "KPHRequestIds.h"
 
 @interface KPHGlobalVars : NSObject
 
@@ -19,8 +19,8 @@
 @property (nonatomic) int DEFAULT_PORT;
 @property (nonatomic) NSString* HTTP_PREFIX;
 @property (nonatomic) NSUUID* KEEPASSHTTP_UUID;
-@property (nonatomic) PwDefs* PwDefs;
-@property (nonatomic) RequestIds* RequestIds;
+@property (nonatomic) KPHPwDefs* PwDefs;
+@property (nonatomic) KPHRequestIds* RequestIds;
 @property (nonatomic) NSString* KEEPASSHTTP_GROUP_ICON;
 
 @end

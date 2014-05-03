@@ -6,6 +6,6 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "PwGroup.h"
-#import "PwEntry.h"
-#import "PwDefs.h"
+#import "KPHPwGroup.h"
+#import "KPHPwEntry.h"
+#import "KPHPwDefs.h"

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface RequestIds : NSObject
+@interface KPHRequestIds : NSObject
 @property (nonatomic) NSString* GET_LOGINS;
 @property (nonatomic) NSString* GET_LOGINS_COUNT;
 @property (nonatomic) NSString* GET_ALL_LOGINS;

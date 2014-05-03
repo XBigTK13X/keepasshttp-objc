@@ -17,18 +17,18 @@
     }
     return self;
 }
-- (Response*) respond:(NSString*)requestJSON
+- (KPHResponse*) respond:(NSString*)requestJSON
 {
     NSError *error = NULL;
     NSDictionary *requestDictionary = [NSDictionary dictionaryWithJSONString:requestJSON error:&error];
     DDLogVerbose(@"===========================================");
     DDLogVerbose(@"Received request: %@",requestJSON);
-    Request* pluginRequest = [[Request alloc] init :requestDictionary];
+    KPHRequest* pluginRequest = [[KPHRequest alloc] init :requestDictionary];
     
     NSString* rootUuid =[[[KPHUtil client] rootGroup].Uuid UUIDString];
     NSString* recycleUuid = [[[KPHUtil client] recycleGroup].Uuid UUIDString];
     NSString* hash = [[NSString stringWithFormat:@"%@%@", rootUuid, recycleUuid] sha1];
-    Response* handlerResponse = [[Response alloc] init:pluginRequest.RequestType hash:hash];
+    KPHResponse* handlerResponse = [[KPHResponse alloc] init:pluginRequest.RequestType hash:hash];
     
     NSObject<KPHRequestHandler> *handler = [self.handlers forRequest:pluginRequest.RequestType];
     if(handler == nil){
@@ -52,7 +52,7 @@
 }
 - (NSString*) respondAsJSON:(NSString*)requestJSON
 {
-    Response* handlerResponse = [self respond:requestJSON];
+    KPHResponse* handlerResponse = [self respond:requestJSON];
     return [handlerResponse toJson];
 }
 @end

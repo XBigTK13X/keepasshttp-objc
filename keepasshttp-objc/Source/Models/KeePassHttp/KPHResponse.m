@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "Response.h"
+#import "KPHResponse.h"
 
-@implementation Response
+@implementation KPHResponse
 - (id)init: (NSString *) requestType  hash:(NSString*) hash
 {
     self = [super init];
@@ -19,7 +19,7 @@
         self.Count = 0;
         self.RequestType = requestType;
 
-        if ([Request requiresEntriesInResponse:requestType])
+        if ([KPHRequest requiresEntriesInResponse:requestType])
         {
             self.Entries = [NSMutableArray new];
         }

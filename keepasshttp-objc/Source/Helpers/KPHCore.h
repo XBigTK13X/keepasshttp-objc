@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KeePassTypes.h"
+#import "KPHTypes.h"
 #import "KPHUtil.h"
 #import "Aes.h"
 #import "KPHEntryConfig.h"
-#import "ResponseEntry.h"
+#import "KPHResponseEntry.h"
 #import "KPHConfigOpt.h"
 
 @interface KPHCore : NSObject
 + (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt;
-+ (PwEntry *) GetConfigEntry : (BOOL) access;
-+ (KPHEntryConfig*) GetEntryConfig: (PwEntry*) entry;
-+ (void) SetEntryConfig:(PwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig;
-+ (NSArray*) GetUserPass:(PwEntry*)entry;
-+ (ResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(PwEntry*) entry;
++ (KPHPwEntry *) GetConfigEntry : (BOOL) access;
++ (KPHEntryConfig*) GetEntryConfig: (KPHPwEntry*) entry;
++ (void) SetEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig;
++ (NSArray*) GetUserPass:(KPHPwEntry*)entry;
++ (KPHResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(KPHPwEntry*) entry;
 @end

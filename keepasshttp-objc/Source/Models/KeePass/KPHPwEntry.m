@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "PwEntry.h"
+#import "KPHPwEntry.h"
 
-@implementation PwEntry
+@implementation KPHPwEntry
 - (id) initWithUuid:(NSUUID*)uuid
 {
     self = [super init];
@@ -37,13 +37,5 @@
         self.Strings = [NSMutableDictionary new];
     }
     return self;
-}
-- (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents
-{
-    
-}
-- (void) Touch:(BOOL)modifed
-{
-    
 }
 @end

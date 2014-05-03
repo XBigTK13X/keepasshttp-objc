@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "PwDefs.h"
+#import "KPHPwDefs.h"
 
-@implementation PwDefs
+@implementation KPHPwDefs
 - (id)init
 {
     self = [super init];

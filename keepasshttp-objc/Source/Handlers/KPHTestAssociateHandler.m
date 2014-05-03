@@ -9,7 +9,7 @@
 #import "KPHTestAssociateHandler.h"
 
 @implementation KPHTestAssociateHandler
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes;
 {
     response.Success = true;
     response.Id = request.Id;

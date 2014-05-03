@@ -9,7 +9,7 @@
 #import "KPHSetLoginHandler.h"
 
 @implementation KPHSetLoginHandler
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
 {
     NSString* url = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
     NSString* urlHost = [KPHUtil getHost:url];
@@ -36,7 +36,7 @@
 }
 - (BOOL) UpdateEntry:(NSUUID*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
 {
-    PwEntry* entry = nil;
+    KPHPwEntry* entry = nil;
     
     KPHConfigOpt* configOpt = [[KPHConfigOpt alloc] initWithCustomConfig:[[KPHUtil client] getCustomConfig]];
     if (configOpt.SearchInAllOpenedDatabases)
@@ -75,7 +75,7 @@
             
             entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = username;
             entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = password;
-            [entry Touch:true touchParents:false];
+            [[KPHUtil client] saveEntry:entry];
             [[KPHUtil client] updateUI];
             
             return true;
@@ -85,7 +85,7 @@
     return false;
 }
 
-- (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(Request*) request aes:(Aes*) aes
+- (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(KPHRequest*) request aes:(Aes*) aes
 {
     NSString* realm = nil;
     if (request.Realm != nil)
@@ -93,11 +93,11 @@
         realm = [KPHCore CryptoTransform:request.Realm base64in:true base64out:false aes:aes encrypt:false];
     }
     
-    PwGroup* root = [[KPHUtil client] rootGroup];
-    PwGroup* group = [root findCreateGroup:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME createIfNotFound:false];
+    KPHPwGroup* root = [[KPHUtil client] rootGroup];
+    KPHPwGroup* group = [root findCreateGroup:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME createIfNotFound:false];
     if (group == nil)
     {
-        group = [[PwGroup alloc] initWithParams:true setTimes:true name:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME pwIcon:[KPHUtil globalVars].KEEPASSHTTP_GROUP_ICON];
+        group = [[KPHPwGroup alloc] initWithParams:true setTimes:true name:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME pwIcon:[KPHUtil globalVars].KEEPASSHTTP_GROUP_ICON];
         [root AddGroup:group takeOwnership:true];
         [[KPHUtil client] updateUI];
     }
@@ -115,7 +115,7 @@
         baseUrl = [baseUrl substringWithRange:NSMakeRange(0, lastSlashLocation+1)];
     }
     
-    PwEntry* entry = [[PwEntry alloc] init:true setTimes:true];
+    KPHPwEntry* entry = [[KPHPwEntry alloc] init:true setTimes:true];
     entry.Strings[[KPHUtil globalVars].PwDefs.TitleField] = urlHost;
     entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = username;
     entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = password;

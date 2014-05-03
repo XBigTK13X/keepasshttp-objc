@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "Request.h"
+#import "KPHRequest.h"
 
-@implementation Request
+@implementation KPHRequest
 + (BOOL) requiresEntriesInResponse: (NSString*)requestType
 {
     return [requestType isEqual:@"get-logins"] || [requestType isEqual:@"get-all-logins"] || [requestType isEqual:@"generate-password"];

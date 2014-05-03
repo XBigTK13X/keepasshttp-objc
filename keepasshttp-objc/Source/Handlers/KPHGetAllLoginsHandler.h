@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "KPHRequestHandler.h"
-#import "SearchParameters.h"
-#import "PwGroup.h"
+#import "KPHSearchParameters.h"
+#import "KPHPwGroup.h"
 #import "KPHUtil.h"
 
 @interface KPHGetAllLoginsHandler : NSObject<KPHRequestHandler>

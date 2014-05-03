@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "SearchParameters.h"
+#import "KPHSearchParameters.h"
 
-@implementation SearchParameters
+@implementation KPHSearchParameters
 - (id) init
 {
     self = [super init];

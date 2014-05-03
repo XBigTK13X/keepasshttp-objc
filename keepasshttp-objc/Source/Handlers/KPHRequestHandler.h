@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "KPHProtocol.h"
-#import "Request.h"
-#import "Response.h"
+#import "KPHRequest.h"
+#import "KPHResponse.h"
 #import "Aes.h"
 #import "KPHConfigOpt.h"
 
 @protocol KPHRequestHandler
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes;
 @end

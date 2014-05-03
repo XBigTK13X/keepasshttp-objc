@@ -11,7 +11,7 @@
 #import "KPHUtil.h"
 
 @implementation KPHGetLoginsHandler
-- (KPHEntryConfig*) getEntryConfig:(PwEntry*) e
+- (KPHEntryConfig*) getEntryConfig:(KPHPwEntry*) e
 {
     if (e.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] != nil)
     {
@@ -22,7 +22,7 @@
     return nil;
 }
 
-- (BOOL) filter:(PwEntry*)e host:(NSString*)host submithost:(NSString*)submithost
+- (BOOL) filter:(KPHPwEntry*)e host:(NSString*)host submithost:(NSString*)submithost
 {
     KPHEntryConfig* c = [self getEntryConfig:e];
     NSString* title = e.Strings[[KPHUtil globalVars].PwDefs.TitleField];
@@ -46,7 +46,7 @@
     return needPrompting;
 }
 
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
 {
     NSObject<KPHKeePassClient>* client = [KPHUtil client];
     NSString* submithost;
@@ -58,7 +58,7 @@
     if (items.count > 0)
     {
         KPHConfigOpt* configOpt = [KPHConfigOpt new];
-        PwEntry* config = [KPHCore GetConfigEntry:true];
+        KPHPwEntry* config = [KPHCore GetConfigEntry:true];
         NSString* autoAllowS = config.Strings[@"Auto Allow"];
         BOOL autoAllow = autoAllowS != nil && [KPHUtil trim:autoAllowS] != nil;
         autoAllow = autoAllow || [client getConfigBool:configOpt.AlwaysAllowAccess];
@@ -113,7 +113,7 @@
         
         
         compareToUrl = [compareToUrl lowercaseString];
-        for(PwEntry* entry in items)
+        for(KPHPwEntry* entry in items)
         {
             NSString* entryUrl = entry.Strings[[KPHUtil globalVars].PwDefs.UrlField];
             if ([KPHUtil stringIsNilOrEmpty:entryUrl])
@@ -129,8 +129,8 @@
         NSArray* itemsList = [items copy];
         if (configOpt.SpecificMatchingOnly)
         {
-            PwEntry* lowestScoring;
-            for(PwEntry* item in items){
+            KPHPwEntry* lowestScoring;
+            for(KPHPwEntry* item in items){
                 if(lowestScoring == nil || item.UsageCount < lowestScoring.UsageCount){
                     lowestScoring = item;
                 }
@@ -143,8 +143,8 @@
         if (configOpt.SortResultByUsername)
         {
             itemsList = [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                PwEntry *first = (PwEntry*)a;
-                PwEntry *second = (PwEntry*)b;
+                KPHPwEntry *first = (KPHPwEntry*)a;
+                KPHPwEntry *second = (KPHPwEntry*)b;
                 NSComparisonResult usageCountOrder = NSOrderedSame;
                 if(first.UsageCount < second.UsageCount){
                     usageCountOrder = NSOrderedAscending;
@@ -164,8 +164,8 @@
         else
         {
             itemsList = [items sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-                PwEntry *first = (PwEntry*)a;
-                PwEntry *second = (PwEntry*)b;
+                KPHPwEntry *first = (KPHPwEntry*)a;
+                KPHPwEntry *second = (KPHPwEntry*)b;
                 NSComparisonResult usageCountOrder = NSOrderedSame;
                 if(first.UsageCount < second.UsageCount){
                     usageCountOrder = NSOrderedAscending;
@@ -182,16 +182,16 @@
             }];
         }
         
-        for (PwEntry* entry in itemsList)
+        for (KPHPwEntry* entry in itemsList)
         {
-            ResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
+            KPHResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
             [response.Entries addObject:e];
         }
         
         if (itemsList.count > 0)
         {
             NSMutableSet* distinctNames = [NSMutableSet new];
-            for(ResponseEntry* e in response.Entries){
+            for(KPHResponseEntry* e in response.Entries){
                 [distinctNames addObject:e.Name];
             }
             NSString* n = [[distinctNames allObjects] componentsJoinedByString:@"\n    "];

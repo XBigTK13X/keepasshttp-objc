@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PwDefs : NSObject
+@interface KPHPwDefs : NSObject
 @property (nonatomic) NSString* TitleField;
 @property (nonatomic) NSString* UrlField;
 @property (nonatomic) NSString* UserNameField;

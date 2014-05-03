@@ -7,24 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KeePassTypes.h"
+#import "KPHTypes.h"
 #import "Aes.h"
-#import "Request.h"
+#import "KPHRequest.h"
 #import "KPHGetLoginsUserResponse.h"
 #import "KPHGeneratedPassword.h"
 
 @protocol KPHKeePassClient
-- (PwGroup *) rootGroup;
-- (PwGroup *) recycleGroup;
+- (KPHPwGroup *) rootGroup;
+- (KPHPwGroup *) recycleGroup;
 - (void) updateUI;
 - (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
-- (NSMutableArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes;
+- (NSMutableArray*) findMatchingEntries:(KPHRequest*) request aes:(Aes*)aes;
 - (BOOL) getConfigBool:(NSString*)key;
 - (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
 - (void) showNotification:(NSString*)message;
 - (NSDictionary*) getCustomConfig;
-- (PwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
+- (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (KPHGeneratedPassword*) generatePassword;
+- (void) saveEntry:(KPHPwEntry*)entry;
 
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title;
 //Return nil if user declines

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Request.h"
-#import "ResponseEntry.h"
+#import "KPHRequest.h"
+#import "KPHResponseEntry.h"
 #import "AssemblyInfo.h"
 #import "CJSONSerializer.h"
 #import "SystemConvert.h"
 
-@interface Response : NSObject<NSObject>
+@interface KPHResponse : NSObject<NSObject>
 
 @property (nonatomic) NSString* RequestType;
 @property (nonatomic) NSString* Error;

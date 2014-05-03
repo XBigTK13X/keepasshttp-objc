@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "PwGroup.h"
+#import "KPHPwGroup.h"
 
-@implementation PwGroup
+@implementation KPHPwGroup
 - (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon
 {
     self = [super init];
@@ -30,25 +30,25 @@
     }
     return self;
 }
-- (PwEntry *) findEntry:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
+- (KPHPwEntry *) findEntry:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
 {
-    return self.Entries[[uuid UUIDString]];
+    return self.Entries[uuid];
 }
-- (void) addEntry:(PwEntry*)entry takeOwnership:(BOOL)takeOwnership
+- (void) addEntry:(KPHPwEntry*)entry takeOwnership:(BOOL)takeOwnership
 {
-    if(entry.Uuid == nil){
+    if(entry.Uuid != nil){
         self.Entries[entry.Uuid] = entry;
     }
 }
-- (void) searchEntries:(SearchParameters*)params entries:(NSMutableArray*)entries
+- (void) searchEntries:(KPHSearchParameters*)params entries:(NSMutableArray*)entries
 {
     
 }
-- (PwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound
+- (KPHPwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound
 {
     return nil;
 }
-- (void) AddGroup:(PwGroup*)group takeOwnership:(BOOL)takeOwnership
+- (void) AddGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership
 {
     
 }

@@ -40,14 +40,14 @@
         return [SystemConvert ToUTF8String:outBytes];
     }
 }
-+ (PwEntry *) GetConfigEntry: (BOOL) create
++ (KPHPwEntry *) GetConfigEntry: (BOOL) create
 {
-    PwGroup* root = [[KPHUtil client] rootGroup];
+    KPHPwGroup* root = [[KPHUtil client] rootGroup];
     NSUUID* uuid = [KPHUtil globalVars].KEEPASSHTTP_UUID;
-    PwEntry* entry = [root findEntry:uuid searchRecursive:false];
+    KPHPwEntry* entry = [root findEntry:uuid searchRecursive:false];
     if (entry == nil && create)
     {
-        entry = [[PwEntry alloc] init:false setTimes:true];
+        entry = [[KPHPwEntry alloc] init:false setTimes:true];
         entry.Uuid = uuid;
         [entry.Strings setObject:[KPHUtil globalVars].KEEPASSHTTP_NAME forKey:[KPHUtil globalVars].PwDefs.TitleField];
         [root addEntry:entry takeOwnership:true];
@@ -55,7 +55,7 @@
     }
     return entry;
 }
-+ (KPHEntryConfig*) GetEntryConfig: (PwEntry*) entry
++ (KPHEntryConfig*) GetEntryConfig: (KPHPwEntry*) entry
 {
     if (entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] != nil)
     {
@@ -64,19 +64,19 @@
     }
     return nil;
 }
-+ (void) SetEntryConfig:(PwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
++ (void) SetEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
 {
     entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] = [entryConfig toJson];
-    [entry Touch:true];
+    [[KPHUtil client] saveEntry:entry];
     [[KPHUtil client] updateUI];
 }
-+ (NSArray*) GetUserPass:(PwEntry *)entry
++ (NSArray*) GetUserPass:(KPHPwEntry *)entry
 {
     NSString* user = entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField];
     NSString* pass = entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField];
     return [[NSArray alloc]initWithObjects:user,pass, nil];
 }
-+ (ResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(PwEntry*) entry
++ (KPHResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(KPHPwEntry*) entry
 {
     NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
     NSArray* loginpass = [KPHCore GetUserPass:entry];
@@ -93,7 +93,7 @@
             if ([sf hasPrefix:@"KPH: "])
             {
                 NSString* sfValue = entry.Strings[sf];
-                [fields addObject:[[ResponseStringField alloc] init:[sf substringFromIndex:5] value:sfValue]];
+                [fields addObject:[[KPHResponseStringField alloc] init:[sf substringFromIndex:5] value:sfValue]];
             }
         }
         
@@ -108,6 +108,6 @@
         }
     }
     
-    return [[ResponseEntry alloc] init:name login:login password:passwd uuid:uuid stringFields:fields];
+    return [[KPHResponseEntry alloc] init:name login:login password:passwd uuid:uuid stringFields:fields];
 }
 @end

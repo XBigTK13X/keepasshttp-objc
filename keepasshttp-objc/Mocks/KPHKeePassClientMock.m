@@ -15,23 +15,25 @@
 {
     self = [super init];
     if(self){
-        self.root = [PwGroup new];
-        self.recycle = [PwGroup new];
+        self.root = [KPHPwGroup new];
+        self.recycle = [KPHPwGroup new];
         
-        PwEntry* validEntry = [PwEntry new];
+        KPHPwEntry* validEntry = [KPHPwEntry new];
         validEntry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = @"keepasshttpobjc";
         validEntry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = @"KeePass1";
         validEntry.Strings[[KPHUtil globalVars].PwDefs.UrlField] = @"reddit.com";
         
-        DDLogInfo(@"Running the kph-objc mock server");
+        [self.root addEntry:validEntry takeOwnership:true];
+        
     }
+    DDLogInfo(@"Running the kph-objc mock server");
     return self;
 }
 
-- (PwGroup*) rootGroup{
+- (KPHPwGroup*) rootGroup{
     return self.root;
 }
-- (PwGroup *) recycleGroup
+- (KPHPwGroup *) recycleGroup
 {
     return self.recycle;
 }
@@ -53,7 +55,7 @@
 {
     return 1;
 }
-- (NSArray*) findMatchingEntries:(Request*) request aes:(Aes*)aes
+- (NSArray*) findMatchingEntries:(KPHRequest*) request aes:(Aes*)aes
 {
     NSMutableArray* entries = [NSMutableArray new];
     return entries;
@@ -77,9 +79,9 @@
     NSDictionary* config = [NSMutableDictionary new];
     return config;
 }
-- (PwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
+- (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
 {
-    PwEntry* entry = [PwEntry new];
+    KPHPwEntry* entry = [KPHPwEntry new];
     return entry;
 }
 - (KPHGeneratedPassword*) generatePassword
@@ -98,5 +100,10 @@
 {
     DDLogVerbose(@"Prompting for entry update: %@ - %@",title,message);
     return true;
+}
+
+- (void) saveEntry:(KPHPwEntry*)entry
+{
+    [self.root addEntry:entry takeOwnership:true];
 }
 @end

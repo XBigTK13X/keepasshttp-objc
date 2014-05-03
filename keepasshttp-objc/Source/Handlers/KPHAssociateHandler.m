@@ -10,7 +10,7 @@
 
 @implementation KPHAssociateHandler
 
-- (void) handle: (Request*)request response:(Response*)response aes:(Aes*)aes;
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes;
 {
     if(![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
         return;
@@ -19,7 +19,7 @@
     if(keyId != nil)
     {
         NSString* keyConfigId = [KPHUtil associateKeyId:keyId];
-        PwEntry* entry = [KPHCore GetConfigEntry:true];
+        KPHPwEntry* entry = [KPHCore GetConfigEntry:true];
         BOOL keyNameExists = true;
         while(keyNameExists){
             BOOL overwriteConfirmed = true;
@@ -37,7 +37,7 @@
             }
         }
         entry.Strings[keyConfigId] = request.Key;
-        [entry Touch:true];
+        [[KPHUtil client] saveEntry:entry];
         response.Id = keyId;
         response.Success = true;
         [[KPHUtil client] updateUI];

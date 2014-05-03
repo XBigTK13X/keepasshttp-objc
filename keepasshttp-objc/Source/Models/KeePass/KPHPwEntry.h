@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-@interface PwEntry : NSObject
+@interface KPHPwEntry : NSObject
 
 @property (nonatomic) NSUUID* Uuid;
 @property (nonatomic) NSMutableDictionary* Strings;
-@property (nonatomic) u_int UsageCount;
+@property (nonatomic) NSUInteger UsageCount;
 @property (nonatomic) NSDate* m_tCreation;
 @property (nonatomic) NSDate* m_tLastMod;
 @property (nonatomic) NSDate* m_tLastAccess;
@@ -19,6 +19,4 @@
 
 - (id) initWithUuid:(NSUUID*)uuid;
 - (id) init:(BOOL) createNewUuid setTimes:(BOOL) setTimes;
-- (void) Touch:(BOOL)modified touchParents:(BOOL)touchParents;
-- (void) Touch:(BOOL)modifed;
 @end

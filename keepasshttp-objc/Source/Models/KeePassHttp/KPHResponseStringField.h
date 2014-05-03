@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ResponseStringField : NSObject
+@interface KPHResponseStringField : NSObject
 
 @property (nonatomic) NSString* Key;
 @property (nonatomic) NSString* Value;
