@@ -98,6 +98,8 @@
 - (KPHGeneratedPassword*) generatePassword
 {
     KPHGeneratedPassword* generated = [KPHGeneratedPassword new];
+    generated.Password = @"KeePassGenerated1";
+    generated.BitLength = 75;
     return generated;
 }
 
