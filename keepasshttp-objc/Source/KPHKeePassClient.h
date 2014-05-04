@@ -26,6 +26,7 @@
 - (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (KPHGeneratedPassword*) generatePassword;
 - (void) saveEntry:(KPHPwEntry*)entry;
+- (NSArray*) getAllLogins;
 
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title;
 //Return nil if user declines

@@ -100,6 +100,7 @@
 }
 - (KPHGeneratedPassword*) generatePassword
 {
+    DDLogVerbose(@"Generating a password");
     KPHGeneratedPassword* generated = [KPHGeneratedPassword new];
     generated.Password = @"KeePassGenerated1";
     generated.BitLength = 75;
@@ -121,6 +122,14 @@
 
 - (void) saveEntry:(KPHPwEntry*)entry
 {
+    DDLogVerbose(@"Saving an entry");
     [self.root addEntry:entry takeOwnership:true];
+}
+
+- (NSArray*) getAllLogins
+{
+    NSMutableArray* entries = [NSMutableArray new];
+    [entries addObject:self.validEntry];
+    return entries;
 }
 @end

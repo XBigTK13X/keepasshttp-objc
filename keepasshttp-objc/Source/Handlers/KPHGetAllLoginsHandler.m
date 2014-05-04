@@ -11,16 +11,13 @@
 @implementation KPHGetAllLoginsHandler
 - (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
 {
-    NSMutableArray* list = [NSMutableArray new];
-    KPHPwGroup *root = [[KPHUtil client] rootGroup];
-    KPHSearchParameters* parms = [KPHSearchParameters new];
-    
-    parms.SearchString = @"^[A-Za-z0-9:/-]+\\.[A-Za-z0-9:/-]+$"; // match anything looking like a domain or url
-    
-    [root searchEntries:parms entries:list];
-    for (KPHPwEntry* entry in list)
+    NSArray* entries = [[KPHUtil client] getAllLogins];
+    for (KPHPwEntry* entry in entries)
     {
         NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
+        if(name == nil){
+            name = entry.Strings[[KPHUtil globalVars].PwDefs.UrlField];
+        }
         NSString* login = [KPHCore GetUserPass:entry][0];
         NSString* uuid = [entry.Uuid UUIDString];
         KPHResponseEntry* e = [KPHResponseEntry new];

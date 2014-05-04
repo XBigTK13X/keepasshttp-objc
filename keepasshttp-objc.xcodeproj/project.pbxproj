@@ -44,7 +44,8 @@
 		B63F52A618EB63A80024CE2D /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F52A518EB63A80024CE2D /* XCTest.framework */; };
 		B63F52A718EB63A80024CE2D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B63F528618EB63A80024CE2D /* Cocoa.framework */; };
 		B63F52AF18EB63A80024CE2D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B63F52AD18EB63A80024CE2D /* InfoPlist.strings */; };
-		B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */; };
+		B63F52B118EB63A80024CE2D /* ChromeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B63F52B018EB63A80024CE2D /* ChromeTests.m */; };
+		B6434F36191683F1003C86D8 /* FirefoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B6434F35191683F1003C86D8 /* FirefoxTests.m */; };
 		B69D59C018F317BA00BC57CA /* NSString+Hashes.m in Sources */ = {isa = PBXBuildFile; fileRef = B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */; };
 		B6A70B811915468700B4F703 /* KPHLogging.m in Sources */ = {isa = PBXBuildFile; fileRef = B6A70B801915468700B4F703 /* KPHLogging.m */; };
 		B6C3C0C618F6F16C00536333 /* KPHKeePassClientMock.m in Sources */ = {isa = PBXBuildFile; fileRef = B6C3C0C518F6F16C00536333 /* KPHKeePassClientMock.m */; };
@@ -172,7 +173,8 @@
 		B63F52A518EB63A80024CE2D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B63F52AC18EB63A80024CE2D /* keepasshttp-objcTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "keepasshttp-objcTests-Info.plist"; sourceTree = "<group>"; };
 		B63F52AE18EB63A80024CE2D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keepasshttp_objcTests.m; sourceTree = "<group>"; };
+		B63F52B018EB63A80024CE2D /* ChromeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChromeTests.m; sourceTree = "<group>"; };
+		B6434F35191683F1003C86D8 /* FirefoxTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirefoxTests.m; sourceTree = "<group>"; };
 		B69D59BE18F317BA00BC57CA /* NSString+Hashes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hashes.h"; sourceTree = "<group>"; };
 		B69D59BF18F317BA00BC57CA /* NSString+Hashes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hashes.m"; sourceTree = "<group>"; };
 		B6A70B7F1915468700B4F703 /* KPHLogging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPHLogging.h; sourceTree = "<group>"; };
@@ -453,7 +455,8 @@
 		B63F52AA18EB63A80024CE2D /* keepasshttp-objcTests */ = {
 			isa = PBXGroup;
 			children = (
-				B63F52B018EB63A80024CE2D /* keepasshttp_objcTests.m */,
+				B6434F35191683F1003C86D8 /* FirefoxTests.m */,
+				B63F52B018EB63A80024CE2D /* ChromeTests.m */,
 				B63F52AB18EB63A80024CE2D /* Supporting Files */,
 			);
 			path = "keepasshttp-objcTests";
@@ -812,7 +815,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63F52B118EB63A80024CE2D /* keepasshttp_objcTests.m in Sources */,
+				B63F52B118EB63A80024CE2D /* ChromeTests.m in Sources */,
+				B6434F36191683F1003C86D8 /* FirefoxTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

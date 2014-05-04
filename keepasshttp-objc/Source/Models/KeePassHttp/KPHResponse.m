@@ -60,17 +60,15 @@
         [entries appendString:@"\"Entries\":["];
         for(KPHResponseEntry* entry in self.Entries){
             [entries appendString:@"{"];
-            if(entry.Password != nil){
-                if(entry.Login != nil)
-                    [entries appendString: [SystemConvert ToJSON:@"Login" value:entry.Login]];
-                if(entry.Password != nil)
-                   [entries appendString: [SystemConvert ToJSON:@"Password" value:entry.Password]];
-                if(entry.Uuid != nil)
-                   [entries appendString: [SystemConvert ToJSON:@"Uuid" value:entry.Uuid]];
-                if(entry.Name != nil)
-                   [entries appendString: [SystemConvert ToJSON:@"Name" value:entry.Name]];
-                [entries deleteCharactersInRange:NSMakeRange([entries length]-1, 1)];
-            }
+            if(entry.Login != nil)
+                [entries appendString: [SystemConvert ToJSON:@"Login" value:entry.Login]];
+            if(entry.Password != nil)
+               [entries appendString: [SystemConvert ToJSON:@"Password" value:entry.Password]];
+            if(entry.Uuid != nil)
+               [entries appendString: [SystemConvert ToJSON:@"Uuid" value:entry.Uuid]];
+            if(entry.Name != nil)
+               [entries appendString: [SystemConvert ToJSON:@"Name" value:entry.Name]];
+            [entries deleteCharactersInRange:NSMakeRange([entries length]-1, 1)];
             [entries appendString:@"},"];
         }
         [entries deleteCharactersInRange:NSMakeRange([entries length]-1, 1)];
