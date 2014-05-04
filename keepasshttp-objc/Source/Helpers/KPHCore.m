@@ -12,6 +12,9 @@
 @implementation KPHCore
 + (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt
 {
+    if(input == nil){
+        return nil;
+    }
     NSData* inBytes;
     if (base64in)
     {

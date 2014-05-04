@@ -56,15 +56,18 @@
 }
 - (int)countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm
 {
-    if([url rangeOfString:self.knownHost].location == NSNotFound)
+    DDLogVerbose(@"Counting matching entries");
+    if([url rangeOfString:self.knownHost].location == NSNotFound && [submitHost rangeOfString:self.knownHost].location == NSNotFound  && [realm rangeOfString:self.knownHost].location == NSNotFound)
     {
+        DDLogVerbose(@"None found for %@",url);
         return 0;
     }
+    DDLogVerbose(@"Found 1");
     return 1;
 }
 - (NSMutableArray*) findMatchingEntries:(NSString*) host submithost:(NSString*)submithost
 {
-    if([host rangeOfString:self.knownHost].location == NSNotFound && [host rangeOfString:self.knownHost].location == NSNotFound)
+    if([host rangeOfString:self.knownHost].location == NSNotFound && [submithost rangeOfString:self.knownHost].location == NSNotFound)
     {
         return nil;
     }    

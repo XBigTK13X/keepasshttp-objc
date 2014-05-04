@@ -16,7 +16,7 @@
     {
         self.Error = nil;
         self.Success = false;
-        self.Count = 0;
+        self.Count = -1;
         self.RequestType = requestType;
 
         if ([KPHRequest requiresEntriesInResponse:requestType])
@@ -49,6 +49,8 @@
         [json appendString: [SystemConvert ToJSON:@"Verifier" value:self.Verifier]];
     if(self.Id != nil)
         [json appendString: [SystemConvert ToJSON:@"Id" value:self.Id]];
+    if(self.Count != -1)
+        [json appendString: [SystemConvert ToJSON:@"Count" value:[NSString stringWithFormat:@"%lu",(unsigned long)self.Count]]];
     [json appendString: [SystemConvert ToJSON:@"Version" value:self.Version]];
     [json appendString: [SystemConvert ToJSON:@"Hash" value:self.Hash]];
     [json appendString: [SystemConvert ToJSON:@"Success" value:(self.Success)?@"true":@"false"]];
