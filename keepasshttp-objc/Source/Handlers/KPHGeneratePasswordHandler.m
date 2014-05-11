@@ -9,7 +9,7 @@
 #import "KPHGeneratePasswordHandler.h"
 
 @implementation KPHGeneratePasswordHandler
-- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(KPHAes*)aes
 {
     KPHGeneratedPassword* generated = [[KPHUtil client] generatePassword];
     if (generated != nil)
@@ -24,7 +24,7 @@
     }
     
     response.Id = request.Id;
-    [KPHProtocol SetResponseVerifier:response aes:aes];
+    [KPHProtocol setResponseVerifier:response aes:aes];
     [KPHProtocol encryptResponse:response aes:aes];
 }
 @end

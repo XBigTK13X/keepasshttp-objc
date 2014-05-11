@@ -10,9 +10,9 @@
 #import "KPHProtocol.h"
 #import "KPHRequest.h"
 #import "KPHResponse.h"
-#import "Aes.h"
+#import "KPHAes.h"
 #import "KPHConfigOpt.h"
 
 @protocol KPHRequestHandler
-- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes;
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(KPHAes*)aes;
 @end

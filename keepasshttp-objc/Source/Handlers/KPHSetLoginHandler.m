@@ -9,19 +9,19 @@
 #import "KPHSetLoginHandler.h"
 
 @implementation KPHSetLoginHandler
-- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(KPHAes*)aes
 {
-    NSString* url = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
+    NSString* url = [KPHCore cryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
     NSString* urlHost = [KPHUtil getHost:url];
     
     
-    NSString* username = [KPHCore CryptoTransform:request.Login base64in:true base64out:false aes:aes encrypt:false];
-    NSString* password = [KPHCore CryptoTransform:request.Password base64in:true base64out:false aes:aes encrypt:false];
+    NSString* username = [KPHCore cryptoTransform:request.Login base64in:true base64out:false aes:aes encrypt:false];
+    NSString* password = [KPHCore cryptoTransform:request.Password base64in:true base64out:false aes:aes encrypt:false];
     
     if (request.Uuid != nil)
     {
-        NSString* decryptedUuid = [KPHCore CryptoTransform:request.Uuid base64in:true base64out:false aes:aes encrypt:false];
-        NSData* uuidData = [SystemConvert FromUTF8String:decryptedUuid];
+        NSString* decryptedUuid = [KPHCore cryptoTransform:request.Uuid base64in:true base64out:false aes:aes encrypt:false];
+        NSData* uuidData = [KPHSystemConvert fromUTF8String:decryptedUuid];
         NSUUID* uuid = [[NSUUID alloc] initWithUUIDBytes:uuidData.bytes];
         [self UpdateEntry:uuid username:username password:password formHost:urlHost requestId:request.Id];
     }
@@ -32,7 +32,7 @@
     
     response.Success = true;
     response.Id = request.Id;
-    [KPHProtocol SetResponseVerifier:response aes:aes];
+    [KPHProtocol setResponseVerifier:response aes:aes];
 }
 - (BOOL) UpdateEntry:(NSUUID*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
 {
@@ -53,7 +53,7 @@
         return false;
     }
     
-    NSArray* up = [KPHCore GetUserPass:entry];
+    NSArray* up = [KPHCore getUserPass:entry];
     NSString* u = [up objectAtIndex:0];
     NSString* p = [up objectAtIndex:1];
     
@@ -85,12 +85,12 @@
     return false;
 }
 
-- (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(KPHRequest*) request aes:(Aes*) aes
+- (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(KPHRequest*) request aes:(KPHAes*) aes
 {
     NSString* realm = nil;
     if (request.Realm != nil)
     {
-        realm = [KPHCore CryptoTransform:request.Realm base64in:true base64out:false aes:aes encrypt:false];
+        realm = [KPHCore cryptoTransform:request.Realm base64in:true base64out:false aes:aes encrypt:false];
     }
     
     KPHPwGroup* root = [[KPHUtil client] rootGroup];
@@ -98,14 +98,14 @@
     if (group == nil)
     {
         group = [[KPHPwGroup alloc] initWithParams:true setTimes:true name:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME pwIcon:[KPHUtil globalVars].KEEPASSHTTP_GROUP_ICON];
-        [root AddGroup:group takeOwnership:true];
+        [root addGroup:group takeOwnership:true];
         [[KPHUtil client] updateUI];
     }
     
     NSString* submithost = nil;
     if (request.SubmitUrl != nil)
     {
-        submithost = [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
+        submithost = [KPHCore cryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
     }
     NSString* baseUrl = url;
     // index bigger than https:// <-- this slash

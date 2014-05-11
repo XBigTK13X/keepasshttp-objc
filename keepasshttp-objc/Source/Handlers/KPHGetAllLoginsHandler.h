@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "KPHRequestHandler.h"
-#import "KPHSearchParameters.h"
 #import "KPHPwGroup.h"
 #import "KPHUtil.h"
 

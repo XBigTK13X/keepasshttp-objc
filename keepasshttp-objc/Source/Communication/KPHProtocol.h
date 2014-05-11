@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "KPHResponse.h"
 #import "KPHRequest.h"
-#import "Aes.h"
-#import "SystemConvert.h"
+#import "KPHAes.h"
+#import "KPHSystemConvert.h"
 #import "KPHUtil.h"
 #import "KPHCore.h"
 
 @interface KPHProtocol : NSObject
-+ (BOOL) VerifyRequest:(KPHRequest *) request aes:(Aes*)aes;
-+ (BOOL) TestRequestVerifier: (KPHRequest *) request aes:(Aes*)aes key:(NSString *) key;
-+ (void) SetResponseVerifier: (KPHResponse *) response aes:(Aes*) aes;
-+ (void) encryptResponse:(KPHResponse*)response aes:(Aes*)aes;
++ (BOOL) verifyRequestt:(KPHRequest *) request aes:(KPHAes*)aes;
++ (BOOL) testRequestVerifier: (KPHRequest *) request aes:(KPHAes*)aes key:(NSString *) key;
++ (void) setResponseVerifier: (KPHResponse *) response aes:(KPHAes*) aes;
++ (void) encryptResponse:(KPHResponse*)response aes:(KPHAes*)aes;
 @end

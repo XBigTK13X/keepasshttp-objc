@@ -10,16 +10,16 @@
 
 @implementation KPHAssociateHandler
 
-- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes;
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(KPHAes*)aes;
 {
-    if(![KPHProtocol TestRequestVerifier:request aes:aes key:request.Key])
+    if(![KPHProtocol testRequestVerifier:request aes:aes key:request.Key])
         return;
     NSString* keyMessage = [[NSString alloc] initWithFormat:@"You have received an association request for the key \"%@\". If you would like to allow it access to your KeePass database give it a unique name to identify and accept it.",request.Key];
     NSString* keyId = [[KPHUtil client] promptUserForKeyName: keyMessage];
     if(keyId != nil)
     {
         NSString* keyConfigId = [KPHUtil associateKeyId:keyId];
-        KPHPwEntry* entry = [KPHCore GetConfigEntry:true];
+        KPHPwEntry* entry = [KPHCore getConfigEntry:true];
         BOOL keyNameExists = true;
         while(keyNameExists){
             BOOL overwriteConfirmed = true;

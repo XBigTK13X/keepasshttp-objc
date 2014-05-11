@@ -27,7 +27,7 @@
     if(self.engine == nil){
         self.engine = [KPHDialogueEngine new];
     }
-    NSString* requestBody = [SystemConvert ToUTF8String:postDataChunk];
+    NSString* requestBody = [KPHSystemConvert toUTF8String:postDataChunk];
     NSString* responseBody = [self.engine respondAsJSON:requestBody];
     if(responseBody == nil){
         DDLogError(@"No response was provided: %@",responseBody);

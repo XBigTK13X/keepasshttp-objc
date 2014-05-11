@@ -14,7 +14,7 @@
 
 #import "KPHLogging.h"
 #import "KPHHandlers.h"
-#import "SystemConvert.h"
+#import "KPHSystemConvert.h"
 
 
 @interface KPHDialogueEngine : NSObject

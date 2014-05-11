@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "Aes.h"
+#import "KPHAes.h"
 
 // http://stackoverflow.com/questions/2039940/any-cocoa-source-code-for-aes-encryption-decryption
 // http://stackoverflow.com/questions/4917968/best-way-to-generate-nsdata-object-with-random-bytes-of-a-specific-length
@@ -16,7 +16,7 @@ const NSUInteger ALGORITHM_BLOCK_SIZE = kCCBlockSizeAES128;
 const NSUInteger ALGORITHM_OPTIONS = kCCOptionPKCS7Padding;
 const NSUInteger ALGORITHM_KEY_SIZE = kCCKeySizeAES256;
 
-@implementation Aes
+@implementation KPHAes
 + (NSData*) randomIV: (unsigned int)lengthInBytes
 {
     NSMutableData* result = [NSMutableData dataWithCapacity:lengthInBytes];

@@ -10,7 +10,7 @@
 #import "KPHDialogueEngine.h"
 #import "KPHKeePassClientMock.h"
 #import "KPHLogging.h"
-#import "SystemConvert.h"
+#import "KPHSystemConvert.h"
 
 NSString* kChromeAesKey = @"hMGok15pLI1l68ZmqK0T7l9Kmj3EM3I6GfkD2wycy9o=";
 
@@ -75,10 +75,10 @@ static KPHDialogueEngine *engineSingleton;
 {
     KPHResponse* response = [[chromeSingletons engine] respond:kChromeGetLoginsRequest];
     NSString* encryptedPassword = ((KPHResponseEntry*)[response.Entries objectAtIndex:0]).Password;
-    Aes* aes = [Aes new];
-    aes.Key = [SystemConvert FromBase64String:kChromeAesKey];
-    aes.IV = [SystemConvert FromBase64String:response.Nonce];
-    NSString* decryptedPassword = [KPHCore CryptoTransform:encryptedPassword base64in:true base64out:false aes:aes encrypt:false];
+    KPHAes* aes = [KPHAes new];
+    aes.Key = [KPHSystemConvert fromBase64String:kChromeAesKey];
+    aes.IV = [KPHSystemConvert fromBase64String:response.Nonce];
+    NSString* decryptedPassword = [KPHCore cryptoTransform:encryptedPassword base64in:true base64out:false aes:aes encrypt:false];
     XCTAssertEqualObjects(decryptedPassword, @"KeePass1",@"Decrypted password should match");
 }
 

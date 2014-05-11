@@ -6,32 +6,32 @@
 //  Copyright (c) 2014 xbigtk13x. All rights reserved.
 //
 
-#import "SystemConvert.h"
+#import "KPHSystemConvert.h"
 
-@implementation SystemConvert
-+ (NSString *) ToBase64String: (NSData *) base64Data
+@implementation KPHSystemConvert
++ (NSString *) toBase64String: (NSData *) base64Data
 {
     return [base64Data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
 }
-+ (NSData *) FromBase64String: (NSString *) base64String
++ (NSData *) fromBase64String: (NSString *) base64String
 {
     return [[NSData alloc] initWithBase64EncodedString:base64String options:0];
 }
-+ (NSString* ) ToUTF8String: (NSData *) utf8Data
++ (NSString* ) toUTF8String: (NSData *) utf8Data
 {
     return [[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding];
 }
-+ (NSData *) FromUTF8String: (NSString *) utf8String
++ (NSData *) fromUTF8String: (NSString *) utf8String
 {
     return [utf8String dataUsingEncoding:NSUTF8StringEncoding];
 }
-+ (NSString*) ToJSONLast:(NSString *) key value:(NSString*)value
++ (NSString*) toJSONLast:(NSString *) key value:(NSString*)value
 {
     return [NSString stringWithFormat:@"\"%@\":\"%@\"",key,value];
 }
 
-+ (NSString* ) ToJSON:(NSString *) key value:(NSString*)value
++ (NSString* ) toJSON:(NSString *) key value:(NSString*)value
 {
-    return [NSString stringWithFormat:@"%@,",[SystemConvert ToJSONLast:key value:value]];
+    return [NSString stringWithFormat:@"%@,",[KPHSystemConvert toJSONLast:key value:value]];
 }
 @end

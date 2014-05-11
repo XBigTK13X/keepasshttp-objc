@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "KPHRequest.h"
 #import "KPHResponseEntry.h"
-#import "AssemblyInfo.h"
+#import "KPHAssemblyInfo.h"
 #import "CJSONSerializer.h"
-#import "SystemConvert.h"
+#import "KPHSystemConvert.h"
 
 @interface KPHResponse : NSObject<NSObject>
 

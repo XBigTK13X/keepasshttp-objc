@@ -46,19 +46,19 @@
     return needPrompting;
 }
 
-- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(KPHAes*)aes
 {
     NSObject<KPHKeePassClient>* client = [KPHUtil client];
     NSString* submithost;
-    NSString* host = [KPHUtil getHost: [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false]];
+    NSString* host = [KPHUtil getHost: [KPHCore cryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false]];
     if (request.SubmitUrl != nil)
-        submithost = [KPHUtil getHost: [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false]];
+        submithost = [KPHUtil getHost: [KPHCore cryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false]];
     
     NSMutableArray* items = [client findMatchingEntries:host submithost:submithost];
     if (items.count > 0)
     {
         KPHConfigOpt* configOpt = [KPHConfigOpt new];
-        KPHPwEntry* config = [KPHCore GetConfigEntry:true];
+        KPHPwEntry* config = [KPHCore getConfigEntry:true];
         NSString* autoAllowS = config.Strings[@"Auto Allow"];
         BOOL autoAllow = autoAllowS != nil && [KPHUtil trim:autoAllowS] != nil;
         autoAllow = autoAllow || [client getConfigBool:configOpt.AlwaysAllowAccess];
@@ -76,7 +76,7 @@
                 {
                     for (id e in needPrompting)
                     {
-                        KPHEntryConfig* c = [KPHCore GetEntryConfig:e];
+                        KPHEntryConfig* c = [KPHCore getEntryConfig:e];
                         if (c == nil)
                         {
                             c =[KPHEntryConfig new];
@@ -88,7 +88,7 @@
                             [set addObject:submithost];
                         }
                         
-                        [KPHCore SetEntryConfig:e entryConfig:c];
+                        [KPHCore setEntryConfig:e entryConfig:c];
                         
                     }
                 }
@@ -105,11 +105,11 @@
             NSString* compareToUrl = nil;
             if (request.SubmitUrl != nil)
             {
-                compareToUrl = [KPHCore CryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
+                compareToUrl = [KPHCore cryptoTransform:request.SubmitUrl base64in:true base64out:false aes:aes encrypt:false];
             }
             if([KPHUtil stringIsNilOrEmpty:compareToUrl])
             {
-                compareToUrl = [KPHCore CryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
+                compareToUrl = [KPHCore cryptoTransform:request.Url base64in:true base64out:false aes:aes encrypt:false];
             }
             
             
@@ -154,8 +154,8 @@
                             usageCountOrder = NSOrderedDescending;
                         }
                         if(usageCountOrder == NSOrderedSame){
-                            NSString* firstUserName = [[KPHCore GetUserPass:first] objectAtIndex:0];
-                            NSString* secondUserName =[[KPHCore GetUserPass:second] objectAtIndex:0];
+                            NSString* firstUserName = [[KPHCore getUserPass:first] objectAtIndex:0];
+                            NSString* secondUserName =[[KPHCore getUserPass:second] objectAtIndex:0];
                             return [firstUserName compare:secondUserName];
                         }
                         return usageCountOrder;
@@ -186,7 +186,7 @@
             
             for (KPHPwEntry* entry in items)
             {
-                KPHResponseEntry* e = [KPHCore PrepareElementForResponseEntries:configOpt entry:entry];
+                KPHResponseEntry* e = [KPHCore prepareElementForResponseEntries:configOpt entry:entry];
                 if(e.Name == nil){
                     e.Name = host;
                 }
@@ -225,7 +225,7 @@
     }
     response.Success = true;
     response.Id = request.Id;
-    [KPHProtocol SetResponseVerifier:response aes:aes];
+    [KPHProtocol setResponseVerifier:response aes:aes];
 }
 - (NSUInteger) LevenshteinDistance:(NSString*) source target:(NSString*) target
 {

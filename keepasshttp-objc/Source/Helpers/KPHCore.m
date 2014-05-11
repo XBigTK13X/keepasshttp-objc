@@ -10,7 +10,7 @@
 #import "KPHEntryConfig.h"
 
 @implementation KPHCore
-+ (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt
++ (NSString*) cryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(KPHAes*)aes encrypt:(BOOL)encrypt
 {
     if(input == nil){
         return nil;
@@ -18,11 +18,11 @@
     NSData* inBytes;
     if (base64in)
     {
-        inBytes = [SystemConvert FromBase64String:input];
+        inBytes = [KPHSystemConvert fromBase64String:input];
     }
     else
     {
-        inBytes = [SystemConvert FromUTF8String:input];
+        inBytes = [KPHSystemConvert fromUTF8String:input];
     }
     NSData* outBytes;
     if(encrypt)
@@ -36,14 +36,14 @@
     
     if(base64out)
     {
-        return [SystemConvert ToBase64String:outBytes];
+        return [KPHSystemConvert toBase64String:outBytes];
     }
     else
     {
-        return [SystemConvert ToUTF8String:outBytes];
+        return [KPHSystemConvert toUTF8String:outBytes];
     }
 }
-+ (KPHPwEntry *) GetConfigEntry: (BOOL) create
++ (KPHPwEntry *) getConfigEntry: (BOOL) create
 {
     KPHPwGroup* root = [[KPHUtil client] rootGroup];
     NSUUID* uuid = [KPHUtil globalVars].KEEPASSHTTP_UUID;
@@ -58,7 +58,7 @@
     }
     return entry;
 }
-+ (KPHEntryConfig*) GetEntryConfig: (KPHPwEntry*) entry
++ (KPHEntryConfig*) getEntryConfig: (KPHPwEntry*) entry
 {
     if (entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] != nil)
     {
@@ -67,22 +67,22 @@
     }
     return nil;
 }
-+ (void) SetEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
++ (void) setEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
 {
     entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] = [entryConfig toJson];
     [[KPHUtil client] saveEntry:entry];
     [[KPHUtil client] updateUI];
 }
-+ (NSArray*) GetUserPass:(KPHPwEntry *)entry
++ (NSArray*) getUserPass:(KPHPwEntry *)entry
 {
     NSString* user = entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField];
     NSString* pass = entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField];
     return [[NSArray alloc]initWithObjects:user,pass, nil];
 }
-+ (KPHResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(KPHPwEntry*) entry
++ (KPHResponseEntry*) prepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(KPHPwEntry*) entry
 {
     NSString* name = entry.Strings[[KPHUtil globalVars].PwDefs.TitleField];
-    NSArray* loginpass = [KPHCore GetUserPass:entry];
+    NSArray* loginpass = [KPHCore getUserPass:entry];
     NSString* login = loginpass[0];
     NSString* passwd = loginpass[1];
     NSString* uuid = [entry.Uuid UUIDString];

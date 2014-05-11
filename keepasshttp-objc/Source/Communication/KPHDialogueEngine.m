@@ -36,12 +36,12 @@
     }
     else{
         DDLogVerbose(@"Handling request type: %@",pluginRequest.RequestType);
-        Aes* aes = [Aes new];
-        BOOL requestIsValid = [pluginRequest.RequestType isEqual:@"associate"] || [KPHProtocol VerifyRequest:pluginRequest aes:aes];
+        KPHAes* aes = [KPHAes new];
+        BOOL requestIsValid = [pluginRequest.RequestType isEqual:@"associate"] || [KPHProtocol verifyRequestt:pluginRequest aes:aes];
         if (requestIsValid)
         {
             [handler handle:pluginRequest response:handlerResponse aes:aes];
-            [KPHProtocol SetResponseVerifier:handlerResponse aes:aes];
+            [KPHProtocol setResponseVerifier:handlerResponse aes:aes];
         }
         else
         {

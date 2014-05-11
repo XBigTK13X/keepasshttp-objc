@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <CommonCrypto/CommonCryptor.h>
-#import "SystemConvert.h"
+#import "KPHSystemConvert.h"
 #import "stdlib.h"
 
-@interface Aes : NSObject
+@interface KPHAes : NSObject
 
 @property (nonatomic) NSData* Key;
 @property (nonatomic) NSData* IV;

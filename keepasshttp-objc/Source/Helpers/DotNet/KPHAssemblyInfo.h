@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AssemblyInfo : NSObject
-+ (NSString*) AssemblyVersion;
-+ (NSString*) AssemblyFileVersion;
+@interface KPHAssemblyInfo : NSObject
++ (NSString*) assemblyVersion;
++ (NSString*) assemblyFileVersion;
 @end

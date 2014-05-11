@@ -11,9 +11,9 @@
 
 @implementation KPHProtocol
 
-+ (BOOL) VerifyRequest:(KPHRequest *) request aes:(Aes*)aes
++ (BOOL) verifyRequestt:(KPHRequest *) request aes:(KPHAes*)aes
 {
-    KPHPwEntry* entry = [KPHCore GetConfigEntry:false];
+    KPHPwEntry* entry = [KPHCore getConfigEntry:false];
     if (entry == nil){
         return false;
     }
@@ -23,62 +23,62 @@
         return false;
     }
     
-    return [KPHProtocol TestRequestVerifier:request aes:aes key:pluginCryptoKey];
+    return [KPHProtocol testRequestVerifier:request aes:aes key:pluginCryptoKey];
 }
 
-+ (BOOL) TestRequestVerifier: (KPHRequest *) request aes:(Aes*)aes key:(NSString *) key
++ (BOOL) testRequestVerifier: (KPHRequest *) request aes:(KPHAes*)aes key:(NSString *) key
 {
-    NSData* cipherData = [SystemConvert FromBase64String:request.Verifier];
-    aes.Key = [SystemConvert FromBase64String:key];
-    aes.IV = [SystemConvert FromBase64String:request.Nonce];
+    NSData* cipherData = [KPHSystemConvert fromBase64String:request.Verifier];
+    aes.Key = [KPHSystemConvert fromBase64String:key];
+    aes.IV = [KPHSystemConvert fromBase64String:request.Nonce];
     NSData *decryptedData = [aes decrypt:cipherData];
     if(decryptedData == nil){
         return false;
     }
 
-    NSString* verifier = [SystemConvert ToUTF8String:decryptedData];
+    NSString* verifier = [KPHSystemConvert toUTF8String:decryptedData];
     return [verifier isEqual:request.Nonce];
 }
 
-+ (void) SetResponseVerifier: (KPHResponse *) response aes:(Aes*) aes
++ (void) setResponseVerifier: (KPHResponse *) response aes:(KPHAes*) aes
 {
     if(response.Nonce == nil){
         [KPHProtocol randomizeIV:response aes:aes];
     }
-    response.Verifier = [KPHCore CryptoTransform:response.Nonce base64in:false base64out:true aes:aes encrypt:true];
+    response.Verifier = [KPHCore cryptoTransform:response.Nonce base64in:false base64out:true aes:aes encrypt:true];
     
 }
 
-+ (void) randomizeIV: (KPHResponse *) response aes:(Aes*) aes
++ (void) randomizeIV: (KPHResponse *) response aes:(KPHAes*) aes
 {
-    aes.IV = [Aes randomIV:16];
-    response.Nonce = [SystemConvert ToBase64String:aes.IV];
+    aes.IV = [KPHAes randomIV:16];
+    response.Nonce = [KPHSystemConvert toBase64String:aes.IV];
 }
 
-+ (void) encryptResponse:(KPHResponse*)response aes:(Aes*)aes
++ (void) encryptResponse:(KPHResponse*)response aes:(KPHAes*)aes
 {
     [KPHProtocol randomizeIV:response aes:aes];
     for (KPHResponseEntry* entry in response.Entries)
     {
         if(entry.Name != nil){
-            entry.Name = [KPHCore CryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
+            entry.Name = [KPHCore cryptoTransform:entry.Name base64in:false base64out:true aes:aes encrypt:true];
         }
         if(entry.Login != nil){
-            entry.Login = [KPHCore CryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
+            entry.Login = [KPHCore cryptoTransform:entry.Login base64in:false base64out:true aes:aes encrypt:true];
         }
         if(entry.Uuid != nil){
-            entry.Uuid = [KPHCore CryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
+            entry.Uuid = [KPHCore cryptoTransform:entry.Uuid base64in:false base64out:true aes:aes encrypt:true];
         }
         if(entry.Password != nil){
-            entry.Password = [KPHCore CryptoTransform:entry.Password base64in:false base64out:true aes:aes encrypt:true];
+            entry.Password = [KPHCore cryptoTransform:entry.Password base64in:false base64out:true aes:aes encrypt:true];
         }
         
         if (entry.StringFields != nil)
         {
             for (KPHResponseStringField* sf in entry.StringFields)
             {
-                sf.Key = [KPHCore CryptoTransform:sf.Key base64in:false base64out:true aes:aes encrypt:true];
-                sf.Value = [KPHCore CryptoTransform:sf.Value base64in:false base64out:true aes:aes encrypt:true];
+                sf.Key = [KPHCore cryptoTransform:sf.Key base64in:false base64out:true aes:aes encrypt:true];
+                sf.Value = [KPHCore cryptoTransform:sf.Value base64in:false base64out:true aes:aes encrypt:true];
             }
         }
     }

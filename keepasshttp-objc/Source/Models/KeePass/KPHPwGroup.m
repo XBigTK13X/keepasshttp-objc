@@ -40,15 +40,11 @@
         self.Entries[entry.Uuid] = entry;
     }
 }
-- (void) searchEntries:(KPHSearchParameters*)params entries:(NSMutableArray*)entries
-{
-    
-}
 - (KPHPwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound
 {
     return nil;
 }
-- (void) AddGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership
+- (void) addGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership
 {
     
 }

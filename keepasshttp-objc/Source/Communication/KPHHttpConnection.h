@@ -15,6 +15,5 @@
 @interface KPHHttpConnection : HTTPConnection
 
 @property (nonatomic) KPHDialogueEngine* engine;
-
 + (int) defaultPort;
 @end

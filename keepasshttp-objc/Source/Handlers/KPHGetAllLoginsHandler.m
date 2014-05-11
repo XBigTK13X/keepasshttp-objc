@@ -9,7 +9,7 @@
 #import "KPHGetAllLoginsHandler.h"
 
 @implementation KPHGetAllLoginsHandler
-- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(Aes*)aes
+- (void) handle: (KPHRequest*)request response:(KPHResponse*)response aes:(KPHAes*)aes
 {
     NSArray* entries = [[KPHUtil client] getAllLogins];
     for (KPHPwEntry* entry in entries)
@@ -18,7 +18,7 @@
         if(name == nil){
             name = entry.Strings[[KPHUtil globalVars].PwDefs.UrlField];
         }
-        NSString* login = [KPHCore GetUserPass:entry][0];
+        NSString* login = [KPHCore getUserPass:entry][0];
         NSString* uuid = [entry.Uuid UUIDString];
         KPHResponseEntry* e = [KPHResponseEntry new];
         e.Name = name;
@@ -28,7 +28,7 @@
     }
     response.Success = true;
     response.Id = request.Id;
-    [KPHProtocol SetResponseVerifier:response aes:aes];
+    [KPHProtocol setResponseVerifier:response aes:aes];
     [KPHProtocol encryptResponse:response aes:aes];
 }
 @end

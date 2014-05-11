@@ -9,16 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "KPHTypes.h"
 #import "KPHUtil.h"
-#import "Aes.h"
+#import "KPHAes.h"
 #import "KPHEntryConfig.h"
 #import "KPHResponseEntry.h"
 #import "KPHConfigOpt.h"
 
 @interface KPHCore : NSObject
-+ (NSString*) CryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(Aes*)aes encrypt:(BOOL)encrypt;
-+ (KPHPwEntry *) GetConfigEntry : (BOOL) access;
-+ (KPHEntryConfig*) GetEntryConfig: (KPHPwEntry*) entry;
-+ (void) SetEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig;
-+ (NSArray*) GetUserPass:(KPHPwEntry*)entry;
-+ (KPHResponseEntry*) PrepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(KPHPwEntry*) entry;
++ (NSString*) cryptoTransform: (NSString*) input base64in:(BOOL)base64in base64out:(BOOL)base64out aes:(KPHAes*)aes encrypt:(BOOL)encrypt;
++ (KPHPwEntry *) getConfigEntry : (BOOL) access;
++ (KPHEntryConfig*) getEntryConfig: (KPHPwEntry*) entry;
++ (void) setEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig;
++ (NSArray*) getUserPass:(KPHPwEntry*)entry;
++ (KPHResponseEntry*) prepareElementForResponseEntries:(KPHConfigOpt*) configOpt entry:(KPHPwEntry*) entry;
 @end

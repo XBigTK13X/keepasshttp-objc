@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "KPHPwEntry.h"
-#import "KPHSearchParameters.h"
 
 @interface KPHPwGroup : NSObject
 
@@ -19,7 +18,6 @@
 - (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon;
 - (KPHPwEntry *) findEntry:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (void) addEntry:(KPHPwEntry*)entry takeOwnership:(BOOL)takeOwnership;
-- (void) searchEntries:(KPHSearchParameters*)params entries:(NSMutableArray*)entries;
 - (KPHPwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound;
-- (void) AddGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership;
+- (void) addGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership;
 @end

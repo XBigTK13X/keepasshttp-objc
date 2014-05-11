@@ -7,7 +7,7 @@
 //
 
 #import "KPHGlobalVars.h"
-#import "SystemConvert.h"
+#import "KPHSystemConvert.h"
 
 @implementation KPHGlobalVars
 - (id) init
