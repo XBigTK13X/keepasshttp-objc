@@ -11,6 +11,11 @@
 #import "KPHUtil.h"
 
 @implementation KPHKeePassClientMock
+
+-(void) setConfigOptions:(KPHConfigOpt*)configOpt
+{
+}
+
 -(id)init
 {
     self = [super init];
@@ -76,23 +81,9 @@
     return entries;
 }
 
-- (BOOL) getConfigBool:(NSString*)key
-{
-    DDLogVerbose(@"Grabbing config for %@",key);
-    return false;
-}
-- (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled
-{
-    
-}
 - (void) showNotification:(NSString*)message
 {
     DDLogVerbose(@"Notification displayed: %@",message);
-}
-- (NSDictionary*) getCustomConfig
-{
-    NSDictionary* config = [NSMutableDictionary new];
-    return config;
 }
 - (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive
 {

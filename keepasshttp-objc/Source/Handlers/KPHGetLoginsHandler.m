@@ -57,11 +57,11 @@
     NSMutableArray* items = [client findMatchingEntries:host submithost:submithost];
     if (items.count > 0)
     {
-        KPHConfigOpt* configOpt = [KPHConfigOpt new];
+        KPHConfigOpt* configOpt = [KPHUtil globalVars].ConfigOpt;
         KPHPwEntry* config = [KPHCore getConfigEntry:true];
         NSString* autoAllowS = config.Strings[@"Auto Allow"];
         BOOL autoAllow = autoAllowS != nil && [KPHUtil trim:autoAllowS] != nil;
-        autoAllow = autoAllow || [client getConfigBool:configOpt.AlwaysAllowAccess];
+        autoAllow = autoAllow || configOpt.AlwaysAllowAccess;
         
         NSMutableArray* needPrompting = [self getEntriesThatNeedPrompting:items host:host submithost:submithost];
         
@@ -124,7 +124,7 @@
                 
                 entryUrl = [entryUrl lowercaseString];
                 
-                entry.UsageCount = [self LevenshteinDistance:compareToUrl target:entryUrl];
+                entry.UsageCount = [self levenshteinDistance:compareToUrl target:entryUrl];
                 
             }
             if (configOpt.SpecificMatchingOnly)
@@ -227,7 +227,7 @@
     response.Id = request.Id;
     [KPHProtocol setResponseVerifier:response aes:aes];
 }
-- (NSUInteger) LevenshteinDistance:(NSString*) source target:(NSString*) target
+- (NSUInteger) levenshteinDistance:(NSString*) source target:(NSString*) target
 {
     if ([KPHUtil stringIsNilOrEmpty:source])
     {

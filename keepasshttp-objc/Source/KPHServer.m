@@ -11,18 +11,15 @@
 @implementation KPHServer
 - (void) startWithClient: (NSObject<KPHKeePassClient> *) keePassClient
 {
-    [self startWithClientOnPort:keePassClient port:[KPHHttpConnection defaultPort]];
-}
-- (void) startWithClientOnPort: (NSObject<KPHKeePassClient> *) keePassClient port:(int)port
-{
     [KPHLogging setup];
     if(keePassClient == nil){
         [NSException raise:@"Uninitialized KPHKeePassClient" format:@"keePassClient can not be nil."];
     }
     [KPHUtil setClient:keePassClient];
+    [[KPHUtil client] setConfigOptions:[KPHUtil globalVars].ConfigOpt];
     
     self.httpServer = [[HTTPServer alloc] init];
-    self.httpServer.port = port;
+    self.httpServer.port = [KPHUtil globalVars].ConfigOpt.ListenerPort;
     self.httpServer.documentRoot = nil;
     self.httpServer.connectionClass = [KPHHttpConnection class];
     
@@ -32,7 +29,7 @@
         DDLogError(@"Error starting keepasshttp-objc server: %@", error);
     }
     else{
-        DDLogInfo(@"keypasshttp-objc server now running on port %i",port);
+        DDLogInfo(@"keypasshttp-objc server now running on port %li",(long)[KPHUtil globalVars].ConfigOpt.ListenerPort);
     }
 }
 @end

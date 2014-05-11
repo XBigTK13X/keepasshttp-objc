@@ -23,22 +23,22 @@
         NSString* decryptedUuid = [KPHCore cryptoTransform:request.Uuid base64in:true base64out:false aes:aes encrypt:false];
         NSData* uuidData = [KPHSystemConvert fromUTF8String:decryptedUuid];
         NSUUID* uuid = [[NSUUID alloc] initWithUUIDBytes:uuidData.bytes];
-        [self UpdateEntry:uuid username:username password:password formHost:urlHost requestId:request.Id];
+        [self updateEntry:uuid username:username password:password formHost:urlHost requestId:request.Id];
     }
     else
     {
-        [self CreateEntry:username password:password urlHost:urlHost url:url request:request aes:aes];
+        [self createEntry:username password:password urlHost:urlHost url:url request:request aes:aes];
     }
     
     response.Success = true;
     response.Id = request.Id;
     [KPHProtocol setResponseVerifier:response aes:aes];
 }
-- (BOOL) UpdateEntry:(NSUUID*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
+- (BOOL) updateEntry:(NSUUID*) uuid username:(NSString*) username password:(NSString*) password formHost:(NSString*) formHost requestId:(NSString*) requestId
 {
     KPHPwEntry* entry = nil;
     
-    KPHConfigOpt* configOpt = [[KPHConfigOpt alloc] initWithCustomConfig:[[KPHUtil client] getCustomConfig]];
+    KPHConfigOpt* configOpt = [KPHUtil globalVars].ConfigOpt;
     if (configOpt.SearchInAllOpenedDatabases)
     {
         entry = [[KPHUtil client] findEntryInAnyDatabase:uuid searchRecursive:true];
@@ -85,7 +85,7 @@
     return false;
 }
 
-- (BOOL) CreateEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(KPHRequest*) request aes:(KPHAes*) aes
+- (BOOL) createEntry: (NSString*) username password:(NSString*) password urlHost:(NSString*) urlHost url:(NSString*) url request:(KPHRequest*) request aes:(KPHAes*) aes
 {
     NSString* realm = nil;
     if (request.Realm != nil)

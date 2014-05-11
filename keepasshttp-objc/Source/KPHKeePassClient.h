@@ -12,8 +12,11 @@
 #import "KPHRequest.h"
 #import "KPHGetLoginsUserResponse.h"
 #import "KPHGeneratedPassword.h"
+#import "KPHConfigOpt.h"
 
 @protocol KPHKeePassClient
+- (void) setConfigOptions:(KPHConfigOpt*)configOpt;
+
 - (KPHPwGroup *) rootGroup;
 - (KPHPwGroup *) recycleGroup;
 - (void) saveEntry:(KPHPwEntry*)entry;
@@ -23,10 +26,6 @@
 - (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (KPHGeneratedPassword*) generatePassword;
 - (NSArray*) getAllLogins;
-
-- (NSDictionary*) getCustomConfig;
-- (BOOL) getConfigBool:(NSString*)key;
-- (void) setConfigBool:(NSString*) key enabled:(NSString*)enabled;
 
 - (BOOL) promptUserForOverwrite: (NSString*)message title:(NSString*)title;
 //Return nil if user declines

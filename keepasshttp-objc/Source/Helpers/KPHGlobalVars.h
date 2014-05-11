@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KPHPwDefs.h"
 #import "KPHRequestIds.h"
+#import "KPHConfigOpt.h"
 
 @interface KPHGlobalVars : NSObject
 
@@ -16,11 +17,12 @@
 @property (nonatomic) int DEFAULT_NOTIFICATION_TIME;
 @property (nonatomic) NSString* KEEPASSHTTP_NAME;
 @property (nonatomic) NSString* KEEPASSHTTP_GROUP_NAME;
-@property (nonatomic) int DEFAULT_PORT;
 @property (nonatomic) NSString* HTTP_PREFIX;
 @property (nonatomic) NSUUID* KEEPASSHTTP_UUID;
+@property (nonatomic) NSString* KEEPASSHTTP_GROUP_ICON;
+
 @property (nonatomic) KPHPwDefs* PwDefs;
 @property (nonatomic) KPHRequestIds* RequestIds;
-@property (nonatomic) NSString* KEEPASSHTTP_GROUP_ICON;
+@property (nonatomic) KPHConfigOpt* ConfigOpt;
 
 @end
