@@ -14,10 +14,11 @@
 
 @property (nonatomic) NSUUID* Uuid;
 @property (nonatomic) NSMutableDictionary* Entries;
+//Set of KPHPwGroup
+@property (nonatomic) NSMutableSet* Children;
 
 - (id) initWithParams:(BOOL)createNewUuid setTimes:(BOOL)setTimes name:(NSString*)name pwIcon:(NSString*) pwIcon;
 - (KPHPwEntry *) findEntry:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
 - (void) addEntry:(KPHPwEntry*)entry takeOwnership:(BOOL)takeOwnership;
-- (KPHPwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound;
 - (void) addGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership;
 @end

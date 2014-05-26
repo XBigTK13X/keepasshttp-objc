@@ -14,6 +14,7 @@
     self = [super init];
     if(self){
         self.Entries = [NSMutableDictionary new];
+        self.Children = [NSMutableSet new];
     }
     return self;
 }
@@ -27,6 +28,7 @@
     if(self){
         self.Uuid = [[NSUUID alloc] initWithUUIDString:uuid];
         self.Entries = [NSMutableDictionary new];
+        self.Children = [NSMutableSet new];
     }
     return self;
 }
@@ -42,6 +44,6 @@
 }
 - (void) addGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership
 {
-    
+    [self.Children addObject:group];
 }
 @end
