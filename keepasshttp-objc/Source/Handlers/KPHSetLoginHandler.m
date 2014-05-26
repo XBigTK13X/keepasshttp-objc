@@ -75,8 +75,8 @@
             
             entry.Strings[[KPHUtil globalVars].PwDefs.UserNameField] = username;
             entry.Strings[[KPHUtil globalVars].PwDefs.PasswordField] = password;
-            [[KPHUtil client] saveEntry:entry];
-            [[KPHUtil client] updateUI];
+            [[KPHUtil client] createOrUpdateEntry:entry];
+            [[KPHUtil client] refreshUI];
             
             return true;
         }
@@ -94,12 +94,12 @@
     }
     
     KPHPwGroup* root = [[KPHUtil client] rootGroup];
-    KPHPwGroup* group = [root findCreateGroup:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME createIfNotFound:false];
+    KPHPwGroup* group = [[KPHUtil client] findGroup:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME];
     if (group == nil)
     {
         group = [[KPHPwGroup alloc] initWithParams:true setTimes:true name:[KPHUtil globalVars].KEEPASSHTTP_GROUP_NAME pwIcon:[KPHUtil globalVars].KEEPASSHTTP_GROUP_ICON];
         [root addGroup:group takeOwnership:true];
-        [[KPHUtil client] updateUI];
+        [[KPHUtil client] refreshUI];
     }
     
     NSString* submithost = nil;
@@ -133,7 +133,8 @@
     }
     
     [group addEntry:entry takeOwnership:true];
-    [[KPHUtil client] updateUI];
+    [[KPHUtil client] createOrUpdateGroup:root];
+    [[KPHUtil client] refreshUI];
     
     return true;
 }

@@ -54,7 +54,8 @@
         entry.Uuid = uuid;
         [entry.Strings setObject:[KPHUtil globalVars].KEEPASSHTTP_NAME forKey:[KPHUtil globalVars].PwDefs.TitleField];
         [root addEntry:entry takeOwnership:true];
-        [[KPHUtil client] updateUI];
+        [[KPHUtil client] createOrUpdateGroup:root];
+        [[KPHUtil client] refreshUI];
     }
     return entry;
 }
@@ -70,8 +71,8 @@
 + (void) setEntryConfig:(KPHPwEntry*)entry entryConfig:(KPHEntryConfig*)entryConfig
 {
     entry.Strings[[KPHUtil globalVars].KEEPASSHTTP_NAME] = [entryConfig toJson];
-    [[KPHUtil client] saveEntry:entry];
-    [[KPHUtil client] updateUI];
+    [[KPHUtil client] createOrUpdateEntry:entry];
+    [[KPHUtil client] refreshUI];
 }
 + (NSArray*) getUserPass:(KPHPwEntry *)entry
 {

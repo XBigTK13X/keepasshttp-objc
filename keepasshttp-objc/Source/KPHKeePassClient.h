@@ -19,8 +19,10 @@
 
 - (KPHPwGroup *) rootGroup;
 - (KPHPwGroup *) recycleGroup;
-- (void) saveEntry:(KPHPwEntry*)entry;
+- (void) createOrUpdateEntry:(KPHPwEntry*)entry;
+- (void) createOrUpdateGroup:(KPHPwGroup*)group;
 
+- (KPHPwGroup*) findGroup:(NSString*)name;
 - (int) countMatchingEntries:(NSString*) url submitHost:(NSString*)submitHost realm:(NSString*)realm;
 - (NSMutableArray*) findMatchingEntries:(NSString*) host submithost:(NSString*)submithost;
 - (KPHPwEntry*) findEntryInAnyDatabase:(NSUUID*)uuid searchRecursive:(BOOL)searchRecursive;
@@ -33,5 +35,6 @@
 - (KPHGetLoginsUserResponse*) promptUserForAccess:(NSString*) message title:(NSString*)title host:(NSString*)host submithost:(NSString*)submithost entries:(NSArray*)entries;
 - (BOOL) promptUserForEntryUpdate:(NSString*)message title:(NSString*)title;
 - (void) showNotification:(NSString*)message;
-- (void) updateUI;
+   
+- (void) refreshUI;
 @end

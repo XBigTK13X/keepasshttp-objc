@@ -37,10 +37,10 @@
             }
         }
         entry.Strings[keyConfigId] = request.Key;
-        [[KPHUtil client] saveEntry:entry];
+        [[KPHUtil client] createOrUpdateEntry:entry];
         response.Id = keyId;
         response.Success = true;
-        [[KPHUtil client] updateUI];
+        [[KPHUtil client] refreshUI];
     }
 }
 

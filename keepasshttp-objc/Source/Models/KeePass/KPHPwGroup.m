@@ -40,10 +40,6 @@
         self.Entries[entry.Uuid] = entry;
     }
 }
-- (KPHPwGroup *) findCreateGroup:(NSString*)name createIfNotFound:(BOOL)createIfNotFound
-{
-    return nil;
-}
 - (void) addGroup:(KPHPwGroup*)group takeOwnership:(BOOL)takeOwnership
 {
     

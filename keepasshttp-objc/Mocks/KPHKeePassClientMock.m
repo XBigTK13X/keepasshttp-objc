@@ -43,7 +43,7 @@
 {
     return self.recycle;
 }
-- (void) updateUI
+- (void) refreshUI
 {
     
 }
@@ -111,10 +111,19 @@
     return true;
 }
 
-- (void) saveEntry:(KPHPwEntry*)entry
+- (void) createOrUpdateEntry:(KPHPwEntry*)entry
 {
     DDLogVerbose(@"Saving an entry");
     [self.root addEntry:entry takeOwnership:true];
+}
+
+- (void) createOrUpdateGroup:(KPHPwGroup*)group
+{
+    
+}
+
+- (KPHPwGroup*) findGroup:(NSString*) name{
+    return self.root;
 }
 
 - (NSArray*) getAllLogins
